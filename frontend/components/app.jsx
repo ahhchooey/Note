@@ -1,16 +1,20 @@
 import React from "react";
 import {Provider} from "react-redux";
-import {HashRouter, Route} from "react-router-dom";
+import {HashRouter, Route, Switch} from "react-router-dom";
 
 import Splash from "./splash/splash.jsx";
+import Note from "./note/nb.jsx";
+import {AuthRoute, ProtectedRoute} from "../utils/route_util.jsx";
 
 const App = (props) => (
   <Provider store={props.store}>
     <HashRouter>
+      <Switch>
 
-      <h1>I am app</h1>
-      <Route path={"/"} component={Splash} />
+        <ProtectedRoute path={"/note"} component={Note} />
+        <AuthRoute path={"/"} component={Splash} />
 
+      </Switch>
     </HashRouter>
   </Provider>
 )

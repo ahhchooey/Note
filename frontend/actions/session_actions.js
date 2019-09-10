@@ -21,11 +21,13 @@ const receiveErrors = (errors) => ({
 export const signup = (user) => dispatch => {
   return ApiSessionUtil.signup(user)
     .then(user => dispatch(receieveUser(user)))
+    .fail(errors => dispatch(receiveErrors(errors)))
 }
 
 export const login = (user) => dispatch => {
   return ApiSessionUtil.login(user)
     .then(user => dispatch(receieveUser(user)))
+    .fail(errors => dispatch(receiveErrors(errors)))
 }
 
 export const logout = () => dispatch => {

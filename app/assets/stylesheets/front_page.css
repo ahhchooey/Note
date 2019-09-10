@@ -1,0 +1,409 @@
+
+.front-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.impact {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #3a4;
+
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.impact-text {
+  padding: 40px;
+  margin-right: 20px;
+}
+
+.impact-text h2 {
+  font-size: 35px;
+  line-height: 50px;
+  padding: 7px 0px;
+  color: white;
+}
+
+.impact-text p {
+  font-size: 16px;
+  line-height: 30px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.impact img {
+  height: 350px;
+  width: auto;
+}
+
+.impact-button {
+  height: 50px;
+  width: 300px;
+  color: green;
+  text-transform: uppercase;
+  border: 0px;
+  border-radius: 2px;
+  font-weight: 600;
+  background-color: white;
+}
+
+.impact-button:hover {
+  cursor: pointer;
+}
+
+
+.focus {
+  height: 600px;
+  width: 100%;
+  padding: 20px 60px;
+  background-color: #eee;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.focus h2 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #333;
+}
+
+.focus-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.focus-text p {
+  font-size: 25px;
+  line-height: 35px;
+  width: 300px;
+  margin: 0px 20px;
+  color: #999;
+}
+
+
+.anywhere {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #fff;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.anywhere-text {
+  padding-bottom: 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.anywhere-text h2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.anywhere-text p {
+  font-size: 25px;
+}
+
+
+.remember {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #ccc;
+
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.remember-text {
+  width: 400px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.remember-text h2 {
+  font-size: 35px;
+  line-height: 50px;
+  color: green;
+}
+
+.remember-text p {
+  font-size: 22px;
+  line-height: 35px;
+  color: green;
+}
+
+.plan-link {
+  text-transform: uppercase;
+  color: #f77;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.remember img {
+  height: 400px;
+  width: auto;
+}
+
+
+.organize {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #9e9;
+
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.organize img {
+  height: 400px;
+  width: auto;
+}
+
+.organize-text {
+  width: 400px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.organize-text h2 {
+  font-size: 35px;
+  line-height: 50px;
+}
+
+.organize-text p {
+  font-size: 22px;
+  line-height: 35px;
+}
+
+
+.collaborate {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #3a4;
+
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.collaborate img {
+  height: 400px;
+  width: auto;
+}
+
+.collaborate-text {
+  width: 400px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.collaborate-text h2 {
+  font-size: 35px;
+  line-height: 50px;
+  color: #eee;
+}
+
+.collaborate-text p {
+  font-size: 22px;
+  line-height: 35px;
+  color: #eee;
+}
+
+
+.compare {
+  height: 150px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #efe;
+
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.compare button {
+  height: 50px;
+  width: 300px;
+  color: white;
+  text-transform: uppercase;
+  border: 0px;
+  border-radius: 2px;
+  font-weight: 600;
+  background-color: green;
+}
+
+.compare button:hover {
+  cursor: pointer;
+}
+
+
+.testimony {
+  height: 350px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #fff;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.testimony-images {
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.testimony-images img {
+  height: auto;
+  width: 150px;
+  margin: 0px 50px;
+  opacity: 0.6;
+}
+
+.testimony-images img:hover {
+  opacity: 1.0;
+}
+
+.testimony-text {
+  font-size: 20px;
+}
+
+
+.how-it-works {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #eee;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.how-it-works h2 {
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.how-block {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.how-block img {
+  height: 125px;
+  width: auto;
+}
+
+.how-block div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  margin: 0px 20px;
+  text-align: center;
+}
+
+.how-it-works button {
+  height: 50px;
+  width: 300px;
+  color: white;
+  text-transform: uppercase;
+  border: 0px;
+  border-radius: 2px;
+  font-weight: 600;
+  background-color: green;
+}
+
+.how-it-works button:hover {
+  cursor: pointer;
+}
+
+
+.popular-features {
+  height: 600px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #fff;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.popular-features h2 {
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.popular-links img {
+  height: 125px;
+  width: auto;
+}
+
+.popular-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 130px;
+}
+
+.p-link {
+  margin: 0px 80px;
+}
+
+
+.footer {
+  height: 300px;
+  width: 100%;
+  padding: 0px 60px;
+  background-color: #eee;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-class Api::SessionController < ApplicationController
+class Api::SessionsController < ApplicationController
 
   def create
     @user = User.find_by_creds(params[:user][:email], params[:user][:password])
@@ -7,7 +7,7 @@ class Api::SessionController < ApplicationController
       login(@user)
       render :show
     else
-      render json: {errors: "Email or Password is invalid."}
+      render json: ["Email or Password is invalid."], status: 422
     end
   end
 

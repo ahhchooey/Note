@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   validates :password, length: {minimum: 8, maximum: 16}, allow_nil: true
-  validates_format_of :password, :with => /\A^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,15}$\Z/
+  #validates_format_of :password, :with => /\A^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$\Z/i
   validates :email, :password_digest, :session_token, presence: true
 
   attr_reader :password
@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   def password=(pw)
     self.password_digest = BCrypt::Password.create(pw)
+    @password = pw
   end
 
   def is_password?(pw)

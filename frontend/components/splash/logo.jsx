@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 
 
 const Logo = (props) => (
-  <Link to={"/"}>
-    <img className="logo" src="https://globalgamejam.org/sites/default/files/styles/game_sidebar__normal/public/game/featured_image/promo_5.png?itok=9dymM8JD" alt="logo" />
-    <h1>note</h1>
+  <Link className="complete-logo" to={"/"}>
+    <img className="logo" src="https://www.designfreelogoonline.com/wp-content/uploads/2017/07/000856-Wolf-head-logo-maker-01.png" alt="logo" />
+    <h1 className="splash-title">note</h1>
   </Link>
 )
 

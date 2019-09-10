@@ -1,8 +1,12 @@
 import React from "react";
 
+import SidebarContainer from "./sidebar_container.js";
+
 
 const Note = (props) => (
-  <h1>i am note</h1>
+  <div className="note">
+    <SidebarContainer />
+  </div>
 )
 
 export default Note;

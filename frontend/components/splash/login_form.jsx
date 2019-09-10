@@ -12,6 +12,10 @@ export default class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.login(this.state);
@@ -27,15 +31,11 @@ export default class LoginForm extends React.Component {
     return (
       <div className="session-page">
         <div className="signup-form">
-          <img className="session-logo" src="https://www.designfreelogoonline.com/wp-content/uploads/2017/07/000856-Wolf-head-logo-maker-01.png" alt="logo" />
-          <h2>note</h2>
+          <Link className="session-return-to-front" to={"/"}>
+            <img className="session-logo" src="https://www.designfreelogoonline.com/wp-content/uploads/2017/07/000856-Wolf-head-logo-maker-01.png" alt="logo" />
+            <h2>note</h2>
+          </Link>
           <p>Remember everything important.</p>
-          {(this.props.errors.responseJSON !== undefined) 
-              ? <p style={{color: 'red', position: 'absolute', top: '10px'}}>
-                  {this.props.errors.responseJSON[0]}
-                </p> 
-            : ""
-          }
           <form onSubmit={this.handleSubmit}>
             <input type="email" value={this.state.email}
               onChange={this.handleChange("email")}
@@ -47,6 +47,12 @@ export default class LoginForm extends React.Component {
               placeholder="Password"
             />
             <br />
+            {(this.props.errors.responseJSON !== undefined) 
+                ? <p className="session-error">
+                    {this.props.errors.responseJSON[0]}
+                  </p> 
+              : ""
+            }
             <input className="session-button" type="submit" value="Login" />
           </form>
           <p className="t-and-c">By creating an account, you are agreeing to our Terms of Service and Privacy Policy.</p>

@@ -1,6 +1,6 @@
 
 .session-page {
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
   background-color: #F1FCF7;
   
@@ -10,7 +10,7 @@
 }
 
 .signup-form {
-  height: 600px;
+  height: 650px;
   width: 500px;
   box-shadow: 0 0 3px #ccc;
   position: relative;
@@ -53,12 +53,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .session-button {
   margin: 0 auto;
   background-color: green;
   color: white;
+}
+
+.session-button:hover {
+  cursor: pointer;
+  background-color: #7b7;
 }
 
 .demo-button {
@@ -69,10 +75,15 @@
   padding: 10px;
   font-size: 16px;
   margin: 0 auto;
-  margin-top: -30px;
-  margin-bottom: -20px;
+  margin-top: -20px;
+  margin-bottom: 20px;
   background-color: green;
   color: white;
+}
+
+.demo-button:hover {
+  cursor: pointer;
+  background-color: #7b7;
 }
 
 .t-and-c {
@@ -91,4 +102,28 @@
 
 .change-session-button {
   color: green;
+}
+
+.or {
+  text-align: center;
+  width: 80%;
+  height: 0.5px;
+  border: 1px solid #eee;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.session-return-to-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.session-error {
+  color: red;
+  position: absolute;
+  font-size: 10px;
+  top: 120px;  
 }

@@ -14,6 +14,10 @@ export default class SignupForm extends React.Component {
     this.login = this.login.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.signup(this.state);
@@ -48,15 +52,17 @@ export default class SignupForm extends React.Component {
     return (
       <div className="session-page">
         <div className="signup-form">
-          <img className="session-logo" src="https://www.designfreelogoonline.com/wp-content/uploads/2017/07/000856-Wolf-head-logo-maker-01.png" alt="logo" />
-          <h2>note</h2>
+          <Link className="session-return-to-front" to={"/"}>
+            <img className="session-logo" src="https://www.designfreelogoonline.com/wp-content/uploads/2017/07/000856-Wolf-head-logo-maker-01.png" alt="logo" />
+            <h2>note</h2>
+          </Link>
           <p>Remember everything important.</p>
-          {(this.props.errors.responseJSON !== undefined) 
-              ? <p style={{color: 'red', position: 'absolute', top: '10px'}}>
-                  {this.props.errors.responseJSON[0]}
-                </p> 
-            : ""
-          }
+          <button onClick={() => {
+            this.setState({email: "", password: ""},
+              this.demoLogin
+            )
+          }} className="demo-button">Demo</button>
+          <div className="or"></div>
           <form onSubmit={this.handleSubmit}>
             <input type="email" value={this.state.email}
               onChange={this.handleChange("email")}
@@ -68,10 +74,15 @@ export default class SignupForm extends React.Component {
               placeholder="Password"
             />
             <br />
+            {(this.props.errors.responseJSON !== undefined) 
+                ? <p className="session-error">
+                    {this.props.errors.responseJSON[0]}
+                  </p> 
+              : ""
+            }
             <input className="session-button" type="submit" value="Sign Up" />
           </form>
           <p className="t-and-c">By creating an account, you are agreeing to our Terms of Service and Privacy Policy.</p>
-          <button onClick={this.demoLogin} className="demo-button">Demo</button>
           <div className="change-session">
             <span>Already have an account?</span>
             <Link className="change-session-button" to={"/login"}>Login</Link>

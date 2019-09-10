@@ -7,7 +7,17 @@ import configureStore from "./stores/store.js";
 
 $(() => {
   const root = document.getElementById("root");
-  const store = configureStore();
+
+  let preloadedState = {};
+  if (window.currentUser) {
+    preloadedState = {
+      session: {
+        currentUser: window.currentUser
+      }
+    };
+    delete window.currentUser;
+  }
+  const store = configureStore(preloadedState);
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 

@@ -5,8 +5,9 @@ class User < ApplicationRecord
   validates :email, :password_digest, :session_token, presence: true
 
   attr_reader :password
-
   after_initialize :ensure_session_token
+
+  has_many :notebooks
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64

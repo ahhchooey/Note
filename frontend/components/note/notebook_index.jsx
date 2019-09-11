@@ -1,11 +1,25 @@
 import React from "react";
 
+import NotebookIndexItem from "./notebook_index_item.jsx";
+
 
 export default class NotebookIndex extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchNotebooks();
+  }
   
   render() {
+    let nbs = Object.values(this.props.notebooks);
+    let cow = nbs.map(notebook => <NotebookIndexItem
+      key={notebook.id}
+      title={notebook.title}
+      author={notebook.user_id}
+      updatedAt={notebook.updated_at} 
+      identity={notebook.id}
+    />)
     return (
-      <h1 className="notebook-index">
+      <div className="notebook-index">
         <div className="notebook-index-head">
           <h2>Notebooks</h2>
           <input type="text" placeholder="Find Notebooks..." />
@@ -23,15 +37,15 @@ export default class NotebookIndex extends React.Component {
         </div>
         <div className="notebook-table">
           <div className="table-labels">
-            <span>Title</span>
-            <span>Created By</span>
-            <span>Updated</span>
-            <span>Shared With</span>
-            <span>Actions</span>
+            <span className="ti">Title</span>
+            <span className="cr">Created By</span>
+            <span className="up">Updated</span>
+            <span className="sh">Shared With</span>
+            <span className="ac">Actions</span>
           </div>
-
         </div>
-      </h1>
+        {cow}
+      </div>
     )
   }
 }

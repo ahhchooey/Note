@@ -9,3 +9,8 @@
 
 User.destroy_all
 User.create(email: "demo@demo.io", password: "password1", username: "demo")
+
+
+Notebook.destroy_all
+Notebook.create(title: "testbook1", user_id: 1)
+Notebook.create(title: "testbook2", user_id: 1)

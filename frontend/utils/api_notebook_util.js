@@ -39,3 +39,4 @@ export const destroyNotebook = (id) => {
     method: "DELETE"
   })
 }
+

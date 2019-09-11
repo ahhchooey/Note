@@ -1,0 +1,104 @@
+
+.notebook-index {
+  height: 100vh;
+  width: calc( 100vw - 225px );
+  border: 1px solid black;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.notebook-index-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
+.notebook-index-head h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.notebook-index-head input {
+  border-radius: 3px;
+  border: 1px solid gray;
+  height: 30px;
+  width: 200px;
+  padding: 5px;
+}
+
+.notebook-index-table-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.notebook-index-table-head h3 {
+  font-weight: 500;
+}
+
+.notebook-index-table-head-buttons {
+
+  display: flex;
+}
+
+.notebook-table {
+  border-top: 3px solid black;
+  margin-top: 20px;
+}
+
+.table-labels {
+  padding: 10px;
+  background-color: #f3f3f3;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.notebook-index-item {
+  padding: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notebook-index-item:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.notebook-index-item:hover {
+  background-color: #eee;
+  cursor: grab;
+}
+
+.ti {
+  flex-basis: 35%;
+}
+
+.ti:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.cr {
+  flex-basis: 15%;
+}
+
+.up {
+  font-size: 12px;
+  flex-basis: 20%;
+}
+
+.sh {
+  flex-basis: 25%;
+}
+
+.ac {
+  flex-basis: 10%;
+  text-align: center;
+}
+
+.ac:hover {
+  cursor: pointer;
+}

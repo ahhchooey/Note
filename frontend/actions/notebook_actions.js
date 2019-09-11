@@ -44,3 +44,4 @@ export const destroyNotebook = (id) => dispatch => {
   return ApiNotebookUtil.destroyNotebook(id)
     .then(notebook => dispatch(removeNotebook(notebook)))
 }
+

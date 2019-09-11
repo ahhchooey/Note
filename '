@@ -1,34 +1,19 @@
 import React from "react";
-import {Link} from "react-router-dom";
 
 
-export default class NotebookIndexItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "searching..."
-    }
-  }
-
-  componentDidMount() {
-    fetchNotebookUser(this.props.author).then(res => {
-      let user = res;
-      let name = res.username ? res.username : res.email;
-      this.setState({name: name})
-    });    
-  }
-
-  render() {
-    return (
-    <div className="notebook-index-item">
-      <Link className="ti" to={`/note/notebooks/${this.props.identity}`}>{this.props.title}</Link>
-      <span className="cr">{this.state.name}</span>
-      <span className="up">{formatDateTime(this.props.updatedAt)}</span>
-      <span className="sh">Only You</span>
-      <span className="ac">...</span>
-    </div>
-    )
-  }
+const NotebookIndexItem = (props) => {
+  console.log(props);
+  let user = fetchNotebookUser(props.author);
+  console.log(user);
+  return (
+  <div className="notebook-index-item">
+    <span className="ti">{props.title}</span>
+    <span className="cr">{props.author}</span>
+    <span className="up">{formatDateTime(props.updatedAt)}</span>
+    <span className="sh">Only You</span>
+    <span className="ac">...</span>
+  </div>
+  )
 }
 
 const fetchNotebookUser = (id) => {
@@ -87,3 +72,5 @@ const formatDateTime = date => (
   `${formatDate(date)} ${formatTime(date)}`
 );
 
+
+export default NotebookIndexItem;

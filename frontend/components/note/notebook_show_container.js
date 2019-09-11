@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import NotebookShow from "./notebook_show.jsx";
-import {fetchNotebook} from "../../actions/notebook_actions.js";
+import {fetchNotebook, destroyNotebook} from "../../actions/notebook_actions.js";
 
 
 const mapStateToProps = (state, ownProps) => ({
@@ -9,7 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({ 
-  fetchNotebook: (id) => dispatch(fetchNotebook(id))
+  fetchNotebook: (id) => dispatch(fetchNotebook(id)),
+  destroyNotebook: (id) => dispatch(destroyNotebook(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotebookShow);

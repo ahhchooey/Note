@@ -31,6 +31,7 @@
 .notebook-index-table-head {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .notebook-index-table-head h3 {
@@ -57,13 +58,14 @@
 
 .notebook-index-item {
   padding: 10px;
+  position: relative;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.notebook-index-item:nth-child(odd) {
+.notebook-index-item:nth-child(even) {
   background-color: #f3f3f3;
 }
 
@@ -81,8 +83,16 @@
   text-decoration: underline;
 }
 
+.table-labels .ti:hover {
+  text-decoration: none;
+}
+
 .cr {
   flex-basis: 15%;
+}
+
+.table-labels .cr:hover {
+  cursor: pointer;
 }
 
 .up {
@@ -90,8 +100,20 @@
   flex-basis: 20%;
 }
 
+.table-labels .up {
+  font-size: 15px;
+}
+
+.table-labels .up:hover {
+  cursor: pointer;
+}
+
 .sh {
   flex-basis: 25%;
+}
+
+.table-labels .sh:hover {
+  cursor: pointer;
 }
 
 .ac {
@@ -101,4 +123,134 @@
 
 .ac:hover {
   cursor: pointer;
+}
+
+.notebook-create-form-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 99;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.notebook-create-form-modal-active {
+  display: flex;
+}
+
+.notebook-create-form {
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 3px;
+  width: 500px;
+  position: relative;
+}
+
+.notebook-create-form h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.notebook-create-form p {
+  margin-bottom: 20px;  
+  font-size: 13px;
+}
+
+.notebook-create-form form {
+  margin-bottom: 10px;
+}
+
+.notebook-create-form form label {
+  color: #777;
+}
+
+#notebook-title {
+  margin-top: 5px;
+  height: 30px;
+  width: 100%;
+  border-radius: 3px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.notebook-create-form-buttons {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notebook-create-form-button {
+  color: #eee;
+  background-color: #555;
+  padding: 10px;
+  border: 1px solid #777;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.notebook-create-form-button:hover {
+  color: #ccc;
+  background-color: #333;
+}
+
+.cancel-notebook-create-form-button {
+  color: #555;
+  background-color: #eee;
+  padding: 10px;
+  border: 1px solid #777;
+  border-radius: 3px;
+}
+
+.cancel-notebook-create-form-button:hover {
+  color: #333;
+  background-color: #ccc;
+}
+
+.new-notebook-button {
+  height: 25px;
+  margin-right: 25px;
+  border-radius: 3px;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+}
+
+.new-notebook-button:hover {
+  cursor: pointer;
+  background-color: #9e9;
+  box-shadow: 0 0 3px #ccc;
+}
+
+.new-notebook-button img {
+  height: 17px;
+}
+
+.sort-button img {
+  height: 25px;
+}
+
+.sort-button:hover {
+  cursor: pointer;
+}
+
+.notebook-create-error {
+  color: red;
+  font-size: 13px;
+  position: absolute;
+}
+
+.notebook-dropdown-holder {
+  position: absolute;
+
+  right: 200px;
+  top: 0px;
 }

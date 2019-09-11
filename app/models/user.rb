@@ -3,11 +3,13 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 8, maximum: 16}, allow_nil: true
   #validates_format_of :password, :with => /\A^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$\Z/i
   validates :email, :password_digest, :session_token, presence: true
+  validates :email, uniqueness: true
 
   attr_reader :password
   after_initialize :ensure_session_token
 
   has_many :notebooks
+  has_many :notes
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64

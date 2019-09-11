@@ -8,6 +8,9 @@ export default class NotebookIndexItem extends React.Component {
     this.state = {
       name: "searching..."
     }
+    this.actionButton = "action-button" + this.props.identity;
+    this.dropdown = "dropdown" + this.props.identity;
+    this.destroyNotebook = this.destroyNotebook.bind(this);
   }
 
   componentDidMount() {
@@ -15,7 +18,34 @@ export default class NotebookIndexItem extends React.Component {
       let user = res;
       let name = res.username ? res.username : res.email;
       this.setState({name: name})
-    });    
+    }); 
+    this.handleInput();
+  }
+
+  handleInput() {
+    this.dropdown = document.querySelector(`.${this.dropdown}`);
+    this.button = document.querySelector(`.${this.actionButton}`);
+    if(this.button === null) return;
+    this.button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      $(".notebook-show-more-actions-dropdown").each((i, thing) => {
+        thing.classList.remove("visible")
+      });
+      if (!this.dropdown.classList.contains("visible")) {
+        this.dropdown.classList.add("visible");
+      } else {
+        this.dropdown.classList.remove("visible");
+      }
+    })
+    document.addEventListener("click", (e) => {
+      if (this.dropdown.classList.contains("visible")) {
+        this.dropdown.classList.remove("visible");
+      }
+    });
+  } 
+
+  destroyNotebook() {
+    this.props.destroyNotebook(this.props.identity);
   }
 
   render() {
@@ -25,7 +55,17 @@ export default class NotebookIndexItem extends React.Component {
       <span className="cr">{this.state.name}</span>
       <span className="up">{formatDateTime(this.props.updatedAt)}</span>
       <span className="sh">Only You</span>
-      <span className="ac">...</span>
+      <span className={`ac ${this.actionButton}`}>•••</span>
+      <div className="notebook-dropdown-holder">
+        <div className={`notebook-show-more-actions-dropdown ${this.dropdown}`}>
+          <p>Actions</p>
+          <div className="notebook-show-dropdown-buttons">
+            <div onClick={this.destroyNotebook} className="destroy-notebook-button">
+              Delete Notebook
+            </div>  
+          </div>
+        </div>
+      </div>
     </div>
     )
   }

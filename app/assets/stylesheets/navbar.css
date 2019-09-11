@@ -78,6 +78,10 @@
   color: green;
 }
 
+.signup-button:hover {
+  color: lightgreen;
+}
+
 .login-button {
   color: green;
   border: 2px solid green;
@@ -86,3 +90,7 @@
   font-weight: 600;
 }
 
+.login-button:hover {
+  border: 2px solid lightgreen;
+  color: lightgreen;
+}

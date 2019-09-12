@@ -24,6 +24,12 @@ export default class NotebookShow extends React.Component {
     this.fetchNumber();
   }
 
+  componentDidUpdate(nextProps, nextState) {
+    if (this.props.location.pathname != nextProps.location.pathname) {
+      this.fetchNumber();
+    }
+  }
+
   fetchNumber() {
     fetchNotes(this.props.id).then(notes => this.setState({number: Object.keys(notes).length}));
   }

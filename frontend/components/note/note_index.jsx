@@ -19,12 +19,20 @@ export default class NoteIndex extends React.Component {
     });
   }
 
+  componentDidUpdate(nextProps, nextState) {
+    if (this.props.location.pathname != nextProps.location.pathname) {
+      fetchNotes(this.props.notebookId).then(notes => {
+        this.setState({notes: notes})
+      })
+    }
+  }
+
   render() {
     return (
       <div className="notes-index">
         {
           Object.values(this.state.notes).map(note => (
-            <NoteIndexItem key={note.id} note={note} />
+            <NoteIndexItem key={note.id} note={note} notebookId={this.props.notebookId} />
           ))
         } 
       </div>

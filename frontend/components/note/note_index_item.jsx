@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {formatDate, formatTime} from "../../utils/api_format_time.js";
 
 
@@ -13,13 +14,15 @@ export default class NoteIndexItem extends React.Component {
     this.time = formatTime(this.props.note.updated_at);
   }
 
+
   render() {
     return (
-      <div className="notes-index-item">
+      <Link to={`/note/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}
+        className="notes-index-item">
         <h3>{this.state.title}</h3>
         <p>{this.body}</p>
         <span>{this.day + " " + this.time}</span>
-      </div>
+      </Link>
     )
   }
 }

@@ -13,7 +13,6 @@ export default class NotebookUpdateForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    console.log("own", this.props)
   }
 
   handleSubmit(e) {

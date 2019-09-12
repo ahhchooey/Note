@@ -53,7 +53,6 @@ export default class NotebookIndexItem extends React.Component {
   showModal() {
     let iden = ".notebook-update-form-modal" + this.props.identity;
     let modal = document.querySelector(iden);
-    console.log(modal);
     if (modal) {
       modal.classList.add("notebook-create-form-modal-active");
     }
@@ -81,7 +80,7 @@ export default class NotebookIndexItem extends React.Component {
           </div>
         </div>
       </div>
-      <NotebookUpdateFormContainer identity={this.props.identity} />
+      <NotebookUpdateFormContainer title={this.props.title} identity={this.props.identity} />
     </div>
     )
   }

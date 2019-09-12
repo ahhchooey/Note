@@ -7,8 +7,7 @@ import {updateNotebook} from "../../actions/notebook_actions.js";
 
 const mapStateToProps = (state, ownProps) => ({
   userId: state.session.currentUser.id,
-  errors: state.errors.session,
-  title: state.entities.notebooks[ownProps.identity].title
+  errors: state.errors.session
 })
 
 const mapDispatchToProps = (dispatch) => ({

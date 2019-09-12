@@ -16,7 +16,6 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="notes-index">
         {

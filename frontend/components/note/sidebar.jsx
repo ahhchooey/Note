@@ -38,6 +38,7 @@ export default class Sidebar extends React.Component {
       })
       e.target.classList.add("side-button-active");
     });
+    this.props.fetchNotes();
     this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
   }
 

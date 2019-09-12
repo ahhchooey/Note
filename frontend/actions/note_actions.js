@@ -30,8 +30,8 @@ const removeNoteErrors = () => ({
   type: REMOVE_NOTE_ERRORS
 })
 
-export const fetchNotes = () => dispatch => {
-  return ApiNoteUtil.fetchNotes()
+export const fetchNotes = (notebook_id) => dispatch => {
+  return ApiNoteUtil.fetchNotes(notebook_id)
     .then(notes => dispatch(receiveNotes(notes)))
     .fail(errors => dispatch(receiveNoteErrors(errors)))
 }

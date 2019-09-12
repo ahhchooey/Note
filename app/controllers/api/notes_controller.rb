@@ -13,7 +13,8 @@ class Api::NotesController < ApplicationController
 
   def index
     if params[:notebook_id]
-      @notes = Note.where("user_id = #{current_user.id}").where("notebook_id = #{params[:notebook_id]}")
+      nbid = params[:notebook_id].to_i
+      @notes = Note.where("user_id = #{current_user.id}").where("notebook_id = #{nbid}")
     else
       @notes = Note.where("user_id = #{current_user.id}")
     end

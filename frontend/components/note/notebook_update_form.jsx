@@ -59,7 +59,7 @@ export default class NotebookUpdateForm extends React.Component {
               <button onClick={this.hideModal}
                 className="cancel-notebook-create-form-button">Cancel</button>
               <input onClick={this.handleSubmit}
-                className="notebook-create-form-button" type="submit" value="Create" />
+                className="notebook-create-form-button" type="submit" value="Update" />
             </div>
           </form>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 
 import NoteIndexItem from "./note_index_item.jsx";
+import {fetchNotes} from "../../utils/api_note_util.js";
 
 
 export default class NoteIndex extends React.Component {
@@ -12,8 +13,9 @@ export default class NoteIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchNotes().then(res => {
-      this.setState({notes: res.notes})
+    this.props.fetchNotes();
+    fetchNotes(this.props.notebookId).then(notes => {
+      this.setState({notes: notes})
     });
   }
 

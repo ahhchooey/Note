@@ -1,7 +1,9 @@
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import Sidebar from "./sidebar.jsx";
 import {logout} from "../../actions/session_actions.js";
+import {fetchNotebooks} from "../../actions/notebook_actions.js";
 
 
 const mapStateToProps = (state) => ({
@@ -9,7 +11,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  fetchNotebooks: () => dispatch(fetchNotebooks())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Sidebar) );

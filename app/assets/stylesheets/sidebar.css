@@ -17,6 +17,15 @@
   padding: 5px;
   margin-top: 5px;
   margin-bottom: 15px;
+
+  display: flex;
+  align-items: center;
+}
+
+.username-button img {
+  height: 10px;
+  -webkit-filter: invert(90%);
+  margin-left: 5px;
 }
 
 .username-button:hover {
@@ -77,10 +86,6 @@
   cursor: pointer;
 }
 
-.visible {
-  display: block;
-}
-
 .search-bar {
   width: 100%;
   height: 30px;
@@ -129,11 +134,18 @@
   border: 0px;
   color: #ccc;
   font-weight: 700;
+  position: relative;
 }
 
 .new-note-dropdown-button:hover {
   background-color: #1c6438;
   cursor: pointer;
+}
+
+.new-note-dropdown-button img {
+  height: 20px;
+  -webkit-filter: invert(100%);
+  padding-top: 3px;
 }
 
 .sidebar-buttons {
@@ -149,6 +161,7 @@
   width: 100%;
   color: #ccc;
   padding: 5px 20px;
+  position: relative;
 
   display: flex;
   justify-content: flex-start;
@@ -178,3 +191,49 @@
   -webkit-filter: invert(100%);
 }
 
+.right-arrow {
+  -webkit-filter: invert(100%);
+  height: 15px;
+  position: absolute;
+  left: -5px;
+  top: 37px;
+  z-index: 5;
+  display: none;
+}
+
+.right-arrow:hover {
+  cursor: pointer;
+}
+
+.down-arrow {
+  -webkit-filter: invert(100%);
+  height: 15px;
+  position: absolute;
+  left: -5px;
+  top: 37px;
+  z-index: 5;
+  display: none;
+}
+
+.down-arrow:hover {
+  cursor: pointer;
+}
+
+.notebook-dropdown {
+  display: none
+}
+
+.sub-dd {
+  font-size: 12px;
+  padding-left: 40px;
+}
+
+.sub-dd img {
+  height: 12px;
+  margin-right: 5px;
+  -webkit-filter: invert(100%);
+}
+
+.visible {
+  display: block;
+}

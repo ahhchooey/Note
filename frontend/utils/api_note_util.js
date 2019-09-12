@@ -1,8 +1,15 @@
 
-export const fetchNotes = () => {
+export const fetchNotes = (notebook_id) => {
+  let data;
+  if (notebook_id) {
+    data = {notebook_id: notebook_id}
+  } else {
+    data = {}
+  }
   return $.ajax({
     url: `api/notes`,
-    method: "GET"
+    method: "GET",
+    data: data
   })
 }
 

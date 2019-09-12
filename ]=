@@ -8,10 +8,6 @@ export default class Sidebar extends React.Component {
     this.logout = this.logout.bind(this);
     this.notebookDropdown = this.notebookDropdown.bind(this);
     this.hideNotebookDropdown = this.hideNotebookDropdown.bind(this);
-    this.pushHis = this.pushHis.bind(this);
-    this.state = {
-      notebooks: {}
-    }
   }
 
   componentDidMount() {
@@ -38,31 +34,24 @@ export default class Sidebar extends React.Component {
       })
       e.target.classList.add("side-button-active");
     });
-    this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
+    this.props.fetchNotebooks();
   }
 
   notebookDropdown(e) {
     e.stopPropagation();
+    console.log(e.target);
     e.target.classList.remove("visible");
-    $(".down-arrow").addClass("visible");
-    $(".notebook-dropdown").addClass("visible");
+    $(".right-arrow").addClass("visible");
   }
 
   hideNotebookDropdown(e) {
     e.stopPropagation();
     e.target.classList.remove("visible");
-    $(".right-arrow").addClass("visible");
-    $(".notebook-dropdown").removeClass("visible");
+    $(".down-arrow").addClass("visible");
   }
 
   logout() {
     this.props.logout();
-  }
-
-  pushHis(id) {
-    return () => (
-      this.props.history.push(`/note/notebooks/${id}`)
-    )
   }
 
   render() {
@@ -102,20 +91,6 @@ export default class Sidebar extends React.Component {
             <img className="side-image" src="https://img.icons8.com/pastel-glyph/64/000000/spiral-bound-booklet.png" />
             Notebooks
           </Link>
-          <div className="notebook-dropdown">
-            {
-              Object.values(this.state.notebooks).map(notebook => {
-                return (
-                  <div key={notebook.id} className="sub-dd side-button"
-                    onClick={this.pushHis(notebook.id)} 
-                  >
-                    <img src="https://img.icons8.com/ios/24/000000/spiral-bound-booklet.png" />  
-                    {notebook.title}
-                  </div>
-                )
-              })
-            }
-          </div>
           <Link to={"/note/tags"} className="side-button tags-button">
             <img className="side-image" src="https://img.icons8.com/ios/50/000000/tags.png" />   
             Tags

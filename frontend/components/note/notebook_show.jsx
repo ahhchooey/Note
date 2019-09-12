@@ -2,24 +2,30 @@ import React from "react";
 
 import NoteIndexContainer from "./note_index_container.js";
 import NotebookUpdateFormContainer from "./notebook_update_form_container.js";
+import {fetchNotes} from "../../utils/api_note_util.js";
 
 
 export default class NotebookShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      number: 0
+    }
     this.mounted = false;
     this.destroyNotebook = this.destroyNotebook.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.fetchNumber = this.fetchNumber.bind(this);
   }
 
   componentDidMount() {
     this.mounted = true;
     this.props.fetchNotebook(this.props.id);
     this.handleInput();
+    this.fetchNumber();
   }
 
   fetchNumber() {
-    
+    fetchNotes(this.props.id).then(notes => this.setState({number: Object.keys(notes).length}));
   }
 
   handleInput() {
@@ -53,13 +59,13 @@ export default class NotebookShow extends React.Component {
   }
 
   render() {
-    let title = this.props.notebook ? this.props.notebook.title : ""
+    let title = this.props.notebook ? this.props.notebook.title : "";
     return (
       <div className="notebook-show">
         <div className="notebook-show-box">
           <h3>{title}</h3>
           <div className="notebook-show-box-bottom">
-            <p># notes</p>
+            <p>{this.state.number} notes</p>
             <div className="notebook-show-box-buttons">
               <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
               <img src="https://img.icons8.com/ios/50/000000/tags.png" />   

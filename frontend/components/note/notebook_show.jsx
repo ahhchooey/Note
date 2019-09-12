@@ -18,6 +18,10 @@ export default class NotebookShow extends React.Component {
     this.handleInput();
   }
 
+  fetchNumber() {
+    
+  }
+
   handleInput() {
     this.dropdown = document.querySelector(".notebook-show-more-actions-dropdown");
     this.button = document.querySelector(".notebook-more-actions-button");

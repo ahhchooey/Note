@@ -1,5 +1,7 @@
 import React from "react";
 
+import NoteIndexItem from "./note_index_item.jsx";
+
 
 export default class NoteIndex extends React.Component {
   constructor(props) {
@@ -19,7 +21,9 @@ export default class NoteIndex extends React.Component {
     return (
       <div className="notes-index">
         {
-          Object.values(this.state.notes).map(note => note.title)
+          Object.values(this.state.notes).map(note => (
+            <NoteIndexItem key={note.id} note={note} />
+          ))
         } 
       </div>
     )

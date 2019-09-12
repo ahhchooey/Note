@@ -1,5 +1,7 @@
 import React from "react";
 
+import NoteIndexContainer from "./note_index_container.js";
+
 
 export default class NotebookShow extends React.Component {
   constructor(props) {
@@ -58,6 +60,8 @@ export default class NotebookShow extends React.Component {
             </div>
           </div>
         </div>
+
+        <NoteIndexContainer notebookId={this.props.id}/>
       </div>
     )
   }

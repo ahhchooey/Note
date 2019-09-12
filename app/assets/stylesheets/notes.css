@@ -1,0 +1,10 @@
+
+.notes-index {
+  width: 100%;
+  height: calc(100vh - 150px);
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: column:
+
+}

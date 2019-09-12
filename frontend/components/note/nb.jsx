@@ -9,12 +9,10 @@ import NotebookShowContainer from "./notebook_show_container.js";
 const Note = (props) => (
   <div className="note">
     <SidebarContainer />
-    <Switch>
       
-      <Route path={"/note/notebooks/:id"} component={NotebookShowContainer} />
-      <Route path={"/note/notebooks"} component={NotebookIndexContainer} />
+    <Route path={"/note/notebooks/:id"} component={NotebookShowContainer} />
+    <Route exact path={"/note/notebooks"} component={NotebookIndexContainer} />
 
-    </Switch>
   </div>
 )
 

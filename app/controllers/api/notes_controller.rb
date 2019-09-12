@@ -12,7 +12,11 @@ class Api::NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.where("user_id = #{current_user.id}").where("notebook_id = #{params[:notebook_id]}")
+    if params[:notebook_id]
+      @notes = Note.where("user_id = #{current_user.id}").where("notebook_id = #{params[:notebook_id]}")
+    else
+      @notes = Note.where("user_id = #{current_user.id}")
+    end
     render :index
   end
 

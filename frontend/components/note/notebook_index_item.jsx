@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+import NotebookUpdateFormContainer from "./notebook_update_form_container.js";
 
 export default class NotebookIndexItem extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class NotebookIndexItem extends React.Component {
     this.actionButton = "action-button" + this.props.identity;
     this.dropdown = "dropdown" + this.props.identity;
     this.destroyNotebook = this.destroyNotebook.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +50,15 @@ export default class NotebookIndexItem extends React.Component {
     this.props.destroyNotebook(this.props.identity);
   }
 
+  showModal() {
+    let iden = ".notebook-update-form-modal" + this.props.identity;
+    let modal = document.querySelector(iden);
+    console.log(modal);
+    if (modal) {
+      modal.classList.add("notebook-create-form-modal-active");
+    }
+  }
+
   render() {
     return (
     <div className="notebook-index-item">
@@ -60,12 +71,17 @@ export default class NotebookIndexItem extends React.Component {
         <div className={`notebook-show-more-actions-dropdown ${this.dropdown}`}>
           <p>Actions</p>
           <div className="notebook-show-dropdown-buttons">
+            <div onClick={this.showModal} className="update-notebook-button">
+              Rename Notebook
+            </div>
+            <br />
             <div onClick={this.destroyNotebook} className="destroy-notebook-button">
               Delete Notebook
             </div>  
           </div>
         </div>
       </div>
+      <NotebookUpdateFormContainer identity={this.props.identity} />
     </div>
     )
   }

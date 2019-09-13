@@ -2,3 +2,23 @@
 .note {
   display: flex;
 }
+
+.note-dropdown-item {
+  padding: 10px;
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ndd-ti {
+  position: relative;
+  left: 30px;
+}
+
+.note-dropdown-item:hover {
+  background-color: #eee;
+  cursor: grab;
+}
+

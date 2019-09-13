@@ -3,17 +3,22 @@ import {Link} from "react-router-dom";
 
 import NotebookUpdateFormContainer from "./notebook_update_form_container.js";
 import {formatDateTime} from "../../utils/api_format_time.js";
+import NoteDropdownContainer from "./note_dropdown_container.js";
+
 
 export default class NotebookIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "searching..."
+      name: "searching...",
+      notes: {}
     }
     this.actionButton = "action-button" + this.props.identity;
     this.dropdown = "dropdown" + this.props.identity;
     this.destroyNotebook = this.destroyNotebook.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.notesDropdown = this.notesDropdown.bind(this);
+    this.hideNotesDropdown = this.hideNotesDropdown.bind(this);
   }
 
   componentDidMount() {
@@ -59,34 +64,68 @@ export default class NotebookIndexItem extends React.Component {
     }
   }
 
+  notesDropdown(e) {
+    e.stopPropagation();
+    let nbda = "nbda" + this.props.identity;
+    let ndd = "ndd" +this.props.identity;
+    e.target.classList.remove("visible");
+    $(`.${nbda}`).addClass("visible");
+    $(`.${ndd}`).addClass("note-dropdown-active");
+  }
+
+  hideNotesDropdown(e) {
+    e.stopPropagation();
+    let nbra = "nbra" + this.props.identity;
+    let ndd = "ndd" +this.props.identity;
+    e.target.classList.remove("visible");
+    $(`.${nbra}`).addClass("visible");
+    $(`.${ndd}`).removeClass("note-dropdown-active");
+  }
+
   render() {
+    let nbra = "nbra" + this.props.identity;
+    let nbda = "nbda" + this.props.identity;
+    let ndd = "ndd" +this.props.identity;
     return (
-    <div className="notebook-index-item">
-      <Link className="ti" to={`/note/notebooks/${this.props.identity}`}>{this.props.title}</Link>
-      <span className="cr">{this.state.name}</span>
-      <span className="up">{formatDateTime(this.props.updatedAt)}</span>
-      <span className="sh">Only You</span>
-      <span className={`ac ${this.actionButton}`}>•••</span>
-      <div className="notebook-dropdown-holder">
-        <div className={`notebook-show-more-actions-dropdown ${this.dropdown}`}>
-          <p>Actions</p>
-          <div className="notebook-show-dropdown-buttons">
-            <div onClick={this.showModal} className="update-notebook-button">
-              Rename Notebook
+      <div className="nii-container">
+
+        <div className="notebook-index-item">
+          <img className={`${nbra} right-arrow ra-nbi visible`} onClick={this.notesDropdown}
+            src="https://img.icons8.com/material-rounded/24/000000/sort-right.png"/ >
+          <img className={`${nbda} down-arrow da-nbi`} onClick={this.hideNotesDropdown}
+            src="https://img.icons8.com/material-rounded/24/000000/sort-down.png" />
+          <Link className="ti" to={`/note/notebooks/${this.props.identity}`}>
+            <img src="https://img.icons8.com/ios/24/000000/spiral-bound-booklet.png" />  
+            {this.props.title}
+          </Link>
+          <span className="cr">{this.state.name}</span>
+          <span className="up">{formatDateTime(this.props.updatedAt)}</span>
+          <span className="sh">Only You</span>
+          <span className={`ac ${this.actionButton}`}>•••</span>
+          <div className="notebook-dropdown-holder">
+            <div className={`notebook-show-more-actions-dropdown ${this.dropdown}`}>
+              <p>Actions</p>
+              <div className="notebook-show-dropdown-buttons">
+                <div onClick={this.showModal} className="update-notebook-button">
+                  Rename Notebook
+                </div>
+                <br />
+                {
+                  (this.props.defaultNotebook === this.props.identity)
+                    ? <div className="dead-destroy-notebook-button">Cannot Delete</div>
+                    : <div onClick={this.destroyNotebook} className="destroy-notebook-button">
+                  Delete Notebook
+                </div>  
+                }
+              </div>
             </div>
-            <br />
-            {
-              (this.props.defaultNotebook === this.props.identity)
-                ? <div className="dead-destroy-notebook-button">Cannot Delete</div>
-                : <div onClick={this.destroyNotebook} className="destroy-notebook-button">
-              Delete Notebook
-            </div>  
-            }
           </div>
+          <NotebookUpdateFormContainer title={this.props.title} identity={this.props.identity} />
         </div>
+
+        <NoteDropdownContainer ndd={`${ndd} note-dropdown`} identity={this.props.identity} />
+
       </div>
-      <NotebookUpdateFormContainer title={this.props.title} identity={this.props.identity} />
-    </div>
     )
   }
 }

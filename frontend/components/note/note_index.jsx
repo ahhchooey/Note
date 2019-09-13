@@ -2,6 +2,7 @@ import React from "react";
 
 import NoteIndexItem from "./note_index_item.jsx";
 import {fetchNotes} from "../../utils/api_note_util.js";
+import {sortNotesByDate} from "../../utils/sorting_util.jsx";
 
 
 export default class NoteIndex extends React.Component {
@@ -28,11 +29,13 @@ export default class NoteIndex extends React.Component {
   }
 
   render() {
+    let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
     return (
       <div className="notes-index">
         {
-          Object.values(this.state.notes).map(note => (
-            <NoteIndexItem key={note.id} note={note} notebookId={this.props.notebookId} />
+          sortedNotes.map(note => (
+            <NoteIndexItem key={note.id} note={note} currentNote={this.props.currentNote}
+            notebookId={this.props.notebookId} />
           ))
         } 
       </div>

@@ -13,14 +13,22 @@ export default class NoteShow extends React.Component {
   componentDidMount() {
     this.props.fetchNotes();
     fetchNote(this.props.noteId).then(note => {
-      this.setState({note: note})
+      this.setState({note: note},
+        () => {
+          this.props.fetchCurrentNote(this.state.note);
+        } 
+      )
     })
   }
 
   componentDidUpdate(nextProps, nextState) {
     if (this.props.location.pathname != nextProps.location.pathname) {
       fetchNote(this.props.noteId).then(note => {
-        this.setState({note: note})
+        this.setState({note: note},
+          () => {
+            this.props.fetchCurrentNote(this.state.note);
+          } 
+        )
       })
     }
   }

@@ -66,7 +66,7 @@
   align-items: center;
 }
 
-.notebook-index-item:nth-child(even) {
+.nii-container:nth-child(even) {
   background-color: #f3f3f3;
 }
 
@@ -77,11 +77,20 @@
 
 .ti {
   flex-basis: 35%;
+  margin-left: 10px;
+
+  display: flex;
+  align-items: center;
 }
 
 .ti:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.ti img {
+  height: 17px;
+  margin-right: 5px;
 }
 
 .table-labels .ti:hover {
@@ -99,6 +108,7 @@
 .up {
   font-size: 12px;
   flex-basis: 20%;
+  padding-right: 10px;
 }
 
 .table-labels .up {
@@ -255,3 +265,25 @@
   right: 200px;
   top: 0px;
 }
+
+.note-dropdown {
+  display: none;
+}
+
+.note-dropdown-active {
+  display: block;
+}
+
+.nii-container:nth-child(even) .note-dropdown .note-dropdown-item:nth-child(odd) {
+  background-color: white;
+}
+
+
+.nii-container:nth-child(odd) .note-dropdown .note-dropdown-item:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.note-dropdown-item:hover {
+  cursor: grab;
+}
+

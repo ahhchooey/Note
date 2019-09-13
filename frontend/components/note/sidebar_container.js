@@ -6,13 +6,14 @@ import {logout} from "../../actions/session_actions.js";
 import {fetchNotebooks} from "../../actions/notebook_actions.js";
 import {createNote} from "../../actions/note_actions.js";
 import {fetchNotes} from "../../actions/note_actions.js";
-import {fetchCurrentNotebook} from "../../actions/ui_actions.js";
+import {fetchCurrentNotebook, fetchCurrentNote} from "../../actions/ui_actions.js";
 
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
   defaultNotebook: state.session.currentUser.default_notebook,
-  notebook: state.ui.currentNotebook
+  notebook: state.ui.currentNotebook,
+  currentNote: state.ui.currentNote
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,7 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchNotebooks: () => dispatch(fetchNotebooks()),
   fetchNotes: (id) => dispatch(fetchNotes(id)),
   fetchCurrentNotebook: (nb) => dispatch(fetchCurrentNotebook(nb)),
-  createNote: (note) => dispatch(createNote(note))
+  createNote: (note) => dispatch(createNote(note)),
+  fetchCurrentNote: (note) => dispatch(fetchCurrentNote(note))
 })
 
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Sidebar) );

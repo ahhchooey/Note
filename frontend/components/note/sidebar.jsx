@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+import {sortNotesByDate} from "../../utils/sorting_util.jsx";
+
 
 export default class Sidebar extends React.Component {
   constructor(props) {
@@ -11,7 +13,9 @@ export default class Sidebar extends React.Component {
     this.pushHis = this.pushHis.bind(this);
     this.makeNote = this.makeNote.bind(this);
     this.state = {
-      notebooks: {}
+      notebooks: {},
+      notes: {},
+      currentNote: null
     }
     this.extraButtons = false;
   }
@@ -34,7 +38,16 @@ export default class Sidebar extends React.Component {
     });
     this.buttonHighlighter();
     this.initialHighligher();
-    this.props.fetchNotes();
+    this.props.fetchNotes().then(res => {
+      this.setState({notes: res.notes},
+        () => {
+          let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+          this.props.fetchCurrentNote(sortedNotes[0])
+          if (this.props.location.pathname.startsWith("/note/notes")) {
+            this.props.history.push(`/note/notes/${sortedNotes[0].id}`)
+          }
+        }
+      )});
     this.props.fetchNotebooks().then(res => {
       this.setState({notebooks: res.notebooks},
         () => this.props.fetchCurrentNotebook(this.props.defaultNotebook) 
@@ -66,13 +79,14 @@ export default class Sidebar extends React.Component {
       Array.from(buttons).forEach(button => {
         button.classList.remove("side-button-active");
       })
-      e.target.classList.add("side-button-active");
+      e.currentTarget.classList.add("side-button-active");
     });
   }
 
   componentDidUpdate(nextProps, nextState) {
     if (this.props.location.pathname != nextProps.location.pathname) {
       this.props.fetchNotebooks();
+      this.setState({currentNote: this.props.currentNote})
     }
   }
 
@@ -83,14 +97,14 @@ export default class Sidebar extends React.Component {
     }
     e.stopPropagation();
     e.target.classList.remove("visible");
-    $(".down-arrow").addClass("visible");
+    $(".daa").addClass("visible");
     $(".notebook-dropdown").addClass("visible");
   }
 
   hideNotebookDropdown(e) {
     e.stopPropagation();
     e.target.classList.remove("visible");
-    $(".right-arrow").addClass("visible");
+    $(".raa").addClass("visible");
     $(".notebook-dropdown").removeClass("visible");
   }
 
@@ -106,7 +120,6 @@ export default class Sidebar extends React.Component {
 
   makeNote() {
     this.props.createNote({notebook_id: this.props.notebook}).then((res) => {
-      console.log(res.note)
       if (this.props.location.pathname.startsWith("/note/notebooks")) {
         this.props.history.push(`/note/notebooks/${this.props.notebook}/notes/${res.note.id}`)
       } else {
@@ -118,7 +131,7 @@ export default class Sidebar extends React.Component {
   render() {
     let user = this.props.currentUser;
     let name = user.username ? user.username : user.email;
-
+    let id = this.state.currentNote ? this.state.currentNote.id : "";
     return (
       <div className="sidebar">
         <div className="username-button">
@@ -142,13 +155,13 @@ export default class Sidebar extends React.Component {
           </button>
         </div>
         <div className="sidebar-buttons">
-          <Link to={"/note/notes"} className="side-button all-notes-button">
+          <Link to={`/note/notes/${id}`} className="side-button all-notes-button">
             <img className="side-image" src="https://img.icons8.com/ios/50/000000/note.png" />
               All Notes
           </Link>
-          <img className="right-arrow visible" onClick={this.notebookDropdown} 
+          <img className="raa right-arrow visible" onClick={this.notebookDropdown} 
             src="https://img.icons8.com/material-rounded/24/000000/sort-right.png"/ >
-          <img className="down-arrow" onClick={this.hideNotebookDropdown}
+          <img className="daa down-arrow" onClick={this.hideNotebookDropdown}
             src="https://img.icons8.com/material-rounded/24/000000/sort-down.png" />
           <Link to={"/note/notebooks"} className="side-button notebooks-button">
             <img className="side-image" src="https://img.icons8.com/pastel-glyph/64/000000/spiral-bound-booklet.png" />
@@ -159,8 +172,7 @@ export default class Sidebar extends React.Component {
               Object.values(this.state.notebooks).map(notebook => {
                 return (
                   <div key={notebook.id} className="sub-dd side-button"
-                    onClick={this.pushHis(notebook.id)} 
-                  >
+                    onClick={this.pushHis(notebook.id)} >
                     <img src="https://img.icons8.com/ios/24/000000/spiral-bound-booklet.png" />  
                     {notebook.title}
                   </div>

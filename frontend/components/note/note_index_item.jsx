@@ -14,11 +14,14 @@ export default class NoteIndexItem extends React.Component {
     this.time = formatTime(this.props.note.updated_at);
   }
 
-
   render() {
+    let cn = "notes-index-item";
+    if (this.props.currentNote.id === this.props.note.id) {
+      cn += " notes-index-item-active"
+    }
     return (
       <Link to={`/note/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}
-        className="notes-index-item">
+        className={cn}>
         <h3>{this.state.title}</h3>
         <p>{this.body}</p>
         <span>{this.day + " " + this.time}</span>

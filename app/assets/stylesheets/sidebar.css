@@ -190,6 +190,11 @@
   width: 20px;
   margin-right: 10px;
   -webkit-filter: invert(100%);
+  background: none;
+}
+
+.side-image:hovel {
+  background: none;
 }
 
 .right-arrow {
@@ -239,4 +244,10 @@
 
 .visible {
   display: block;
+}
+
+.da-nbi, .ra-nbi {
+  -webkit-filter: invert(0%);
+  top: 17px;
+  left: 3px;
 }

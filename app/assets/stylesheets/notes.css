@@ -24,6 +24,14 @@
   background-color: #eee;
 }
 
+.notes-index-item-active {
+  background-color: #ddd;
+}
+
+.notes-index-item-active:hover{
+  background-color: #ddd;
+}
+
 .notes-index-item h3 {
   font-weight: 500;
   margin-bottom: 5px;

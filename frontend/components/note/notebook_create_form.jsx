@@ -43,7 +43,7 @@ export default class NotebookCreateForm extends React.Component {
           <form>
             <label htmlFor="notebook-title">Title</label>     
             <br />
-            <input type="text" placeholder="Notebook Title" id="notebook-title" value={this.state.title}
+            <input type="text" autoFocus placeholder="Notebook Title" id="notebook-title" value={this.state.title}
               onChange={this.handleChange} 
             />
             <br />

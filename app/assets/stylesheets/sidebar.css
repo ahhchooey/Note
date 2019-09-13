@@ -154,6 +154,7 @@
   margin-top: 20px;
   color: #ccc;
   position: relative;
+  overflow: scroll;
 }
 
 .side-button {
@@ -195,7 +196,7 @@
   -webkit-filter: invert(100%);
   height: 15px;
   position: absolute;
-  left: -5px;
+  left: -2px;
   top: 37px;
   z-index: 5;
   display: none;
@@ -209,7 +210,7 @@
   -webkit-filter: invert(100%);
   height: 15px;
   position: absolute;
-  left: -5px;
+  left: -2px;
   top: 37px;
   z-index: 5;
   display: none;

@@ -105,7 +105,14 @@ export default class Sidebar extends React.Component {
   }
 
   makeNote() {
-    this.props.createNote({notebook_id: this.props.notebook})
+    this.props.createNote({notebook_id: this.props.notebook}).then((res) => {
+      console.log(res.note)
+      if (this.props.location.pathname.startsWith("/note/notebooks")) {
+        this.props.history.push(`/note/notebooks/${this.props.notebook}/notes/${res.note.id}`)
+      } else {
+        this.props.history.push(`/note/notes/${res.note.id}`)
+      }
+    })
   }
 
   render() {

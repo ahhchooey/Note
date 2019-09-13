@@ -9,6 +9,7 @@ export default class Sidebar extends React.Component {
     this.notebookDropdown = this.notebookDropdown.bind(this);
     this.hideNotebookDropdown = this.hideNotebookDropdown.bind(this);
     this.pushHis = this.pushHis.bind(this);
+    this.makeNote = this.makeNote.bind(this);
     this.state = {
       notebooks: {}
     }
@@ -42,6 +43,12 @@ export default class Sidebar extends React.Component {
     this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
   }
 
+  componentDidUpdate(nextProps, nextState) {
+    if (this.props.location.pathname != nextProps.location.pathname) {
+      this.props.fetchNotebooks();
+    }
+  }
+
   notebookDropdown(e) {
     e.stopPropagation();
     e.target.classList.remove("visible");
@@ -66,6 +73,10 @@ export default class Sidebar extends React.Component {
     )
   }
 
+  makeNote() {
+    console.log(this.props)
+  }
+
   render() {
     let user = this.props.currentUser;
     let name = user.username ? user.username : user.email;
@@ -85,7 +96,9 @@ export default class Sidebar extends React.Component {
         </div>
         <input className="search-bar" type="text" placeholder="Search All Notes..." />
         <div className="new-note-cluster">
-          <button className="generic-new-note-button">{"+   New Note"}</button>
+          <button onClick={this.makeNote} className="generic-new-note-button">
+            {"+   New Note"}
+          </button>
           <button className="new-note-dropdown-button">
             <img src="https://img.icons8.com/ios-glyphs/24/000000/chevron-down.png" />
           </button>

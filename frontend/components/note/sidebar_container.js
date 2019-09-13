@@ -8,7 +8,7 @@ import {fetchNotes} from "../../actions/note_actions.js";
 
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+import {receiveCurrentNotebook} from "../../actions/ui_actions.js";
+
 
 export default class Sidebar extends React.Component {
   constructor(props) {
@@ -36,6 +38,7 @@ export default class Sidebar extends React.Component {
     this.initialHighligher();
     this.props.fetchNotes();
     this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
+     
   }
 
   initialHighligher() {

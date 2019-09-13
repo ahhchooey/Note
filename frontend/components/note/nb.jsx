@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 
 import SidebarContainer from "./sidebar_container.js";
 import NotebookIndexContainer from "./notebook_index_container.js";
@@ -12,6 +12,9 @@ const Note = (props) => (
   <div className="note">
 
     <Route path={"/"} component={SidebarContainer} />
+    <Route exact path={"/note"} render={() => (
+      <Redirect to={"/note/notes"} />
+      )} />
       
     <Route path={"/note/notes"} component={AllNotesContainer} />
     <Route path={"/note/notes/:id"} component={NoteShowContainer} />

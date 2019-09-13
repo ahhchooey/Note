@@ -18,12 +18,20 @@ export default class NoteDropdown extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.notes !== this.props.notes) {
+      fetchNotes(this.props.identity).then(res => {
+        this.setState({notes: res})
+      })
+    }
+  }
+
   render() {
     return(
       <div className={`${this.props.ndd} note-dropdown`}>
         {
           Object.values(this.state.notes).map(note => (
-            <NoteDropDownItem key={note.id} note={note} />
+            <NoteDropDownItem key={note.id} destroyNote={this.props.destroyNote} note={note} />
           ))
         } 
       </div>

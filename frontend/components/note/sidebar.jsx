@@ -13,6 +13,7 @@ export default class Sidebar extends React.Component {
     this.state = {
       notebooks: {}
     }
+    this.extraButtons = false;
   }
 
   componentDidMount() {
@@ -31,19 +32,45 @@ export default class Sidebar extends React.Component {
         this.dropdown.classList.remove("visible");
       }
     });
+    this.buttonHighlighter();
+    this.initialHighligher();
+    this.props.fetchNotes();
+    this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
+  }
+
+  initialHighligher() {
+    let path = this.props.location.pathname;
+    switch(true) {
+      case path.startsWith("/note/notes"):
+        $(".all-notes-button").addClass("side-button-active")
+        break;
+      case path.startsWith("/note/notebooks"):
+        $(".notebooks-button").addClass("side-button-active")
+        break;
+      case path.startsWith("/note/tags"):
+        $(".tags-button").addClass("side-button-active")
+        break;
+      case path.startsWith("/note/trash"):
+        $(".trash-button").addClass("side-button-active")
+        break;
+    }
+  }
+
+  buttonHighlighter() {
     let buttons = $(".side-button");
     buttons.on("click", (e) => {
-      e.stopPropagation();
       Array.from(buttons).forEach(button => {
         button.classList.remove("side-button-active");
       })
       e.target.classList.add("side-button-active");
     });
-    this.props.fetchNotes();
-    this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
   }
 
   componentDidUpdate(nextProps, nextState) {
+    if (!this.extraButtons) {
+      this.extraButtons = true;
+      this.buttonHighlighter();
+    }
     if (this.props.location.pathname != nextProps.location.pathname) {
       this.props.fetchNotebooks();
     }

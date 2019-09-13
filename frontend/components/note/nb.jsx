@@ -10,6 +10,7 @@ import AllNotesContainer from "./all_notes_container.jsx";
 
 const Note = (props) => (
   <div className="note">
+
     <Route path={"/"} component={SidebarContainer} />
       
     <Route path={"/note/notes"} component={AllNotesContainer} />

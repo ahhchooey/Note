@@ -2,7 +2,7 @@ class CreateNotes < ActiveRecord::Migration[5.2]
   def change
     create_table :notes do |t|
       t.string :title, null: false, default: "Untitled"
-      t.text :body
+      t.text :body, default: ""
       t.integer :user_id, null: false
       t.integer :notebook_id, null: false
       t.timestamps

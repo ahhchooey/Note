@@ -6,7 +6,7 @@ const notesErrorsReducer = (state = [], action) => {
 
   switch(action.type) {
     case RECEIVE_NOTE_ERRORS:
-      return Object.assign([], state, actions.errors);
+      return Object.assign([], state, action.errors);
     case RECEIVE_NOTE:
       return [];
     case REMOVE_NOTE_ERRORS:

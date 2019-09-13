@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_163532) do
 
   create_table "notes", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
-    t.text "body"
+    t.text "body", default: ""
     t.integer "user_id", null: false
     t.integer "notebook_id", null: false
     t.datetime "created_at", null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_163532) do
     t.string "password_digest", null: false
     t.string "session_token", null: false
     t.string "username"
+    t.integer "default_notebook", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

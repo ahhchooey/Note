@@ -13,7 +13,8 @@
         window.currentUser = {
           username: "<%=current_user.username %>",
           id: <%=current_user.id %>,
-          email: "<%=current_user.email%>"
+          email: "<%=current_user.email%>",
+          default_notebook: <%=current_user.default_notebook%>
       }
       </script>
     <% end %>

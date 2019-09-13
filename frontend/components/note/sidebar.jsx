@@ -1,8 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import {receiveCurrentNotebook} from "../../actions/ui_actions.js";
-
 
 export default class Sidebar extends React.Component {
   constructor(props) {
@@ -37,8 +35,11 @@ export default class Sidebar extends React.Component {
     this.buttonHighlighter();
     this.initialHighligher();
     this.props.fetchNotes();
-    this.props.fetchNotebooks().then(res => this.setState({notebooks: res.notebooks}));
-     
+    this.props.fetchNotebooks().then(res => {
+      this.setState({notebooks: res.notebooks},
+        () => this.props.fetchCurrentNotebook(this.props.defaultNotebook) 
+      );
+    });
   }
 
   initialHighligher() {
@@ -70,16 +71,16 @@ export default class Sidebar extends React.Component {
   }
 
   componentDidUpdate(nextProps, nextState) {
-    if (!this.extraButtons) {
-      this.extraButtons = true;
-      this.buttonHighlighter();
-    }
     if (this.props.location.pathname != nextProps.location.pathname) {
       this.props.fetchNotebooks();
     }
   }
 
   notebookDropdown(e) {
+    if (!this.extraButtons) {
+      this.extraButtons = true;
+      this.buttonHighlighter();
+    }
     e.stopPropagation();
     e.target.classList.remove("visible");
     $(".down-arrow").addClass("visible");
@@ -104,7 +105,7 @@ export default class Sidebar extends React.Component {
   }
 
   makeNote() {
-    console.log(this.props)
+    this.props.createNote({notebook_id: this.props.notebook})
   }
 
   render() {

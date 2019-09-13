@@ -90,6 +90,12 @@
   margin: -5px;
 }
 
+.dead-destroy-notebook-button {
+  padding: 10px;
+  margin: -5px;
+  color: #ccc;
+}
+
 .update-notebook-button:hover, .destroy-notebook-button:hover {
   cursor: pointer;
   background-color: #eee;

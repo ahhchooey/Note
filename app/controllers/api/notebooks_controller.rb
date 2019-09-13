@@ -33,8 +33,12 @@ class Api::NotebooksController < ApplicationController
 
   def destroy
     @notebook = Notebook.find_by(id: params[:id])
-    @notebook.destroy
-    render :show
+    if @notebook.id == current_user.default_notebook
+      render json: ["Cannot delete default notebook."]
+    else
+      @notebook.destroy
+      render :show
+    end
   end
 
   private

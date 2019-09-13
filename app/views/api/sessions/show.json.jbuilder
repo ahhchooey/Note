@@ -1,3 +1,3 @@
 
-json.extract! @user, :id, :email, :username
+json.extract! @user, :id, :email, :username, :default_notebook
 

@@ -75,9 +75,13 @@ export default class NotebookIndexItem extends React.Component {
               Rename Notebook
             </div>
             <br />
-            <div onClick={this.destroyNotebook} className="destroy-notebook-button">
+            {
+              (this.props.defaultNotebook === this.props.identity)
+                ? <div className="dead-destroy-notebook-button">Cannot Delete</div>
+                : <div onClick={this.destroyNotebook} className="destroy-notebook-button">
               Delete Notebook
             </div>  
+            }
           </div>
         </div>
       </div>

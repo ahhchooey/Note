@@ -22,11 +22,13 @@ export default class NotebookShow extends React.Component {
     this.props.fetchNotebook(this.props.id);
     this.handleInput();
     this.fetchNumber();
+    this.props.fetchCurrentNotebook(this.props.id);
   }
 
   componentDidUpdate(nextProps, nextState) {
     if (this.props.location.pathname != nextProps.location.pathname) {
       this.fetchNumber();
+      this.props.fetchCurrentNotebook(this.props.id);
     }
   }
 

@@ -4,7 +4,8 @@ import {fetchNotebooks, createNotebook, destroyNotebook, updateNotebook} from ".
 
 
 const mapStateToProps = (state) => ({
-  notebooks: state.entities.notebooks
+  notebooks: state.entities.notebooks,
+  defaultNotebook: state.session.currentUser.default_notebook
 })
 
 const mapDispatchToProps = (dispatch) => ({

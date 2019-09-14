@@ -16,8 +16,10 @@ export default class NoteIndexItem extends React.Component {
 
   render() {
     let cn = "notes-index-item";
-    if (this.props.currentNote.id === this.props.note.id) {
-      cn += " notes-index-item-active"
+    if (this.props.currentNote) {
+      if (this.props.currentNote.id === this.props.note.id) {
+        cn += " notes-index-item-active"
+      }
     }
     return (
       <Link to={`/note/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}

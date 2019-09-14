@@ -44,7 +44,11 @@ export default class Sidebar extends React.Component {
           let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
           this.props.fetchCurrentNote(sortedNotes[0])
           if (this.props.location.pathname.startsWith("/note/notes")) {
-            this.props.history.push(`/note/notes/${sortedNotes[0].id}`)
+            if (sortedNotes.length === 0) {
+              this.props.history.push("/note/notebooks")
+            } else {
+              this.props.history.push(`/note/notes/${sortedNotes[0].id}`)
+            }
           }
         }
       )});

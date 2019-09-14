@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
     
     if @user.save
       notebook = Notebook.create(title: "Masterbook", user_id: @user.id)
+      Note.create(title: "First Note", user_id: @user.id, notebook_id: notebook.id, body: "")
       @user["default_notebook"] = notebook.id
       login(@user)
       render :show

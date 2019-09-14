@@ -11,16 +11,20 @@ export default class NoteDropDownItem extends React.Component {
     this.deleteNote = this.deleteNote.bind(this);
   }
 
+  componentDidMount() {
+    this.handleInput();
+  }
+
   handleInput() {
     this.dropdown = document.querySelector(`.${this.dropdown}`);
     this.button = document.querySelector(`.${this.actionButton}`);
     if(this.button === null) return;
     this.button.addEventListener("click", (e) => {
       e.stopPropagation();
-      $(".note-show-more-actions-dropdown").each((i, thing) => {
-        thing.classList.remove("visible")
-      });
       if (!this.dropdown.classList.contains("visible")) {
+        $(".note-show-more-actions-dropdown").each((i, thing) => {
+          thing.classList.remove("visible")
+        });
         this.dropdown.classList.add("visible");
       } else {
         this.dropdown.classList.remove("visible");
@@ -52,7 +56,7 @@ export default class NoteDropDownItem extends React.Component {
 
         <div className="note-dropdown-holder">
           <div className={`note-show-more-actions-dropdown ${this.dropdown}`}>
-            <p>Actions</p>
+            <p>Note Actions</p>
             <div className="note-show-dropdown-buttons">
               <div onClick={this.deleteNote} className="destroy-note-button">
                 Delete Note

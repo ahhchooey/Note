@@ -36,10 +36,10 @@ export default class NotebookIndexItem extends React.Component {
     if(this.button === null) return;
     this.button.addEventListener("click", (e) => {
       e.stopPropagation();
-      $(".notebook-show-more-actions-dropdown").each((i, thing) => {
-        thing.classList.remove("visible")
-      });
       if (!this.dropdown.classList.contains("visible")) {
+        $(".notebook-show-more-actions-dropdown").each((i, thing) => {
+          thing.classList.remove("visible")
+        });
         this.dropdown.classList.add("visible");
       } else {
         this.dropdown.classList.remove("visible");
@@ -104,7 +104,7 @@ export default class NotebookIndexItem extends React.Component {
           <span className={`ac ${this.actionButton}`}>•••</span>
           <div className="notebook-dropdown-holder">
             <div className={`notebook-show-more-actions-dropdown ${this.dropdown}`}>
-              <p>Actions</p>
+              <p>Notebook Actions</p>
               <div className="notebook-show-dropdown-buttons">
                 <div onClick={this.showModal} className="update-notebook-button">
                   Rename Notebook

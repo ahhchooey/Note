@@ -14,11 +14,54 @@
 
 .ndd-ti {
   position: relative;
-  left: 30px;
+  left: 40px;
 }
 
-.note-dropdown-item:hover {
+.note-dropdown-holder {
+  position: absolute;
+
+  right: 200px;
+  top: 0px;
+}
+
+.note-show-more-actions-dropdown {
+  color: #ccc;
+  position: absolute;
+  top: 27px;
+  left: -75px;
+  background-color: #fff;
+  padding: 15px;
+  width: 200px;
+  box-shadow: 0 0 3px #ccc;
+  border-radius: 2px;
+  z-index: 10;
+
+  display: none;
+}
+
+.note-show-more-actions-dropdown p {
+  color: #555;
+  padding: 5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.note-show-dropdown-buttons {
+  color: #111;
+}
+
+.destroy-note-button {
+  padding: 10px;
+  margin: -5px;
+}
+
+.destroy-note-button:hover {
+  cursor: pointer;
   background-color: #eee;
-  cursor: grab;
 }
 
+.visible {
+  display: block;
+}

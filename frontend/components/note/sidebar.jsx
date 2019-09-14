@@ -55,6 +55,21 @@ export default class Sidebar extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps, nextState) {
+    if (this.props.location.pathname != prevProps.location.pathname) {
+      this.props.fetchNotebooks().then(res => {
+        this.setState({notebooks: res.notebooks});
+    });
+      this.setState({currentNote: this.props.currentNote})
+    }
+    if (Object.keys(prevProps.notebooks).length !== Object.keys(this.props.notebooks).length) {
+      this.props.fetchNotebooks().then(res => {
+        this.setState({notebooks: res.notebooks});
+    });
+      this.setState({currentNote: this.props.currentNote})
+    }
+  }
+
   initialHighligher() {
     let path = this.props.location.pathname;
     switch(true) {
@@ -81,13 +96,6 @@ export default class Sidebar extends React.Component {
       })
       e.currentTarget.classList.add("side-button-active");
     });
-  }
-
-  componentDidUpdate(nextProps, nextState) {
-    if (this.props.location.pathname != nextProps.location.pathname) {
-      this.props.fetchNotebooks();
-      this.setState({currentNote: this.props.currentNote})
-    }
   }
 
   notebookDropdown(e) {

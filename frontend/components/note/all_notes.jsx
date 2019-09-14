@@ -14,6 +14,12 @@ export default class AllNotes extends React.Component {
     this.fetchNumber();
   }
 
+  componentDidUpdate(nextProps) {
+    if (this.props.location.pathname != nextProps.location.pathname) {
+      this.fetchNumber();
+    }
+  }
+
   fetchNumber() {
     fetchNotes().then(notes => this.setState({number: Object.keys(notes).length}));
   }

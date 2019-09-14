@@ -275,15 +275,25 @@
 }
 
 .nii-container:nth-child(even) .note-dropdown .note-dropdown-item:nth-child(odd) {
-  background-color: white;
+  background-color: #e6e6e6;
 }
 
 
 .nii-container:nth-child(odd) .note-dropdown .note-dropdown-item:nth-child(odd) {
+  background-color: #e6e6e6;
+}
+
+.nii-container:nth-child(even) .note-dropdown .note-dropdown-item:nth-child(even) {
   background-color: #f3f3f3;
 }
 
+
+.nii-container:nth-child(odd) .note-dropdown .note-dropdown-item:nth-child(even) {
+  background-color: #efefef;
+}
+
 .note-dropdown-item:hover {
+  background-color: #ddd !important;
   cursor: grab;
 }
 

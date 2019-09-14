@@ -13,7 +13,8 @@ const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
   defaultNotebook: state.session.currentUser.default_notebook,
   notebook: state.ui.currentNotebook,
-  currentNote: state.ui.currentNote
+  currentNote: state.ui.currentNote,
+  notebooks: state.entities.notebooks
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,0 +1,25 @@
+
+.note-show {
+  width: calc(100vw - 225px - 350px);
+  border: 1px solid blue;
+}
+
+.editor {
+  overflow: scroll;
+  height: 80vh;
+  border: 1px solid green;
+}
+
+.editor-title-input {
+  padding-left: 30px;
+  width: 100%;
+  height: 50px;
+  font-size: 27px;
+}
+
+.text-editor {
+  border: 1px solid red;
+  padding: 30px;
+  height: 80vh;
+}
+

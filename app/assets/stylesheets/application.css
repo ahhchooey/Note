@@ -10,20 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require reset
+ *= require_tree .
  */
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
-}
 

@@ -5,7 +5,14 @@ import Icon from "react-icons-kit";
 
 import {CodeBlock, HighlightBlock, OrderedList, UnorderedList} from "./blocks.js";
 import Toolbar from "./toolbar.js";
-import {ic_format_bold} from 'react-icons-kit/md/ic_format_bold'
+import {ic_format_bold} from 'react-icons-kit/md/ic_format_bold';
+import {ic_format_italic} from 'react-icons-kit/md/ic_format_italic';
+import {ic_format_underlined} from 'react-icons-kit/md/ic_format_underlined';
+import {ic_strikethrough_s} from 'react-icons-kit/md/ic_strikethrough_s';
+import {ic_code} from 'react-icons-kit/md/ic_code';
+import {ic_highlight} from 'react-icons-kit/md/ic_highlight';
+import {ic_format_list_bulleted} from 'react-icons-kit/md/ic_format_list_bulleted';
+import {ic_format_list_numbered} from 'react-icons-kit/md/ic_format_list_numbered';
 
 
 const initialValue = Value.fromJSON({
@@ -56,7 +63,7 @@ export default class TextEditor extends React.Component {
       case "italic":
         return <em {...props.attributes}>{props.children}</em>
       case "underline":
-        return <u {...props.attributes}>{props.children}</u>
+        return <u className="underline" {...props.attributes}>{props.children}</u>
       case "strike":
         return <strike {...props.attributes}>{props.children}</strike>
 
@@ -129,6 +136,36 @@ export default class TextEditor extends React.Component {
             onPointerDown={(e) => this.onMarkClick(e, "bold")}>
             <Icon icon={ic_format_bold} />   
           </button>
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "italic")}>
+            <Icon icon={ic_format_italic} />   
+          </button>
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "underline")}>
+            <Icon icon={ic_format_underlined} />   
+          </button>
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "strike")}>
+            <Icon icon={ic_strikethrough_s} />   
+          </button>
+
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "code")}>
+            <Icon icon={ic_code} />   
+          </button>
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "highlight")}>
+            <Icon icon={ic_highlight} />   
+          </button>
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "unordered")}>
+            <Icon icon={ic_format_list_bulleted} />   
+          </button>
+          <button className="tooltip-icon-button"
+            onPointerDown={(e) => this.onMarkClick(e, "ordered")}>
+            <Icon icon={ic_format_list_numbered} />   
+          </button>
+
         </Toolbar>
 
         <div className="editor">

@@ -14,6 +14,9 @@ export default class NoteIndexItem extends React.Component {
     this.time = formatTime(this.props.note.updated_at);
   }
 
+  componentDidUpdate(prevProps) {
+  }
+
   render() {
     let cn = "notes-index-item";
     if (this.props.currentNote) {

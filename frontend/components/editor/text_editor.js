@@ -46,6 +46,9 @@ export default class TextEditor extends React.Component {
     if (Object.keys(prevProps.note).length !== Object.keys(this.props.note).length) {
       this.setState({note: this.props.note})
     }
+    if (prevProps.note !== this.props.note) {
+      this.setState({note: this.props.note})
+    }
   }
 
   updateTitle(e) {

@@ -35,7 +35,8 @@ export const updateNote = (note) => {
     url: `api/notes/${note.id}`,
     method: "PATCH",
     data: {
-      note: note
+      note: note,
+      id: note.id
     }
   })
 }

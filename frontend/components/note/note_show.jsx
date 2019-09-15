@@ -1,6 +1,8 @@
 import React from "react";
 import {fetchNote} from "../../utils/api_note_util.js";
 
+import TextEditorContainer from "../editor/text_editor_containter.js";
+
 
 export default class NoteShow extends React.Component {
   constructor(props) {
@@ -36,7 +38,7 @@ export default class NoteShow extends React.Component {
   render() {
     return (
       <div className="note-show">
-        <h1>{this.state.note.title}</h1>
+        <TextEditorContainer note={this.state.note} />
       </div>
     )
   }

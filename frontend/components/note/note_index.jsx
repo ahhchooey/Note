@@ -20,11 +20,17 @@ export default class NoteIndex extends React.Component {
     });
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    if (this.props.location.pathname != nextProps.location.pathname) {
+  componentDidUpdate(prevProps, nextState) {
+    if (this.props.location.pathname != prevProps.location.pathname) {
       fetchNotes(this.props.notebookId).then(notes => {
         this.setState({notes: notes})
       })
+    }
+    if (this.props.currentNote !== prevProps.currentNote) {
+      let nt = this.props.currentNote;
+      let nts = this.state.notes;
+      nts[nt.id] = nt;
+      this.setState({notes: nts})
     }
   }
 

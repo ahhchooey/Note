@@ -61,6 +61,7 @@ export default class TextEditor extends React.Component {
     this.hasBlock = this.hasBlock.bind(this);
     this.renderMarkButton = this.renderMarkButton.bind(this);
     this.renderBlockButton = this.renderBlockButton.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   componentDidMount() {
@@ -265,6 +266,10 @@ export default class TextEditor extends React.Component {
     )
   }
 
+  deleteNote() {
+    this.props.destroyNote(this.state.note.id);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -275,6 +280,17 @@ export default class TextEditor extends React.Component {
             {this.props.notebookTitle}
           </Link>
           <IconIcon className="note-show-more-actions-button" icon={ic_more_vert} />
+          
+          <div className="note-dropdown-holder">
+            <div className={`note-show-more-actions-dropdown`}>
+              <p>Note Actions</p>
+              <div className="note-show-dropdown-buttons">
+                <div onClick={this.deleteNote} className="destroy-note-button">
+                  Delete Note
+                </div>  
+              </div>
+            </div>
+          </div>
         </div>
 
         <Toolbar>

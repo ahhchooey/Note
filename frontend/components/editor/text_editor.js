@@ -47,7 +47,16 @@ export default class TextEditor extends React.Component {
     this.ref = (editor) => {
       this.editor = editor
     }
+    this.timestamp = 0;
     this.onChange = (editor) => {
+      if (editor.value.document != this.state.value.document) {
+        const content = JSON.stringify(editor.value.toJSON());
+        let nt = Object.assign({}, this.state.note);
+        nt.body = content;
+        this.props.updateNote(nt).then((res) => {
+          this.setState({note: res.note});
+        })
+      }
       this.setState({value: editor.value})
     } 
 
@@ -64,6 +73,12 @@ export default class TextEditor extends React.Component {
     this.deleteNote = this.deleteNote.bind(this);
   }
 
+  autoSave() {
+    setInterval(() => {
+      
+    }, 1000)
+  }
+
   componentDidMount() {
     this.setState({note: this.props.note})
     this.handleInput();
@@ -74,7 +89,7 @@ export default class TextEditor extends React.Component {
       this.setState({note: this.props.note})
     }
     if (prevProps.note !== this.props.note) {
-      this.setState({note: this.props.note})
+      this.setState({note: this.props.note, value: Value.fromJSON(JSON.parse(this.props.note.body))})
     }
   }
 
@@ -85,10 +100,8 @@ export default class TextEditor extends React.Component {
       e.stopPropagation();
       if (!this.dropdown.classList.contains("visible")) {
         this.dropdown.classList.add("visible");
-        console.log("vis")
       } else {
         this.dropdown.classList.remove("visible");
-        console.log("notvis")
       }
     })
     document.addEventListener("click", (e) => {

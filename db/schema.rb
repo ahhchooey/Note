@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_163532) do
 
   create_table "notes", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
-    t.text "body", default: ""
+    t.json "body", default: "{\"document\":{\"nodes\":[{\"object\":\"block\",\"type\":\"paragraph\",\"nodes\":[{\"object\":\"text\",\"text\":\"\"}]}]}}"
     t.integer "user_id", null: false
     t.integer "notebook_id", null: false
     t.datetime "created_at", null: false

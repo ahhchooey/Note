@@ -47,19 +47,23 @@ export default class TextEditor extends React.Component {
     this.ref = (editor) => {
       this.editor = editor
     }
-    this.timestamp = 0;
+    this.timestamp = undefined;
     this.onChange = (editor) => {
       if (editor.value.document != this.state.value.document) {
-        const content = JSON.stringify(editor.value.toJSON());
-        let nt = Object.assign({}, this.state.note);
-        nt.body = content;
-        this.props.updateNote(nt).then((res) => {
-          this.setState({note: res.note});
-        })
+        clearTimeout(this.timestamp);
+        this.timestamp = setTimeout(() => {
+          const content = JSON.stringify(editor.value.toJSON());
+          let nt = Object.assign({}, this.state.note);
+          nt.body = content;
+          this.props.updateNote(nt).then((res) => {
+            console.log("saved")
+            this.setState({note: res.note});
+          })
+        }, 1000)
       }
       this.setState({value: editor.value})
     } 
-
+    
     this.updateTitle = this.updateTitle.bind(this);
     this.renderMark = this.renderMark.bind(this);
     this.renderBlock = this.renderBlock.bind(this);
@@ -71,12 +75,6 @@ export default class TextEditor extends React.Component {
     this.renderMarkButton = this.renderMarkButton.bind(this);
     this.renderBlockButton = this.renderBlockButton.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
-  }
-
-  autoSave() {
-    setInterval(() => {
-      
-    }, 1000)
   }
 
   componentDidMount() {

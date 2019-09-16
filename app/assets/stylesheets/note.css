@@ -1,9 +1,19 @@
 
 .note {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
 }
 
 .note-dropdown-item {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 10px;
   position: relative;
 
@@ -13,11 +23,21 @@
 }
 
 .ndd-ti {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   position: relative;
   left: 40px;
 }
 
 .note-dropdown-holder {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   position: absolute;
 
   right: 200px;
@@ -25,6 +45,11 @@
 }
 
 .note-show-more-actions-dropdown {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #ccc;
   position: absolute;
   top: 27px;
@@ -40,6 +65,11 @@
 }
 
 .note-show-more-actions-dropdown p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #555;
   padding: 5px;
   text-transform: uppercase;
@@ -49,10 +79,20 @@
 }
 
 .note-show-dropdown-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #111;
 }
 
 .destroy-note-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 10px;
   margin: -5px;
 }

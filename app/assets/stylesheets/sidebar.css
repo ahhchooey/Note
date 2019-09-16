@@ -1,5 +1,10 @@
 
 .sidebar {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 100vh;
   width: 225px;
   background-color: #1a1a1a;
@@ -13,6 +18,11 @@
 }
 
 .username-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #ccc;
   padding: 5px;
   margin-top: 5px;
@@ -23,17 +33,32 @@
 }
 
 .username-button img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 10px;
   -webkit-filter: invert(90%);
   margin-left: 5px;
 }
 
 .username-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
   color: #fff;
 }
 
 .down-caret {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #ccc;
   margin: 5px;
   padding: 5px;
@@ -42,12 +67,22 @@
 }
 
 .break {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 1px;
   width: 100%;
   border: 1px solid #eee;
 }
 
 .username-button-dropdown {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #ccc;
   position: absolute;
   top: 55px;
@@ -63,6 +98,11 @@
 }
 
 .username-button-dropdown p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #333;
   padding: 5px;
   text-transform: uppercase;
@@ -71,22 +111,42 @@
 }
 
 .username-button-dropdown h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #000;
   padding: 5px;
   margin-top: -5px;
 }
 
 .username-button-dropdown-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #111;
   padding: 5px;
 }
 
 .username-button-dropdown-buttons:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background-color: #eee;
   cursor: pointer;
 }
 
 .search-bar {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 100%;
   height: 30px;
   border-radius: 4px;
@@ -98,10 +158,20 @@
 }
 
 .search-bar::placeholder {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #ccc;
 }
 
 .new-note-cluster {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 100%;
   position: relative;
   border-radius: 20px;
@@ -113,6 +183,11 @@
 }
 
 .generic-new-note-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 85%;
   text-align: left;
   font-size: 15px;
@@ -124,11 +199,21 @@
 }
 
 .generic-new-note-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background-color: #21a546;
   cursor: pointer;
 }
 
 .new-note-dropdown-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 15%;
   background-color: #1c9438;
   border: 0px;
@@ -138,17 +223,32 @@
 }
 
 .new-note-dropdown-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background-color: #1c6438;
   cursor: pointer;
 }
 
 .new-note-dropdown-button img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 20px;
   -webkit-filter: invert(100%);
   padding-top: 3px;
 }
 
 .sidebar-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 100%;
   margin: 5px;
   margin-top: 20px;
@@ -158,6 +258,11 @@
 }
 
 .side-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   left: -10px;
   width: 100%;
   color: #ccc;
@@ -170,22 +275,42 @@
 }
 
 .side-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background-color: #555;
   color: white;
   cursor: pointer;
 }
 
 .side-button-active {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background-color: #777;
   color: white;
 }
 
 .side-button-active:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background-color: #777;
   color: white;
 }
 
 .side-image {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 20px;
   width: 20px;
   margin-right: 10px;
@@ -194,10 +319,20 @@
 }
 
 .side-image:hovel {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   background: none;
 }
 
 .right-arrow {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   -webkit-filter: invert(100%);
   height: 15px;
   position: absolute;
@@ -208,10 +343,20 @@
 }
 
 .right-arrow:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .down-arrow {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   -webkit-filter: invert(100%);
   height: 15px;
   position: absolute;
@@ -222,31 +367,61 @@
 }
 
 .down-arrow:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .notebook-dropdown {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: none;
   padding: 5px 0px;
   padding-bottom: 10px;
 }
 
 .sub-dd {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 12px;
   padding-left: 40px;
 }
 
 .sub-dd img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 12px;
   margin-right: 5px;
   -webkit-filter: invert(100%);
 }
 
 .visible {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: block;
 }
 
 .da-nbi, .ra-nbi {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   -webkit-filter: invert(0%);
   top: 17px;
   left: 3px;

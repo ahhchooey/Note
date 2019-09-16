@@ -1,5 +1,10 @@
 
 .front-page {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,6 +12,11 @@
 }
 
 .impact {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -18,11 +28,21 @@
 }
 
 .impact-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 40px;
   margin-right: 20px;
 }
 
 .impact-text h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 35px;
   line-height: 50px;
   padding: 7px 0px;
@@ -30,6 +50,11 @@
 }
 
 .impact-text p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 16px;
   line-height: 30px;
   margin-bottom: 30px;
@@ -37,11 +62,21 @@
 }
 
 .impact img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 350px;
   width: auto;
 }
 
 .impact-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 50px;
   width: 300px;
   color: green;
@@ -53,11 +88,21 @@
 }
 
 .impact-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 
 .focus {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 20px 60px;
@@ -70,12 +115,22 @@
 }
 
 .focus h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 30px;
   font-weight: 600;
   color: #333;
 }
 
 .focus-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -83,6 +138,11 @@
 }
 
 .focus-text p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 25px;
   line-height: 35px;
   width: 300px;
@@ -92,6 +152,11 @@
 
 
 .anywhere {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -104,6 +169,11 @@
 }
 
 .anywhere-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding-bottom: 60px;
 
   display: flex;
@@ -113,16 +183,31 @@
 }
 
 .anywhere-text h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 40px;
   font-weight: 600;
 }
 
 .anywhere-text p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 25px;
 }
 
 
 .remember {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -135,6 +220,11 @@
 }
 
 .remember-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 400px;
   height: 100%;
 
@@ -144,18 +234,33 @@
 }
 
 .remember-text h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 35px;
   line-height: 50px;
   color: green;
 }
 
 .remember-text p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 22px;
   line-height: 35px;
   color: green;
 }
 
 .plan-link {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   text-transform: uppercase;
   color: #f77;
   font-weight: 600;
@@ -163,12 +268,22 @@
 }
 
 .remember img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 400px;
   width: auto;
 }
 
 
 .organize {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -181,11 +296,21 @@
 }
 
 .organize img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 400px;
   width: auto;
 }
 
 .organize-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 400px;
   height: 100%;
 
@@ -195,17 +320,32 @@
 }
 
 .organize-text h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 35px;
   line-height: 50px;
 }
 
 .organize-text p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 22px;
   line-height: 35px;
 }
 
 
 .collaborate {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -218,11 +358,21 @@
 }
 
 .collaborate img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 400px;
   width: auto;
 }
 
 .collaborate-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 400px;
   height: 100%;
 
@@ -232,12 +382,22 @@
 }
 
 .collaborate-text h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 35px;
   line-height: 50px;
   color: #eee;
 }
 
 .collaborate-text p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 22px;
   line-height: 35px;
   color: #eee;
@@ -245,6 +405,11 @@
 
 
 .compare {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 150px;
   width: 100%;
   padding: 0px 60px;
@@ -257,6 +422,11 @@
 }
 
 .compare button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 50px;
   width: 300px;
   color: white;
@@ -268,11 +438,21 @@
 }
 
 .compare button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 
 .testimony {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 350px;
   width: 100%;
   padding: 0px 60px;
@@ -285,6 +465,11 @@
 }
 
 .testimony-images {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
 
   display: flex;
   justify-content: space-around;
@@ -292,6 +477,11 @@
 }
 
 .testimony-images img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: auto;
   width: 150px;
   margin: 0px 50px;
@@ -299,15 +489,30 @@
 }
 
 .testimony-images img:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   opacity: 1.0;
 }
 
 .testimony-text {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 20px;
 }
 
 
 .how-it-works {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -320,22 +525,42 @@
 }
 
 .how-it-works h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 35px;
   font-weight: 500;
 }
 
 .how-block {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
 .how-block img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 125px;
   width: auto;
 }
 
 .how-block div {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -346,6 +571,11 @@
 }
 
 .how-it-works button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 50px;
   width: 300px;
   color: white;
@@ -357,11 +587,21 @@
 }
 
 .how-it-works button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 
 .popular-features {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 600px;
   width: 100%;
   padding: 0px 60px;
@@ -374,16 +614,31 @@
 }
 
 .popular-features h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 35px;
   font-weight: 500;
 }
 
 .popular-links img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 125px;
   width: auto;
 }
 
 .popular-links {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -392,11 +647,21 @@
 }
 
 .p-link {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin: 0px 80px;
 }
 
 
 .footer {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 300px;
   width: 100%;
   padding: 0px 60px;

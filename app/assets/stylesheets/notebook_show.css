@@ -1,5 +1,10 @@
 
 .notebook-show {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   border-right: 1px solid #aaa;
   width: 350px;
   height: 100vh;
@@ -10,6 +15,11 @@
 }
 
 .notebook-show-box {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 100%;
   height: 150px;
   border-bottom: 1px solid #aaa;
@@ -20,12 +30,22 @@
 }
 
 .notebook-show-box h3 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 30px;
   font-size: 23px;
   font-weight: 500;
 }
 
 .notebook-show-box-bottom {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 90%;
   justify-self: center;
   align-self: center;
@@ -36,6 +56,11 @@
 }
 
 .notebook-show-box-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 120px;
   position: relative;
 
@@ -45,19 +70,39 @@
 }
 
 .notebook-show-box-buttons img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 20px;
   width: 20px;
 }
 
 .notebook-show-box-buttons img:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .notebook-more-actions-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .notebook-show-more-actions-dropdown {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #ccc;
   position: absolute;
   top: 27px;
@@ -73,6 +118,11 @@
 }
 
 .notebook-show-more-actions-dropdown p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #555;
   padding: 5px;
   text-transform: uppercase;
@@ -82,21 +132,41 @@
 }
 
 .notebook-show-dropdown-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: #111;
 }
 
 .update-notebook-button, .destroy-notebook-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 10px;
   margin: -5px;
 }
 
 .dead-destroy-notebook-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 10px;
   margin: -5px;
   color: #ccc;
 }
 
 .update-notebook-button:hover, .destroy-notebook-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   cursor: pointer;
   background-color: #eee;
 }

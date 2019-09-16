@@ -24,7 +24,7 @@ const initialValue = Value.fromJSON({
         nodes: [
           {
             object: "text",
-            text: "Hello, I am Slate.",
+            text: "",
           }
         ]
       }
@@ -174,9 +174,10 @@ export default class TextEditor extends React.Component {
           <Editor
             autoFocus
             spellCheck
+            placeholder="Start typing here..."
             className="text-editor"
             ref={this.ref}
-            value={this.state.value}
+            value={this.state.value || ""}
             onChange={this.onChange}
             renderMark={this.renderMark}
             onKeyDown={this.onKeyDown}

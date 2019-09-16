@@ -1,5 +1,10 @@
 
 .four-zero-four {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 100vh;
   width: 100vw;
 
@@ -10,10 +15,20 @@
 }
 
 .four-zero-four p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 100px;
 }
 
 .four-zero-four-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   border: 1px solid gray;
   padding: 10px;
   border-radius: 2px;

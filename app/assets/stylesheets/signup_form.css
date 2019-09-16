@@ -1,5 +1,10 @@
 
 .session-page {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 100vh;
   width: 100vw;
   background-color: #F1FCF7;
@@ -10,6 +15,11 @@
 }
 
 .signup-form {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 650px;
   width: 500px;
   box-shadow: 0 0 3px #ccc;
@@ -24,6 +34,11 @@
 }
 
 .session-logo {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 60px;
   width: auto;
   margin-bottom: 15px;
@@ -32,6 +47,11 @@
 }
 
 .signup-form h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-bottom: 40px;
 }
 
@@ -40,6 +60,7 @@
 }
 
 .signup-form input {
+  font-family: 'Montserrat', sans-serif;
   height: 50px;
   width: 300px;
   border-radius: 5px;
@@ -49,6 +70,7 @@
 }
 
 .signup-form form {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,6 +79,7 @@
 }
 
 .session-button {
+  font-family: 'Montserrat', sans-serif;
   margin: 0 auto;
   background-color: green;
   color: white;
@@ -68,6 +91,7 @@
 }
 
 .demo-button {
+  font-family: 'Montserrat', sans-serif;
   height: 50px;
   width: 300px;
   border-radius: 5px;
@@ -93,6 +117,7 @@
 }
 
 .change-session {
+  text-decoration: none;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -101,6 +126,7 @@
 }
 
 .change-session-button {
+  text-decoration: none;
   color: green;
 }
 
@@ -115,6 +141,11 @@
 }
 
 .session-return-to-front {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,5 +156,5 @@
   color: red;
   position: absolute;
   font-size: 10px;
-  top: 120px;  
+  top: 121px;  
 }

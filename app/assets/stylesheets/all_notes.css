@@ -1,5 +1,10 @@
 
 .all-notes-box {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   border-right: 1px solid #aaa;
   width: 350px;
   height: 100vh;
@@ -11,6 +16,11 @@
 }
 
 .all-notes-show-box {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 100%;
   height: 150px;
   border-bottom: 1px solid #aaa;
@@ -21,12 +31,22 @@
 }
 
 .all-notes-show-box h3 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding: 30px;
   font-size: 23px;
   font-weight: 500;
 }
 
 .all-notes-show-box-bottom {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 90%;
   justify-self: center;
   align-self: center;
@@ -37,6 +57,11 @@
 }
 
 .all-notes-show-box-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: 70px;
   position: relative;
 
@@ -46,6 +71,11 @@
 }
 
 .all-notes-show-box-buttons img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 20px;
   width: 20px;
 }

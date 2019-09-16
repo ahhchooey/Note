@@ -1,5 +1,10 @@
 
 .navbar {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   position: sticky;
   top: 0;
   border-bottom: 1px solid gray;
@@ -15,6 +20,11 @@
 }
 
 .complete-logo {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-right: 50px;
 
   display: flex;
@@ -23,15 +33,30 @@
 }
 
 .splash-title {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 20px;
 }
 
 .logo {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 50px;
   width: auto;
 }
 
 .links {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   height: 100%;
   width: 500px;
   text-transform: uppercase;
@@ -42,30 +67,65 @@
 }
 
 .arrow {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   font-size: 8px;
 }
 
 .ln:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: green;
 }
 
 .plans {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-right: auto;
 }
 
 .features {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-right: auto;
 }
 
 .help {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-right: auto;
 }
 
 .about {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-right: auto;
 }
 
 .auth-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   margin-left: auto;
   font-size: 12px;
   width: 200px;
@@ -75,14 +135,29 @@
 }
 
 .signup-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: green;
 }
 
 .signup-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: lightgreen;
 }
 
 .login-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   color: green;
   border: 2px solid green;
   border-radius: 5px;
@@ -91,6 +166,11 @@
 }
 
 .login-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   border: 2px solid lightgreen;
   color: lightgreen;
 }

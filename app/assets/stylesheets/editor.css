@@ -1,16 +1,31 @@
 
 .note-show {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   width: calc(100vw - 225px - 350px);
   border: 1px solid blue;
 }
 
 .editor {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   overflow: scroll;
   height: 80vh;
   border: 1px solid green;
 }
 
 .editor-title-input {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   padding-left: 30px;
   width: 100%;
   height: 50px;
@@ -18,6 +33,11 @@
 }
 
 .text-editor {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
   border: 1px solid red;
   padding: 30px;
   height: 80vh;

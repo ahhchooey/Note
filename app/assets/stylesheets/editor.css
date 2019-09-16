@@ -43,3 +43,20 @@
   height: 80vh;
 }
 
+.code-block {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+  background-color: rgb(220, 220, 220);
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.highlight-block {
+  background-color: #aff;
+  border-radius: 4px;
+  padding: 1px;
+}
+
+.ordered-list, .unordered-list {
+  margin: 5px;
+}

@@ -15,7 +15,7 @@ import {ic_format_list_bulleted} from 'react-icons-kit/md/ic_format_list_bullete
 import {ic_format_list_numbered} from 'react-icons-kit/md/ic_format_list_numbered';
 
 
-const initialValue = Value.fromJSON({
+const initialValue = ({
   document: {
     nodes: [
       {
@@ -36,7 +36,7 @@ export default class TextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: initialValue,
+      value: Value.fromJSON(initialValue),
       note: {}
     }
     this.ref = (editor) => {

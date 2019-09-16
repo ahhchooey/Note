@@ -261,7 +261,6 @@
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
-  color: black;
   font-size: 15px;
   left: -10px;
   width: 100%;
@@ -278,8 +277,6 @@
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
   background-color: #555;
   color: white;
   cursor: pointer;
@@ -290,7 +287,6 @@
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   color: black;
-  font-size: 15px;
   background-color: #777;
   color: white;
 }
@@ -300,7 +296,6 @@
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   color: black;
-  font-size: 15px;
   background-color: #777;
   color: white;
 }
@@ -318,7 +313,7 @@
   background: none;
 }
 
-.side-image:hovel {
+.side-image:hover {
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
@@ -343,11 +338,6 @@
 }
 
 .right-arrow:hover {
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
   cursor: pointer;
 }
 
@@ -367,11 +357,6 @@
 }
 
 .down-arrow:hover {
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
   cursor: pointer;
 }
 
@@ -390,8 +375,6 @@
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
   font-size: 12px;
   padding-left: 40px;
 }

@@ -203,7 +203,7 @@ export default class TextEditor extends React.Component {
       case 'bold':
         return <strong {...attributes}>{children}</strong>
       case 'code':
-        return <code {...attributes}>{children}</code>
+        return <code className="code-block" {...attributes}>{children}</code>
       case 'italic':
         return <em {...attributes}>{children}</em>
       case 'underlined':

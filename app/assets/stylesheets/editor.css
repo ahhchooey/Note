@@ -6,7 +6,10 @@
   color: black;
   font-size: 15px;
   width: calc(100vw - 225px - 350px);
-  border: 1px solid blue;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .editor {
@@ -16,8 +19,7 @@
   color: black;
   font-size: 15px;
   overflow: scroll;
-  height: 80vh;
-  border: 1px solid green;
+  height: calc(100vh - 41px - 49px - 30px);
 }
 
 .editor-title-input {
@@ -25,11 +27,12 @@
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   color: black;
-  font-size: 15px;
+  margin-top: 10px;
   padding-left: 30px;
   width: 100%;
   height: 50px;
   font-size: 27px;
+  border: 0px;
 }
 
 .text-editor {
@@ -38,9 +41,8 @@
   font-family: 'Montserrat', sans-serif;
   color: black;
   font-size: 15px;
-  border: 1px solid red;
   padding: 30px;
-  height: 80vh;
+  min-height: calc(100vh - 41px - 49px - 30px - 60px)
 }
 
 .code-block {
@@ -59,4 +61,43 @@
 
 .ordered-list, .unordered-list {
   margin: 5px;
+}
+
+.note-show-topbar {
+  padding: 20px 20px 10px 30px;
+  
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-show-notebook-link {
+  text-decoration: none;
+  color: #999;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.note-show-notebook-link:hover {
+  color: #333;
+}
+
+.note-show-more-actions-button {
+  opacity: 0.5;
+}
+
+.note-show-more-actions-button:hover {
+  opacity: 1;
+  cursor: pointer
+}
+
+.note-show-tagbar {
+  border-top: 1px solid #ddd;
+  height: 30px;
+  background-color: #fff;
+  z-index: 80;
+  padding-left: 30px;
+  color: #999;
+
+  display: flex;
+  align-items: center;
 }

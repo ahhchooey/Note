@@ -1,5 +1,14 @@
 import React from 'react'
 import { cx, css } from 'emotion'
+import IconIcon from "react-icons-kit";
+import {ic_format_bold} from 'react-icons-kit/md/ic_format_bold';
+import {ic_format_italic} from 'react-icons-kit/md/ic_format_italic';
+import {ic_format_underlined} from 'react-icons-kit/md/ic_format_underlined';
+import {ic_strikethrough_s} from 'react-icons-kit/md/ic_strikethrough_s';
+import {ic_code} from 'react-icons-kit/md/ic_code';
+import {ic_highlight} from 'react-icons-kit/md/ic_highlight';
+import {ic_format_list_bulleted} from 'react-icons-kit/md/ic_format_list_bulleted';
+import {ic_format_list_numbered} from 'react-icons-kit/md/ic_format_list_numbered';
 
 export const Button = React.forwardRef(
   ({ className, active, reversed, ...props }, ref) => (
@@ -73,7 +82,8 @@ export const Icon = React.forwardRef(({ className, ...props }, ref) => (
       'material-icons',
       className,
       css`
-        font-size: 18px;
+        font-size: 13px;
+        font-weight: bold;
         vertical-align: text-bottom;
       `
     )}
@@ -123,10 +133,11 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
       className,
       css`
         position: relative;
-        padding: 1px 18px 17px;
-        margin: 0 -20px;
+        padding: 10px 30px;
+        margin: 0 0px;
         border-bottom: 2px solid #eee;
-        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
       `
     )}
   />

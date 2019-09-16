@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {Editor} from "slate-react";
 import {Value} from "slate";
 import {isKeyHotkey} from "is-hotkey";
@@ -12,6 +13,7 @@ import {ic_code} from 'react-icons-kit/md/ic_code';
 import {ic_highlight} from 'react-icons-kit/md/ic_highlight';
 import {ic_format_list_bulleted} from 'react-icons-kit/md/ic_format_list_bulleted';
 import {ic_format_list_numbered} from 'react-icons-kit/md/ic_format_list_numbered';
+import {ic_more_vert} from 'react-icons-kit/md/ic_more_vert';
 
 const DEFAULT_NODE = "paragraph";
 const isBoldHotkey = isKeyHotkey('mod+b')
@@ -162,62 +164,6 @@ export default class TextEditor extends React.Component {
     editor.toggleMark(mark)
   }
 
-  renderMarkButton(type, icon) {
-    let isActive = this.hasMark(type);
-
-    return (
-      <Button
-        active={isActive}
-        onMouseDown={event => this.onClickMark(event, type)}
-      >
-        <Icon>{icon}</Icon>
-      </Button>
-    )
-  }
-
-  renderBlockButton(type, icon) {
-    let isActive = this.hasBlock(type)
-
-    if (['numbered-list', 'bulleted-list'].includes(type)) {
-      const { value: { document, blocks } } = this.state
-
-      if (blocks.size > 0) {
-        const parent = document.getParent(blocks.first().key)
-        isActive = this.hasBlock('list-item') && parent && parent.type === type
-      }
-    }
-
-    return (
-      <Button
-        active={isActive}
-        onMouseDown={event => this.onClickBlock(event, type)}
-      >
-        <Icon>{icon}</Icon>
-      </Button>
-    )
-  }
-
-  renderBlock(props, editor, next) {
-    const { attributes, children, node } = props
-
-    switch (node.type) {
-      case 'block-quote':
-        return <blockquote {...attributes}>{children}</blockquote>
-      case 'bulleted-list':
-        return <ul {...attributes}>{children}</ul>
-      case 'heading-one':
-        return <h1 {...attributes}>{children}</h1>
-      case 'heading-two':
-        return <h2 {...attributes}>{children}</h2>
-      case 'list-item':
-        return <li {...attributes}>{children}</li>
-      case 'numbered-list':
-        return <ol {...attributes}>{children}</ol>
-      default:
-        return next()
-    }
-  }
-
   renderMark(props, editor, next) {
     const { children, mark, attributes } = props
 
@@ -235,22 +181,111 @@ export default class TextEditor extends React.Component {
     }
   }
 
+  renderBlock(props, editor, next) {
+    const { attributes, children, node } = props
+
+    switch (node.type) {
+      case 'bulleted-list':
+        return <ul {...attributes}>{children}</ul>
+      case 'heading-one':
+        return <h1 {...attributes}>{children}</h1>
+      case 'heading-two':
+        return <h2 {...attributes}>{children}</h2>
+      case 'list-item':
+        return <li {...attributes}>{children}</li>
+      case 'numbered-list':
+        return <ol {...attributes}>{children}</ol>
+      default:
+        return next()
+    }
+  }
+
+  renderMarkButton(type, icon) {
+    let isActive = this.hasMark(type);
+    let thing;
+    switch(icon) {
+      case "ic_format_bold":
+        thing = ic_format_bold;
+        break;
+      case "ic_format_italic":
+        thing = ic_format_italic;
+        break;
+      case "ic_format_underlined":
+        thing = ic_format_underlined;
+        break;
+      case "ic_code":
+        thing = ic_code;
+        break;
+      default:
+        thing = ic_format_bold;
+        break;
+    }
+
+    return (
+      <Button
+        active={isActive}
+        onMouseDown={event => this.onClickMark(event, type)}
+      >
+        <IconIcon icon={thing} />
+      </Button>
+    )
+  }
+
+  renderBlockButton(type, icon) {
+    let isActive = this.hasBlock(type)
+    let thing;
+    switch(icon) {
+      case "ic_format_list_numbered":
+        thing = ic_format_list_numbered;
+        break;
+      case "ic_format_list_bulleted":
+        thing = ic_format_list_bulleted;
+        break;
+      default:
+        thing = undefined;
+        break;
+    }
+
+    if (['numbered-list', 'bulleted-list'].includes(type)) {
+      const { value: { document, blocks } } = this.state
+
+      if (blocks.size > 0) {
+        const parent = document.getParent(blocks.first().key)
+        isActive = this.hasBlock('list-item') && parent && parent.type === type
+      }
+    }
+
+    return (
+      <Button
+        active={isActive}
+        onMouseDown={event => this.onClickBlock(event, type)}
+      >
+        {(thing) ? <IconIcon icon={thing} /> : <Icon>{icon}</Icon>}
+      </Button>
+    )
+  }
+
   render() {
     return (
       <React.Fragment>
 
-        <div>this is a thing</div>
+        <div className="note-show-topbar">
+          <Link className="note-show-notebook-link"
+            to={`/note/notebooks/${this.state.note.notebook_id}/notes/${this.state.note.id}`}>
+            {this.props.notebookTitle}
+          </Link>
+          <IconIcon className="note-show-more-actions-button" icon={ic_more_vert} />
+        </div>
 
         <Toolbar>
-          {this.renderMarkButton('bold', 'format_bold')}
-          {this.renderMarkButton('italic', 'format_italic')}
-          {this.renderMarkButton('underlined', 'format_underlined')}
-          {this.renderMarkButton('code', 'code')}
-          {this.renderBlockButton('heading-one', 'looks_one')}
-          {this.renderBlockButton('heading-two', 'looks_two')}
-          {this.renderBlockButton('block-quote', 'format_quote')}
-          {this.renderBlockButton('numbered-list', 'format_list_numbered')}
-          {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+          {this.renderBlockButton('heading-one', 'h1')}
+          {this.renderBlockButton('heading-two', 'h2')}
+          {this.renderMarkButton('bold', "ic_format_bold")}
+          {this.renderMarkButton('italic', 'ic_format_italic')}
+          {this.renderMarkButton('underlined', 'ic_format_underlined')}
+          {this.renderMarkButton('code', 'ic_code')}
+          {this.renderBlockButton('numbered-list', 'ic_format_list_numbered')}
+          {this.renderBlockButton('bulleted-list', 'ic_format_list_bulleted')}
         </Toolbar>
 
         <div className="editor">
@@ -268,6 +303,10 @@ export default class TextEditor extends React.Component {
             renderBlock={this.renderBlock}
             onKeyDown={this.onKeyDown}
           />
+        </div>
+
+        <div className="note-show-tagbar">
+          Tags 
         </div>
 
       </React.Fragment>

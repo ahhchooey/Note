@@ -4,7 +4,8 @@ import TextEditor from "./text_editor.js";
 
 
 const mapStateToProps = (state, ownProps) => ({
-  note: ownProps.note
+  note: ownProps.note,
+  notebookTitle: ownProps.notebookTitle
 })
 
 const mapDispatchToProps = (dispatch) => ({

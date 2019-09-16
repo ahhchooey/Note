@@ -1,0 +1,116 @@
+
+.tag-index {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  height: 100vh;
+  width: calc( 100vw - 225px );
+  border: 1px solid black;
+  padding: 30px;
+  overflow: scroll;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-index-head {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  margin-bottom: 35px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.tag-index-head h2 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.tag-index-head input {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  height: 30px;
+  width: 200px;
+  padding: 5px;
+}
+
+.tag-index-table-head {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-index-table-head h3 {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tag-index-table-head-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+
+  display: flex;
+}
+
+.new-tag-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  height: 25px;
+  margin-right: 25px;
+  border-radius: 3px;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+}
+
+.new-tag-button img {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  height: 17px;
+}
+
+.new-tag-button:hover {
+  cursor: pointer;
+  background-color: #9e9;
+  box-shadow: 0 0 3px #ccc;
+}
+
+.tag-index-break-bar {
+  border-top: 3px solid black;
+  margin-top: 20px
+}

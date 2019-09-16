@@ -41,15 +41,15 @@ export default class NotebookIndex extends React.Component {
         </div>
         <div className="notebook-index-table-head">
           <h3>My Notebook List</h3>
-            <div className="notebook-index-table-head-buttons">
-              <div onClick={this.showModal} className="new-notebook-button">
-                <img src="https://img.icons8.com/wired/64/000000/spiral-bound-booklet.png" />
-                + New Notebook 
-              </div>
-              <div className="sort-button">
-                <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
-              </div>
+          <div className="notebook-index-table-head-buttons">
+            <div onClick={this.showModal} className="new-notebook-button">
+              <img src="https://img.icons8.com/wired/64/000000/spiral-bound-booklet.png" />
+              + New Notebook 
             </div>
+            <div className="sort-button">
+              <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
+            </div>
+          </div>
         </div>
         <NotebookCreateFormContainer />
         <div className="notebook-table">

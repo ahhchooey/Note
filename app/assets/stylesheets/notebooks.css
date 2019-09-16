@@ -310,7 +310,6 @@
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   color: black;
-  font-size: 15px;
   margin-bottom: 20px;  
   font-size: 13px;
 }
@@ -444,9 +443,7 @@
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
-  color: red;
+  color: red !important;
   font-size: 13px;
   position: absolute;
 }

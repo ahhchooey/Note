@@ -10,6 +10,8 @@
 User.destroy_all
 Notebook.destroy_all
 Note.destroy_all
+Tag.destroy_all
+NoteTag.destroy_all
 
 
 user1 = User.create(email: "demo@demo.io", password: "password1", username: "demo", default_notebook: 1)
@@ -23,3 +25,18 @@ note3 = Note.create(title: "testnote3",  user_id: user1["id"], notebook_id: note
 note2 = Note.create(title: "testnote2", user_id: user1["id"], notebook_id: notebook1["id"])
 note1 = Note.create(title: "testnote1", user_id: user1["id"], notebook_id: notebook1["id"])
 first_note = Note.create(title: "First Note", user_id: user1["id"], notebook_id: masterbook["id"])
+
+tag1 = Tag.create(title: "Cows", user_id: user1["id"])
+tag2 = Tag.create(title: "Spaghetti", user_id: user1["id"])
+tag3 = Tag.create(title: "Bear", user_id: user1["id"])
+tag4 = Tag.create(title: "No", user_id: user1["id"])
+
+NoteTag.create(note_id: first_note["id"], tag_id: tag1["id"])
+NoteTag.create(note_id: note1["id"], tag_id: tag1["id"])
+NoteTag.create(note_id: note2["id"], tag_id: tag1["id"])
+NoteTag.create(note_id: note3["id"], tag_id: tag2["id"])
+NoteTag.create(note_id: note4["id"], tag_id: tag3["id"])
+NoteTag.create(note_id: first_note["id"], tag_id: tag1["id"])
+NoteTag.create(note_id: note1["id"], tag_id: tag4["id"])
+NoteTag.create(note_id: note3["id"], tag_id: tag3["id"])
+

@@ -92,6 +92,7 @@
 
 .note-show-tagbar {
   border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   height: 40px;
   background-color: #fff;
   z-index: 80;

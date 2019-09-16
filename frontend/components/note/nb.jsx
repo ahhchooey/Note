@@ -6,6 +6,7 @@ import NotebookIndexContainer from "./notebook_index_container.js";
 import NotebookShowContainer from "./notebook_show_container.js";
 import NoteShowContainer from "./note_show_container.js";
 import AllNotesContainer from "./all_notes_container.jsx";
+import TagIndexContainer from "./tag_index_container.js";
 
 
 const Note = (props) => (
@@ -21,6 +22,7 @@ const Note = (props) => (
     <Route path={"/note/notebooks/:id"} component={NotebookShowContainer} />
     <Route path={"/note/notebooks/:notebook_id/notes/:id"} component={NoteShowContainer} />
     <Route exact path={"/note/notebooks"} component={NotebookIndexContainer} />
+    <Route exact path={"/note/tags"} component={TagIndexContainer} />
 
   </div>
 )

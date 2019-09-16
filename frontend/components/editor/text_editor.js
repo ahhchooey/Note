@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {Editor} from "slate-react";
-import {Value} from "slate";
+import {Value, Text} from "slate";
 import {isKeyHotkey} from "is-hotkey";
 import {Button, Icon, Toolbar} from "./comps.js";
 import IconIcon from "react-icons-kit";
@@ -56,7 +56,6 @@ export default class TextEditor extends React.Component {
           let nt = Object.assign({}, this.state.note);
           nt.body = content;
           this.props.updateNote(nt).then((res) => {
-            console.log("saved")
             this.setState({note: res.note});
           })
         }, 1000)

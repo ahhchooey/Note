@@ -1,13 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {formatDate, formatTime} from "../../utils/api_format_time.js";
+import {Value} from "slate";
 
 
 export default class NoteIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.note;
-    this.body = this.state.body.slice(0,55);
+    this.body = Value.fromJSON(JSON.parse(this.state.body)).document.text.slice(0, 55);
     this.day = formatDate(this.props.note.updated_at).split(" ");
     this.day = this.day[this.day.length - 1];
     this.day = this.day.slice(1, this.day.length -1);

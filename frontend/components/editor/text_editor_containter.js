@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 import {updateNote, destroyNote} from "../../actions/note_actions.js";
 import TextEditor from "./text_editor.js";
 
@@ -13,4 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
   destroyNote: (note) => dispatch(destroyNote(note))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
+export default withRouter( connect(mapStateToProps, mapDispatchToProps)(TextEditor) );

@@ -408,11 +408,6 @@
 }
 
 .visible {
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-size: 15px;
   display: block;
 }
 

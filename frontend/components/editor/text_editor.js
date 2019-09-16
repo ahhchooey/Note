@@ -66,6 +66,7 @@ export default class TextEditor extends React.Component {
 
   componentDidMount() {
     this.setState({note: this.props.note})
+    this.handleInput();
   }
 
   componentDidUpdate(prevProps) {
@@ -75,6 +76,26 @@ export default class TextEditor extends React.Component {
     if (prevProps.note !== this.props.note) {
       this.setState({note: this.props.note})
     }
+  }
+
+  handleInput() {
+    this.dropdown = document.querySelector(".nsmadr");
+    this.button = document.querySelector(".note-show-more-actions-button");
+    this.button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!this.dropdown.classList.contains("visible")) {
+        this.dropdown.classList.add("visible");
+        console.log("vis")
+      } else {
+        this.dropdown.classList.remove("visible");
+        console.log("notvis")
+      }
+    })
+    document.addEventListener("click", (e) => {
+      if (this.dropdown.classList.contains("visible")) {
+        this.dropdown.classList.remove("visible");
+      }
+    });
   }
 
   updateTitle(e) {
@@ -267,9 +288,11 @@ export default class TextEditor extends React.Component {
   }
 
   deleteNote() {
-    this.props.destroyNote(this.state.note.id);
+    this.props.destroyNote(this.state.note.id).then(() => {
+      this.props.history.push("/note/notebooks")
+    });
   }
-
+  
   render() {
     return (
       <React.Fragment>
@@ -281,8 +304,7 @@ export default class TextEditor extends React.Component {
           </Link>
           <IconIcon className="note-show-more-actions-button" icon={ic_more_vert} />
           
-          <div className="note-dropdown-holder">
-            <div className={`note-show-more-actions-dropdown`}>
+            <div className="nsmadr">
               <p>Note Actions</p>
               <div className="note-show-dropdown-buttons">
                 <div onClick={this.deleteNote} className="destroy-note-button">
@@ -290,7 +312,7 @@ export default class TextEditor extends React.Component {
                 </div>  
               </div>
             </div>
-          </div>
+
         </div>
 
         <Toolbar>

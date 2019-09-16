@@ -27,11 +27,9 @@ export default class AllNotesIndex extends React.Component {
       })
     }
     if (this.props.notes !== prevProps.notes) {
-      let nt = this.props.currentNote;
-      if (!nt) return;
-      let nts = this.state.notes;
-      nts[nt.id] = nt;
-      this.setState({notes: nts})
+      fetchNotes(this.props.notebookId).then(notes => {
+        this.setState({notes: notes})
+      })
     }
   }
 

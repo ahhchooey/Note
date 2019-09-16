@@ -26,11 +26,10 @@ export default class NoteIndex extends React.Component {
         this.setState({notes: notes})
       })
     }
-    if (this.props.currentNote !== prevProps.currentNote) {
-      let nt = this.props.currentNote;
-      let nts = this.state.notes;
-      nts[nt.id] = nt;
-      this.setState({notes: nts})
+    if (this.props.notes !== prevProps.notes) {
+      fetchNotes(this.props.notebookId).then(notes => {
+        this.setState({notes: notes})
+      })
     }
   }
 
@@ -48,3 +47,4 @@ export default class NoteIndex extends React.Component {
     )
   }
 }
+

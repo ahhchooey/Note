@@ -73,7 +73,7 @@ export default class TagBar extends React.Component {
       <React.Fragment>
         {tags}
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Add Tag..." value={this.state.input}
+          <input maxlength="10" type="text" placeholder="Add Tag..." value={this.state.input}
             onChange={this.handleChange}
           />
         </form>

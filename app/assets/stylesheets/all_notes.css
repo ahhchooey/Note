@@ -102,6 +102,20 @@
   justify-content: space-between;
 }
 
+.tag-button-ten {
+  position: relative;
+  background-color: #999;
+  border-radius: 11px;
+  width: 100px;
+  padding: 3px 10px 3px 4px;
+  color: white;
+  margin-right: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .remove-current-tag-button {
   font-size: 10px;
   position: absolute;

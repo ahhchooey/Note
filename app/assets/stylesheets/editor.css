@@ -103,6 +103,18 @@
   align-items: center;
 }
 
+.note-show-tagbar form {
+  margin-left: 3px;
+}
+
+.note-show-tagbar form>input {
+  height: 30px;
+  border: 0px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #777;
+}
+
 .nsmadr {
   list-style: none;
   text-decoration: none;

@@ -1,6 +1,7 @@
 import React from "react";
 import TagBarItem from "./tagbar_item.jsx";
 import {fetchTags} from "../../utils/api_tag_util.js";
+import {linkNoteTag} from "../../utils/api_notes_tags_util.js";
 
 
 export default class TagBar extends React.Component {
@@ -23,7 +24,7 @@ export default class TagBar extends React.Component {
     })
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.state.noteId != this.props.noteId) {
       this.setState({noteId: this.props.noteId})
       fetchTags(this.props.noteId).then(res => {
@@ -38,14 +39,35 @@ export default class TagBar extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state)
+    let allTagsArray = Object.values(this.state.allTags);
+    if (allTagsArray.some(tag => tag.title === this.state.input)) {
+      let tag = allTagsArray.find(tag => tag.title === this.state.input);
+      linkNoteTag(this.props.noteId, tag.id).then(() => {
+        fetchTags(this.props.noteId).then(res => {
+          this.setState({tags: res})
+        })
+      })
+      this.setState({input: ""})
+    } else {
+      this.props.createTag({title: this.state.input}).then(res => {
+        linkNoteTag(this.props.noteId, res.tag.id).then(() => {
+          fetchTags().then(res => {
+            this.setState({allTags: res})
+          })
+          fetchTags(this.props.noteId).then(res => {
+            this.setState({tags: res})
+          })
+        })
+      })
+      this.setState({input: ""})
+    }
   }
 
   render() {
     let tagsArray = Object.values(this.state.tags);
     let tags = "";
     tags = tagsArray.map(tag => {
-      return <TagBarItem key={tag.id} tag={tag} />
+      return <TagBarItem key={tag.id} noteId={this.props.noteId} tag={tag} />
     }) 
     return (
       <React.Fragment>

@@ -43,7 +43,8 @@ export default class TextEditor extends React.Component {
     super(props);
     this.state = {
       value: Value.fromJSON(initialValue),
-      note: {}
+      note: {},
+      notebookTitle: this.props.notebookTitle
     }
     this.ref = (editor) => {
       this.editor = editor
@@ -88,6 +89,9 @@ export default class TextEditor extends React.Component {
     }
     if (prevProps.note !== this.props.note) {
       this.setState({note: this.props.note, value: Value.fromJSON(JSON.parse(this.props.note.body))})
+    }
+    if (this.props.notebookTitle !== this.state.notebookTitle) {
+      this.setState({notebookTitle: this.props.notebookTitle})
     }
   }
 
@@ -311,7 +315,7 @@ export default class TextEditor extends React.Component {
         <div className="note-show-topbar">
           <Link className="note-show-notebook-link"
             to={`/note/notebooks/${this.state.note.notebook_id}/notes/${this.state.note.id}`}>
-            {this.props.notebookTitle}
+            {this.state.notebookTitle}
           </Link>
           <IconIcon className="note-show-more-actions-button" icon={ic_more_vert} />
           

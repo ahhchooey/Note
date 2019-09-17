@@ -64,6 +64,7 @@ export default class Sidebar extends React.Component {
       this.props.fetchNotebooks().then(res => {
         this.setState({notebooks: res.notebooks});
     });
+      this.initialHighligher();
       this.setState({currentNote: this.props.currentNote})
     }
     if (Object.keys(prevProps.notebooks).length !== Object.keys(this.props.notebooks).length) {
@@ -75,6 +76,11 @@ export default class Sidebar extends React.Component {
   }
 
   initialHighligher() {
+    let buttons = $(".side-button");
+    Array.from(buttons).forEach(button => {
+      button.classList.remove("side-button-active");
+    })
+
     let path = this.props.location.pathname;
     switch(true) {
       case path.startsWith("/note/notes"):

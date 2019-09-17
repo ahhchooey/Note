@@ -34,6 +34,9 @@ export default class NoteShow extends React.Component {
         this.setState({note: note},
           () => {
             this.props.fetchCurrentNote(this.state.note);
+            fetchNotebook(this.state.note.notebook_id).then(res => {
+              this.setState({notebookTitle: res.title})
+            })
           } 
         )
       })

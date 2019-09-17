@@ -5,5 +5,5 @@ class Tag < ApplicationRecord
 
   belongs_to :user
   has_many :notes_tags
-  has_and_belongs_to_many :notes
+  has_many :notes, through: :notes_tags
 end

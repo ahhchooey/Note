@@ -5,7 +5,7 @@ class Note < ApplicationRecord
   belongs_to :user
   belongs_to :notebook
   has_many :notes_tags
-  has_and_belongs_to_many :tags
+  has_many :tags, through: :notes_tags
 
   after_initialize :ensure_title
 

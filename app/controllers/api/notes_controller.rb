@@ -41,6 +41,7 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = Note.find_by(id: params[:id])
+    Trash.create(title: @note.title, body: @note.body.dup, user_id: @note.user_id)
     @note.destroy
     render :show
   end

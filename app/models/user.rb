@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :notebooks
   has_many :notes
+  has_many :trashes
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64

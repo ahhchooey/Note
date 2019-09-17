@@ -304,11 +304,15 @@ export default class TextEditor extends React.Component {
 
   deleteNote() {
     this.props.destroyNote(this.state.note.id).then(() => {
-      this.props.history.push("/note/notebooks")
+      this.props.history.push("/note/trash")
     });
   }
   
   render() {
+    let thing;
+    if (this.state.note.notebook_id) {
+      thing = this.props.note.id;
+    }
     return (
       <React.Fragment>
 
@@ -359,7 +363,7 @@ export default class TextEditor extends React.Component {
         </div>
 
         <div className="note-show-tagbar">
-          <TagBarContainer noteId={this.props.note.id} />
+          <TagBarContainer noteId={thing} />
         </div>
 
       </React.Fragment>

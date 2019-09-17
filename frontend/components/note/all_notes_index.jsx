@@ -46,6 +46,7 @@ export default class AllNotesIndex extends React.Component {
 
   render() {
     let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+
     return (
       <div className="notes-index">
         {

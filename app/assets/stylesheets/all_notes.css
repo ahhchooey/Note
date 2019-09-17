@@ -102,6 +102,10 @@
   justify-content: space-between;
 }
 
+.current-tag-button span {
+  margin-left: 2px;
+}
+
 .tag-button-ten {
   position: relative;
   background-color: #999;
@@ -114,6 +118,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.tag-button-ten span {
+  margin-left: 2px;
 }
 
 .remove-current-tag-button {

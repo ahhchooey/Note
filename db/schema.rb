@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_181818) do
+ActiveRecord::Schema.define(version: 2019_09_17_160443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "note_tags", force: :cascade do |t|
-    t.integer "note_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["note_id"], name: "index_note_tags_on_note_id"
-    t.index ["tag_id"], name: "index_note_tags_on_tag_id"
-  end
 
   create_table "notebooks", force: :cascade do |t|
     t.string "title", null: false
@@ -42,6 +33,15 @@ ActiveRecord::Schema.define(version: 2019_09_16_181818) do
     t.datetime "updated_at", null: false
     t.index ["notebook_id"], name: "index_notes_on_notebook_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "notes_tags", force: :cascade do |t|
+    t.integer "note_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_notes_tags_on_note_id"
+    t.index ["tag_id"], name: "index_notes_tags_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|

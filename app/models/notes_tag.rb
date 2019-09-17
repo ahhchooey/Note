@@ -1,4 +1,4 @@
-class NoteTag < ApplicationRecord
+class NotesTag < ApplicationRecord
   validates :note_id, :tag_id, presence: true
 
   belongs_to :note

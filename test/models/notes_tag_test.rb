@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NoteTagTest < ActiveSupport::TestCase
+class NotesTagTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

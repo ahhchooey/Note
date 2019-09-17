@@ -14,6 +14,7 @@ import {ic_highlight} from 'react-icons-kit/md/ic_highlight';
 import {ic_format_list_bulleted} from 'react-icons-kit/md/ic_format_list_bulleted';
 import {ic_format_list_numbered} from 'react-icons-kit/md/ic_format_list_numbered';
 import {ic_more_vert} from 'react-icons-kit/md/ic_more_vert';
+import TagBarContainer from "../note/tagbar_container.js";
 
 const DEFAULT_NODE = "paragraph";
 const isBoldHotkey = isKeyHotkey('mod+b')
@@ -354,7 +355,7 @@ export default class TextEditor extends React.Component {
         </div>
 
         <div className="note-show-tagbar">
-          Tags 
+          <TagBarContainer noteId={this.props.note.id} />
         </div>
 
       </React.Fragment>

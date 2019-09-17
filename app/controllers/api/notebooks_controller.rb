@@ -36,6 +36,11 @@ class Api::NotebooksController < ApplicationController
     if @notebook.id == current_user.default_notebook
       render json: ["Cannot delete default notebook."]
     else
+      @notes = @notebook.notes
+      @notes.each do |note|
+        Trash.create(title: note.title, body: note.body.dup, user_id: note.user_id)
+        note.destroy
+      end
       @notebook.destroy
       render :show
     end

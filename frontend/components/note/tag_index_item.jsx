@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {fetchNotes} from "../../utils/api_note_util.js";
+import TagUpdateFormContainer from "./tag_update_form_container.js";
 
 
 export default class TagIndexItem extends React.Component {
@@ -65,7 +66,11 @@ export default class TagIndexItem extends React.Component {
   }
 
   showModal() {
-    let modal = document.querySelector(".")
+    let iden = ".notebook-update-form-modal" + this.props.tag.id;
+    let modal = document.querySelector(iden);
+    if (modal) {
+      modal.classList.add("notebook-create-form-modal-active");
+    }
   }
 
   destroyTag(e) {
@@ -97,6 +102,7 @@ export default class TagIndexItem extends React.Component {
             </div>
           </div>
         </div>
+        <TagUpdateFormContainer tag={this.props.tag} />
       </div>
     )
   }

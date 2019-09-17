@@ -11,7 +11,6 @@ export default class TagUpdateForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    console.log(this.props)
   }
 
   handleSubmit(e) {

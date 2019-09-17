@@ -25,6 +25,13 @@ export default class TagIndex extends React.Component {
         this.setState({tags: res.tags})
       })
     }
+    let a = Object.values(this.props.tags).map(tag => tag.title).sort();
+    let b = Object.values(prevProps.tags).map(tag => tag.title).sort()
+    if (JSON.stringify(a) !== JSON.stringify(b)) {
+      this.props.fetchTags().then(res => {
+        this.setState({tags: res.tags})
+      })
+    }
   }
 
   showModal() {

@@ -27,3 +27,7 @@
     outline: 0;
 }
 
+body {
+  min-width: 900px;
+  min-height: 600px;
+}

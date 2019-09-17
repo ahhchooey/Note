@@ -30,8 +30,8 @@ const removeTagErrors = () => ({
   type: REMOVE_TAG_ERRORS
 })
 
-export const fetchTags = () => dispatch => {
-  return ApiTagUtil.fetchTags()
+export const fetchTags = (noteId) => dispatch => {
+  return ApiTagUtil.fetchTags(noteId)
     .then(tags => dispatch(receiveTags(tags)))
     .fail(errors => dispatch(receiveTagErrors(errors)))
 }

@@ -13,7 +13,8 @@ class Api::TagsController < ApplicationController
 
   def index
     if params[:note_id]
-      @tags = Note.find_by(id: params[:note_id]).tags
+      ntid = params[:note_id].to_i
+      @tags = Note.find_by(id: ntid).tags
     else
       @tags = Tag.where("user_id = #{current_user.id}")
     end

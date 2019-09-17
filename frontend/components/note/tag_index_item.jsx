@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 
 export default class TagIndexItem extends React.Component {
@@ -7,11 +8,30 @@ export default class TagIndexItem extends React.Component {
     this.state = {
       tag: {}
     }
+    this.addCurrentTag = this.addCurrentTag.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({tag: this.props.tag})
+  }
+
+  componentDidUpdate() {
+    if (this.state.tag != this.props.tag) {
+      this.setState({tag: this.props.tag})
+    }
+  }
+
+  addCurrentTag() {
+    this.props.addCurrentTag(this.state.tag)
   }
 
   render() {
     return (
-      <h3>i am a tag index item</h3>
+      <Link className="tag-index-item" to={"/note/notes"}
+        onClick={this.addCurrentTag} 
+      >
+        {this.state.tag.title}
+      </Link>
     )
   }
 }

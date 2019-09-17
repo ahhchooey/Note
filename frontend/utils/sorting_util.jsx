@@ -14,3 +14,20 @@ export const sortNotesByDate = (notes) => {
 
   return sortNotesByDate(left).concat([piv], sortNotesByDate(right))
 }
+
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+//sorts tags by title, alphabetically
+export const sortTagsByTitle = (tags) => {
+  if (tags.length <= 1) return tags;
+
+  let piv = tags[0];
+  let left = [];
+  let right = [];
+  for (let i = 1; i < tags.length; i++) {
+    (ALPHABET.indexOf(tags[i].title[0].toLowerCase()) < ALPHABET.indexOf(piv.title[0].toLowerCase()))
+      ? left.push(tags[i])
+      : right.push(tags[i])
+  }
+
+  return sortTagsByTitle(left).concat([piv], sortTagsByTitle(right))
+}

@@ -1,8 +1,15 @@
 
-export const fetchTags = () => {
+export const fetchTags = (note_id) => {
+  let data;
+  if (note_id) {
+    data = {note_id: note_id}
+  } else {
+    data = {}
+  }
   return $.ajax({
     url: `api/tags`,
-    method: "GET"
+    method: "GET",
+    data: data
   })
 }
 

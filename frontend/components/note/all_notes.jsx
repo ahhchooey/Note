@@ -8,6 +8,7 @@ export default class AllNotes extends React.Component {
     this.state = {
       number: 0
     }
+    this.removeCurrentTag = this.removeCurrentTag.bind(this);
   }
 
   componentDidMount() {
@@ -24,18 +25,38 @@ export default class AllNotes extends React.Component {
     fetchNotes().then(notes => this.setState({number: Object.keys(notes).length}));
   }
 
+  removeCurrentTag() {
+    this.props.removeCurrentTag();
+  }
+
   render() {
+    let cow = "";
+    if (this.props.currentTag) {
+      cow = (
+        <div className="current-tag-button">
+          <span>{this.props.currentTag.title}</span>
+          <div className="remove-current-tag-button" 
+            onClick={this.removeCurrentTag}>
+            &#9747;
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className="all-notes-box">
         <div className="all-notes-show-box">
           <h3>All Notes</h3>
+
           <div className="all-notes-show-box-bottom">
             <p>{this.state.number} notes</p>
+            {cow}
             <div className="all-notes-show-box-buttons">
               <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
               <img src="https://img.icons8.com/ios/50/000000/tags.png" />   
             </div>
           </div>
+
         </div>
         <AllNotesIndexContainer />
       </div>

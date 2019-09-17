@@ -9,26 +9,37 @@ export default class AllNotesIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: {}
+      notes: {},
+      currentTag: this.props.currentTag || {}
     }
   }
 
   componentDidMount() {
     this.props.fetchNotes();
-    fetchNotes(this.props.notebookId).then(notes => {
+    fetchNotes(null, this.state.currentTag.id).then(notes => {
       this.setState({notes: notes})
     });
   }
 
   componentDidUpdate(prevProps, nextState) {
+    let thing;
+    thing = (this.state.currentTag) ? this.state.currentTag.id : null; 
     if (this.props.location.pathname != prevProps.location.pathname) {
-      fetchNotes(this.props.notebookId).then(notes => {
+      fetchNotes(null, thing).then(notes => {
         this.setState({notes: notes})
+        this.setState({currentTag: this.props.currentTag})
       })
     }
     if (this.props.notes !== prevProps.notes) {
-      fetchNotes(this.props.notebookId).then(notes => {
+      fetchNotes(null, thing).then(notes => {
         this.setState({notes: notes})
+        this.setState({currentTag: this.props.currentTag})
+      })
+    }
+    if (this.props.currentTag != this.state.currentTag) {
+      fetchNotes(null, null).then(notes => {
+        this.setState({notes: notes})
+        this.setState({currentTag: this.props.currentTag})
       })
     }
   }

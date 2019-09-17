@@ -16,7 +16,8 @@ class Api::NotesController < ApplicationController
       nbid = params[:notebook_id].to_i
       @notes = Note.where("user_id = #{current_user.id}").where("notebook_id = #{nbid}")
     elsif params[:tag_id]
-      @notes = Tag.find_by(id: params[:tag_id]).notes
+      tgid = params[:tag_id].to_i
+      @notes = Tag.find_by(id: tgid).notes
     else
       @notes = Note.where("user_id = #{current_user.id}")
     end

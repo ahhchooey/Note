@@ -1,5 +1,6 @@
 import React from "react";
 import TagIndexItem from "./tag_index_item.jsx";
+import {sortTagsByTitle} from "../../utils/sorting_util.jsx";
 
 
 export default class TagIndex extends React.Component {
@@ -22,6 +23,26 @@ export default class TagIndex extends React.Component {
   }
 
   render() {
+    let sortedTags = sortTagsByTitle(Object.values(this.state.tags));
+    let lastChar;
+    let tags;
+    if (sortedTags.length > 0) {
+      tags = sortedTags.map(tag => {
+        let thing;
+        if (lastChar != tag.title[0].toUpperCase()) {
+          lastChar = tag.title[0].toUpperCase();
+          thing = (
+            <React.Fragment key={lastChar + "frag"}>
+              <div className="tag-head-letter" key={lastChar}>{tag.title[0].toUpperCase()}</div>
+              <TagIndexItem addCurrentTag={this.props.addCurrentTag} key={tag.id} tag={tag} />
+            </React.Fragment>
+          )
+        } else {
+          thing = <TagIndexItem addCurrentTag={this.props.addCurrentTag} key={tag.id} tag={tag} />
+        }
+        return thing;
+      })
+    }
     return (
       <div className="tag-index">
 
@@ -42,7 +63,9 @@ export default class TagIndex extends React.Component {
 
         <div className="tag-index-break-bar"></div>
 
-        <div>i am real tag index</div>
+        <div className="tag-table">
+          {tags} 
+        </div>
 
       </div>
     )

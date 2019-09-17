@@ -1,8 +1,10 @@
 
-export const fetchNotes = (notebook_id) => {
+export const fetchNotes = (notebook_id, tag_id) => {
   let data;
   if (notebook_id) {
     data = {notebook_id: notebook_id}
+  } else if (tag_id) {
+    data = {tag_id: tag_id}
   } else {
     data = {}
   }

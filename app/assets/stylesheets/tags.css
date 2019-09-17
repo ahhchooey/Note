@@ -87,7 +87,7 @@
   color: black;
   font-size: 15px;
   height: 25px;
-  margin-right: 25px;
+  margin-right: 0px;
   border-radius: 3px;
   padding: 5px;
 
@@ -113,4 +113,32 @@
 .tag-index-break-bar {
   border-top: 3px solid black;
   margin-top: 20px
+}
+
+.tag-table {
+  padding: 10px;
+}
+
+.tag-head-letter {
+  font-weight: 600;
+  font-size: 17px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.tag-index-item {
+  font-weight: 500;
+  text-decoration: none;
+  font-weight: 14px;
+  max-width: 100px;
+  width: auto;
+  color: black;
+  display: block;
+  margin: 5px 0px;
+  padding: 2px 5px;
+  border-radius: 11px;
+}
+
+.tag-index-item:hover {
+  background-color: #ededed;
 }

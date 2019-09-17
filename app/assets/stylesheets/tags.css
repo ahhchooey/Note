@@ -130,15 +130,115 @@
   font-weight: 500;
   text-decoration: none;
   font-weight: 14px;
-  max-width: 100px;
-  width: auto;
+  width: 125px;
   color: black;
-  display: block;
   margin: 5px 0px;
   padding: 2px 5px;
   border-radius: 11px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .tag-index-item:hover {
   background-color: #ededed;
+}
+
+.tag-index-item:hover span>img {
+  -webkit-filter: invert(0%);
+}
+
+.tag-dropdown-holder {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  position: absolute;
+  z-index: 10;
+
+  right: -75px;
+  top: -10px;
+}
+
+.tag-actions-dropdown {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  color: #ccc;
+  position: absolute;
+  top: 27px;
+  left: -75px;
+  background-color: #fff;
+  padding: 15px;
+  width: 200px;
+  box-shadow: 0 0 3px #ccc;
+  border-radius: 2px;
+  z-index: 10;
+
+  display: none;
+}
+
+.tag-actions-dropdown p {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  color: #555;
+  padding: 5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.tag-index-item-link {
+  text-decoration: none;
+  color: black;
+}
+
+.tag-dropdown-button img {
+  height: 10px;
+  -webkit-filter: invert(100%);
+}
+
+.tag-dropdown-button img:hover {
+  cursor: pointer;
+}
+
+.tag-dropdown-buttons {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  color: #111;
+}
+
+.update-tag-button, .destroy-tag-button {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  margin: -5px;
+}
+
+.update-tag-button:hover, .destroy-tag-button:hover {
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.visible {
+  display: block;
 }

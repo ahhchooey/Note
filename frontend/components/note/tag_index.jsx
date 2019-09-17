@@ -1,6 +1,7 @@
 import React from "react";
 import TagIndexItem from "./tag_index_item.jsx";
 import {sortTagsByTitle} from "../../utils/sorting_util.jsx";
+import TagCreateFormContainer from "./tag_create_form_container.js";
 
 
 export default class TagIndex extends React.Component {
@@ -18,10 +19,20 @@ export default class TagIndex extends React.Component {
     })
   }
 
-  showModal() {
-
+  componentDidUpdate(prevProps) {
+    if (Object.keys(this.props.tags).length !== Object.keys(prevProps.tags).length) {
+      this.props.fetchTags().then(res => {
+        this.setState({tags: res.tags})
+      })
+    }
   }
 
+  showModal() {
+    let modal = document.querySelector(".notebook-create-form-modal");
+    if (modal) {
+      modal.classList.add("notebook-create-form-modal-active");
+    }
+  }
   render() {
     let sortedTags = sortTagsByTitle(Object.values(this.state.tags));
     let lastChar;
@@ -34,11 +45,15 @@ export default class TagIndex extends React.Component {
           thing = (
             <React.Fragment key={lastChar + "frag"}>
               <div className="tag-head-letter" key={lastChar}>{tag.title[0].toUpperCase()}</div>
-              <TagIndexItem addCurrentTag={this.props.addCurrentTag} key={tag.id} tag={tag} />
+              <TagIndexItem addCurrentTag={this.props.addCurrentTag} key={tag.id} tag={tag} 
+                updateTag={this.props.updateTag} destroyTag={this.props.destroyTag}
+              />
             </React.Fragment>
           )
         } else {
-          thing = <TagIndexItem addCurrentTag={this.props.addCurrentTag} key={tag.id} tag={tag} />
+          thing = <TagIndexItem addCurrentTag={this.props.addCurrentTag} key={tag.id} tag={tag} 
+            destroyTag={this.props.destroyTag} updateTag={this.props.updateTag} 
+          />
         }
         return thing;
       })
@@ -60,7 +75,7 @@ export default class TagIndex extends React.Component {
             </div>
           </div>
         </div>
-
+        <TagCreateFormContainer />
         <div className="tag-index-break-bar"></div>
 
         <div className="tag-table">

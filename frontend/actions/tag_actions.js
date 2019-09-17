@@ -16,9 +16,9 @@ const receiveTag = (tag) => ({
   tag: tag
 })
 
-const removeTag = (notebook) => ({
+const removeTag = (tag) => ({
   type: REMOVE_TAG,
-  notebook: notebook
+  tag: tag
 })
 
 const receiveTagErrors = (errors) => ({
@@ -52,4 +52,8 @@ export const destroyTag = (id) => dispatch => {
   return ApiTagUtil.destroyTag(id)
     .then(tag => dispatch(removeTag(tag)))
     .fail(errors => dispatch(receiveTagErrors(errors)))
+}
+
+export const clearTagErrors = () => dispatch => {
+  return dispatch(removeTagErrors())
 }

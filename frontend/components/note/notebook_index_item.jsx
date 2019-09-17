@@ -76,7 +76,7 @@ export default class NotebookIndexItem extends React.Component {
   hideNotesDropdown(e) {
     e.stopPropagation();
     let nbra = "nbra" + this.props.identity;
-    let ndd = "ndd" +this.props.identity;
+    let ndd = "ndd" + this.props.identity;
     e.target.classList.remove("visible");
     $(`.${nbra}`).addClass("visible");
     $(`.${ndd}`).removeClass("note-dropdown-active");

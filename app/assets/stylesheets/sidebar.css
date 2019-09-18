@@ -188,7 +188,6 @@
   font-family: 'Montserrat', sans-serif;
   color: black;
   font-size: 15px;
-  width: 85%;
   text-align: left;
   font-size: 15px;
   padding-left: 20px;
@@ -196,13 +195,14 @@
   border: 0px;
   color: #ddd;
   font-weight: 500;
+  
+  width: 100%;
 }
 
 .generic-new-note-button:hover {
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
-  color: black;
   font-size: 15px;
   background-color: #21a546;
   cursor: pointer;
@@ -220,6 +220,8 @@
   color: #ccc;
   font-weight: 700;
   position: relative;
+  
+  display: none;
 }
 
 .new-note-dropdown-button:hover {

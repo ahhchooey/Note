@@ -83,7 +83,7 @@ export default class TagIndexItem extends React.Component {
         <Link className="tag-index-item-link" to={"/note/notes"}
           onClick={this.addCurrentTag} 
         >
-          {`${this.state.tag.title}(${this.state.number})`}
+          {`${this.state.tag.title} (${this.state.number})`}
         </Link>
         <span className={`tag-dropdown-button ${this.actionButton}`}>
           <img src="https://img.icons8.com/metro/26/000000/chevron-down.png" />

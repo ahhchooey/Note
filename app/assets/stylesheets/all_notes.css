@@ -94,6 +94,7 @@
   background-color: green;
   border-radius: 11px;
   width: 100px;
+  height: 27px;
   padding: 3px 10px 3px 4px;
   color: white;
 
@@ -104,15 +105,17 @@
 
 .current-tag-button span {
   margin-left: 2px;
+  font-size: 12px;
 }
 
 .tag-button-ten {
   position: relative;
-  background-color: #999;
+  background-color: #ccc;
   border-radius: 11px;
   width: 100px;
+  height: 27px;
   padding: 3px 10px 3px 4px;
-  color: white;
+  color: #222;
   margin-right: 2px;
 
   display: flex;
@@ -122,6 +125,7 @@
 
 .tag-button-ten span {
   margin-left: 2px;
+  font-size: 12px;
 }
 
 .remove-current-tag-button {

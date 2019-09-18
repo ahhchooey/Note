@@ -213,6 +213,8 @@ export default class TextEditor extends React.Component {
         return <em {...attributes}>{children}</em>
       case 'underlined':
         return <u {...attributes}>{children}</u>
+      case 'highlight':
+        return <mark {...attributes}>{children}</mark>
       default:
         return next()
     }
@@ -252,6 +254,9 @@ export default class TextEditor extends React.Component {
         break;
       case "ic_code":
         thing = ic_code;
+        break;
+      case "ic_highlight":
+        thing = ic_highlight;
         break;
       default:
         thing = ic_format_bold;
@@ -340,6 +345,7 @@ export default class TextEditor extends React.Component {
           {this.renderMarkButton('bold', "ic_format_bold")}
           {this.renderMarkButton('italic', 'ic_format_italic')}
           {this.renderMarkButton('underlined', 'ic_format_underlined')}
+          {this.renderMarkButton('highlight', 'ic_highlight')}
           {this.renderMarkButton('code', 'ic_code')}
           {this.renderBlockButton('numbered-list', 'ic_format_list_numbered')}
           {this.renderBlockButton('bulleted-list', 'ic_format_list_bulleted')}

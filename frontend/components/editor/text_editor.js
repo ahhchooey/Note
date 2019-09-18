@@ -400,17 +400,7 @@ export default class TextEditor extends React.Component {
   }
 
   createTable() {
-    this.editor.insertBlock(defaultTable);
-    this.editor.insertBlock({
-      "object": "block",
-      "type": "text",
-      "nodes": [
-        {
-        "object": "text",
-        "text": "test"
-        }
-      ]
-    })
+    this.editor.insertBlock(defaultTable).moveEndForward(10);
   }
   
   render() {

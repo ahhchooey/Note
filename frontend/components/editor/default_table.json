@@ -1,0 +1,144 @@
+{
+  "object": "block",
+  "type": "table",
+  "nodes": [
+    {
+      "object": "block",
+      "type": "table-row",
+      "nodes": [
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "object": "block",
+      "type": "table-row",
+      "nodes": [
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "object": "block",
+      "type": "table-row",
+      "nodes": [
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "object": "block",
+          "type": "table-cell",
+          "nodes": [
+            {
+              "object": "text",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

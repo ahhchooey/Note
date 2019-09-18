@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Editor} from "slate-react";
+import {Editor, getEventTransfer} from "slate-react";
+import Plain from 'slate-plain-serializer';
 import {Value, Text} from "slate";
 import {isKeyHotkey} from "is-hotkey";
 import {Button, Icon, Toolbar} from "./comps.js";
@@ -14,6 +15,8 @@ import {ic_highlight} from 'react-icons-kit/md/ic_highlight';
 import {ic_format_list_bulleted} from 'react-icons-kit/md/ic_format_list_bulleted';
 import {ic_format_list_numbered} from 'react-icons-kit/md/ic_format_list_numbered';
 import {ic_more_vert} from 'react-icons-kit/md/ic_more_vert';
+import {table} from 'react-icons-kit/icomoon/table'
+import defaultTable from "./default_table.json";
 import TagBarContainer from "../note/tagbar_container.js";
 
 const DEFAULT_NODE = "paragraph";
@@ -76,6 +79,8 @@ export default class TextEditor extends React.Component {
     this.renderMarkButton = this.renderMarkButton.bind(this);
     this.renderBlockButton = this.renderBlockButton.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.onDropOrPaste = this.onDropOrPaste.bind(this);
+    this.createTable = this.createTable.bind(this);
   }
 
   componentDidMount() {
@@ -184,6 +189,43 @@ export default class TextEditor extends React.Component {
 
   onKeyDown(event, editor, next) {
     let mark;
+    const { value } = editor
+    const { document, selection } = value
+    const { start, isCollapsed } = selection
+    const startNode = document.getDescendant(start.key)
+
+    if (isCollapsed && start.isAtStartOfNode(startNode)) {
+      const previous = document.getPreviousText(startNode.key)
+
+      if (!previous) {
+        return next()
+      }
+
+      const prevBlock = document.getClosestBlock(previous.key)
+
+      if (prevBlock.type === 'table-cell') {
+        if (['Backspace', 'Delete', 'Enter'].includes(event.key)) {
+          event.preventDefault()
+        } else {
+          return next()
+        }
+      }
+    }
+
+    if (value.startBlock.type !== 'table-cell') {
+      return next()
+    }
+
+    switch (event.key) {
+      case 'Backspace':
+        return this.onBackspace(event, editor, next)
+      case 'Delete':
+        return this.onDelete(event, editor, next)
+      case 'Enter':
+        return this.onEnter(event, editor, next)
+      default:
+        return next()
+    }
 
     if (isBoldHotkey(event)) {
       mark = 'bold'
@@ -200,6 +242,35 @@ export default class TextEditor extends React.Component {
     event.preventDefault()
     editor.toggleMark(mark)
   }
+  
+  onBackspace(event, editor, next) {
+    const value = editor.value;
+    const selection = value.selection;
+    if (selection.start.offset !== 0) return next();
+    event.preventDefault();
+  }
+
+  onDelete(event, editor, next) {
+    const value = editor.value;
+    const selection = value.selection;
+    if (selection.end.offset !== value.startText.text.length) return next();
+    e.preventDefault();
+  }
+
+  onDropOrPaste(event, editor, next) {
+    const transfer = getEventTransfer(event);
+    const value = editor.value;
+    const {text = ""} = transfer;
+    if (value.startBlock.type !== 'table-cell') return next();
+    if (!text) return next();
+    const lines = text.split('\n');
+    const {document} = Plain.deserialize(lines[0] || '');
+    editor.insertFragment(document);
+  }
+
+  onEnter(event, editor, next) {
+    event.preventDefault();
+  }
 
   renderMark(props, editor, next) {
     const { children, mark, attributes } = props
@@ -215,6 +286,7 @@ export default class TextEditor extends React.Component {
         return <u {...attributes}>{children}</u>
       case 'highlight':
         return <mark {...attributes}>{children}</mark>
+
       default:
         return next()
     }
@@ -231,9 +303,20 @@ export default class TextEditor extends React.Component {
       case 'heading-two':
         return <h2 {...attributes}>{children}</h2>
       case 'list-item':
-        return <li {...attributes}>{children}</li>
+        return <li className="editor-list" {...attributes}>{children}</li>
       case 'numbered-list':
         return <ol {...attributes}>{children}</ol>
+      case 'table':
+        return (
+          <table className="editor-table">
+            <tbody {...attributes}>{children}</tbody>
+          </table>
+        )
+      case 'table-row':
+        return <tr className="editor-table-row" {...attributes}>{children}</tr>
+      case 'table-cell':
+        return <td className="editor-table-cell" {...attributes}>{children}</td>
+
       default:
         return next()
     }
@@ -283,12 +366,15 @@ export default class TextEditor extends React.Component {
       case "ic_format_list_bulleted":
         thing = ic_format_list_bulleted;
         break;
+      case "table":
+        thing = table;
+        break;
       default:
         thing = undefined;
         break;
     }
 
-    if (['numbered-list', 'bulleted-list'].includes(type)) {
+    if (['numbered-list', 'bulleted-list', 'table'].includes(type)) {
       const { value: { document, blocks } } = this.state
 
       if (blocks.size > 0) {
@@ -311,6 +397,20 @@ export default class TextEditor extends React.Component {
     this.props.destroyNote(this.state.note.id).then(() => {
       this.props.history.push("/note/trash")
     });
+  }
+
+  createTable() {
+    this.editor.insertBlock(defaultTable);
+    this.editor.insertBlock({
+      "object": "block",
+      "type": "text",
+      "nodes": [
+        {
+        "object": "text",
+        "text": "test"
+        }
+      ]
+    })
   }
   
   render() {
@@ -349,6 +449,9 @@ export default class TextEditor extends React.Component {
           {this.renderMarkButton('code', 'ic_code')}
           {this.renderBlockButton('numbered-list', 'ic_format_list_numbered')}
           {this.renderBlockButton('bulleted-list', 'ic_format_list_bulleted')}
+          <div className="custom-icon" onMouseDown={this.createTable}>
+            <IconIcon icon={table} />
+          </div>
         </Toolbar>
 
         <div className="editor">
@@ -365,6 +468,8 @@ export default class TextEditor extends React.Component {
             renderMark={this.renderMark}
             renderBlock={this.renderBlock}
             onKeyDown={this.onKeyDown}
+            onDrop={this.onDropOrPaste}
+            onPaste={this.onDropOrPaste}
           />
         </div>
 

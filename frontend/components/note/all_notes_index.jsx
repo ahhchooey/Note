@@ -22,8 +22,8 @@ export default class AllNotesIndex extends React.Component {
   }
 
   componentDidUpdate(prevProps, nextState) {
-    let thing;
-    thing = (this.state.currentTag) ? this.state.currentTag.id : null; 
+    let thing = (this.state.currentTag) ? this.state.currentTag.id : null; 
+    let thing2 = (this.props.currentTag) ? this.props.currentTag.id : null;
     if (this.props.location.pathname != prevProps.location.pathname) {
       fetchNotes(null, thing).then(notes => {
         this.setState({notes: notes})
@@ -37,7 +37,7 @@ export default class AllNotesIndex extends React.Component {
       })
     }
     if (this.props.currentTag != this.state.currentTag) {
-      fetchNotes(null, null).then(notes => {
+      fetchNotes(null, thing2).then(notes => {
         this.setState({notes: notes})
         this.setState({currentTag: this.props.currentTag})
       })

@@ -93,9 +93,11 @@
   position: absolute;
   background-color: green;
   border-radius: 11px;
-  width: 100px;
+  left: -5px;
+  width: 110px;
   height: 27px;
   padding: 3px 10px 3px 4px;
+  z-index: 15;
   color: white;
 
   display: flex;
@@ -136,4 +138,43 @@
 
 .remove-current-tag-button:hover {
   cursor: pointer;
+}
+
+.tag-filter-dropdown {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 200px;
+  height: 250px;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 0 3px #ccc;
+  padding: 10px 20px;
+  border-radius: 3px;
+  display: none;
+}
+
+.tag-filter-dropdown p {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.tag-filter-index {
+  height: 200px;
+  margin-top: 10px;
+  overflow: scroll;
+}
+
+.tag-filter-index-item {
+  padding-left: 10px;
+}
+
+.tag-filter-index-item:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.visible {
+  display: block;
 }

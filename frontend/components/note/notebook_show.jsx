@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from "react"; 
 import NoteIndexContainer from "./note_index_container.js";
 import NotebookUpdateFormContainer from "./notebook_update_form_container.js";
 import {fetchNotes} from "../../utils/api_note_util.js";
@@ -9,12 +8,19 @@ export default class NotebookShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: 0
+      number: 0,
+      tags: {}
     }
     this.mounted = false;
     this.destroyNotebook = this.destroyNotebook.bind(this);
     this.showModal = this.showModal.bind(this);
     this.fetchNumber = this.fetchNumber.bind(this);
+    this.setCurrentTag = this.setCurrentTag.bind(this);
+    this.removeCurrentTag = this.removeCurrentTag.bind(this);
+  }
+
+  removeCurrentTag() {
+    this.props.removeCurrentTag();
   }
 
   componentDidMount() {
@@ -23,6 +29,10 @@ export default class NotebookShow extends React.Component {
     this.handleInput();
     this.fetchNumber();
     this.props.fetchCurrentNotebook(this.props.id);
+    this.props.fetchTags().then(res => {
+      this.setState({tags: res.tags})
+    })
+    this.handleTagDropdownClick();
   }
 
   componentDidUpdate(nextProps, nextState) {
@@ -54,6 +64,18 @@ export default class NotebookShow extends React.Component {
     });
   } 
 
+  handleTagDropdownClick() {
+    $(".tag-dropdown-button").on("click", (e) => {
+      e.stopPropagation();
+      $(".tag-filter-dropdown").toggleClass("visible")
+    })
+    document.addEventListener("click", (e) => {
+      if ($(".tag-filter-dropdown").hasClass("visible")) {
+        $(".tag-filter-dropdown").removeClass("visible")
+      }
+    }) 
+  }
+
   destroyNotebook() {
     this.props.destroyNotebook(this.props.id).then(() => this.props.history.push("/note/notebooks"))
   }
@@ -66,17 +88,54 @@ export default class NotebookShow extends React.Component {
     }
   }
 
+  setCurrentTag(tag) {
+    return (e) => {
+      e.preventDefault();
+      this.props.addCurrentTag(tag);
+    }
+  }
+
   render() {
     let title = this.props.notebook ? this.props.notebook.title : "";
+    let frog = Object.values(this.state.tags);
+    frog = frog.map(tag => {
+      return (
+        <div className="tag-filter-index-item" key={tag.id} onClick={this.setCurrentTag(tag)}>
+          {tag.title}
+        </div>
+      )
+    })
+    let cow = "";
+    if (this.props.currentTag) {
+      cow = (
+        <div className="current-tag-button">
+          <span>{this.props.currentTag.title}</span>
+          <div className="remove-current-tag-button" 
+            onClick={this.removeCurrentTag}>
+            &#9747;
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className="notebook-show">
         <div className="notebook-show-box">
           <h3>{title}</h3>
           <div className="notebook-show-box-bottom">
             <p>{this.state.number} notes</p>
+            {cow}
             <div className="notebook-show-box-buttons">
               <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
-              <img src="https://img.icons8.com/ios/50/000000/tags.png" />   
+              <img className="tag-dropdown-button" 
+                src="https://img.icons8.com/ios/50/000000/tags.png" />   
+              <div className="tag-filter-dropdown">
+                <p>Filter By Tag</p>
+                <div className="tag-filter-index">
+                  {frog}
+                </div>
+              </div>
+
               <div className="notebook-more-actions-button">•••</div>
               <div className="notebook-show-more-actions-dropdown">
                 <p>Actions</p>

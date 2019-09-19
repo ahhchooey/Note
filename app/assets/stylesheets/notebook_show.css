@@ -50,6 +50,7 @@
   justify-self: center;
   align-self: center;
   margin-bottom: 10px;
+  position: relative;
 
   display: flex;
   justify-content: space-between;

@@ -161,7 +161,6 @@ export default class Sidebar extends React.Component {
   render() {
     let user = this.props.currentUser;
     let name = user.username ? user.username : user.email;
-    let id = this.state.currentNote ? this.state.currentNote.id : "";
     return (
       <div className="sidebar">
         <div className="username-button">
@@ -189,7 +188,7 @@ export default class Sidebar extends React.Component {
           </button>
         </div>
         <div className="sidebar-buttons">
-          <Link to={`/note/notes/${id}`} className="side-button all-notes-button">
+          <Link to={`/note/notes`} className="side-button all-notes-button">
             <img className="side-image" src="https://img.icons8.com/ios/50/000000/note.png" />
               All Notes
           </Link>

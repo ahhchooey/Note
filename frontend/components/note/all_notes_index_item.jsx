@@ -24,7 +24,8 @@ export default class AllNotesIndexItem extends React.Component {
 
   render() {
     let cn = "notes-index-item";
-    if (this.props.currentNote.id === this.state.note.id) {
+    let thing = this.props.currentNote ? this.props.currentNote.id : null;
+    if (thing === this.state.note.id) {
       cn += " notes-index-item-active"
     }
     let bod = Value.fromJSON(JSON.parse(this.state.note.body)).document.text.slice(0, 55);

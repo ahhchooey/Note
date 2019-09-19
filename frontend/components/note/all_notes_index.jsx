@@ -16,9 +16,20 @@ export default class AllNotesIndex extends React.Component {
   }
 
   componentDidMount() {
+    let thing = this.state.currentTag ? this.state.currentTag.id : null;
     this.props.fetchNotes();
-    fetchNotes(null, this.state.currentTag.id).then(notes => {
-      this.setState({notes: notes})
+    fetchNotes(null, thing).then(notes => {
+      this.setState({notes: notes}, () => {
+          let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+          if (this.props.location.pathname.startsWith("/note/notes")) {
+            if (sortedNotes.length === 0) {
+              this.props.history.push(`/note/notes/`)
+            } else {
+              this.props.history.push(`/note/notes/${sortedNotes[0].id}`)
+            }
+          }
+
+      })
     });
   }
 

@@ -47,6 +47,7 @@ export default class TrashIndex extends React.Component {
     this.props.emptyTrash().then(() => {
       this.setState({trashes: {}});
       this.fetchNumber();
+      this.props.history.push("/note/trash")
     });
   }
 

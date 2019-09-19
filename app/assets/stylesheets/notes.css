@@ -63,6 +63,8 @@
   font-size: 14px;
   margin-bottom: 5px;
   height: 40px;
+  width: 300px;
+  word-wrap: break-word;
 }
 
 .notes-index-item span {

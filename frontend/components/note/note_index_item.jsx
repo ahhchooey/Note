@@ -30,6 +30,9 @@ export default class NoteIndexItem extends React.Component {
       }
     }
     let bod = Value.fromJSON(JSON.parse(this.state.note.body)).document.text.slice(0, 55);
+    if (bod.length > 54) {
+      bod += "...";
+    }
     return (
       <Link to={`/note/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}
         className={cn}>

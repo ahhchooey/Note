@@ -15,9 +15,12 @@ export default class Sidebar extends React.Component {
     this.state = {
       notebooks: {},
       notes: {},
-      currentNote: null
+      currentNote: null,
+      search: ""
     }
     this.extraButtons = false;
+    this.search = this.search.bind(this);
+    this.searchSubmit = this.searchSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -146,6 +149,15 @@ export default class Sidebar extends React.Component {
     })
   }
 
+  search(e) {
+    this.setState({search: e.target.value})
+  }
+
+  searchSubmit(e) {
+    e.preventDefault();
+    this.props.history.push(`/note/search/${this.state.search.toLowerCase()}`)
+  }
+
   render() {
     let user = this.props.currentUser;
     let name = user.username ? user.username : user.email;
@@ -163,7 +175,11 @@ export default class Sidebar extends React.Component {
             <div className="logout-button" onClick={this.logout}>Logout</div>
           </div>
         </div>
-        <input className="search-bar" type="text" placeholder="Search All Notes..." />
+        <form onSubmit={this.searchSubmit}>
+          <input className="search-bar" type="text" placeholder="Search All Notes..." 
+            value={this.state.search} onChange={this.search} 
+          />
+        </form>
         <div className="new-note-cluster">
           <button onClick={this.makeNote} className="generic-new-note-button">
             {"+   New Note"}

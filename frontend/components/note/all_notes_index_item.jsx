@@ -28,6 +28,9 @@ export default class AllNotesIndexItem extends React.Component {
       cn += " notes-index-item-active"
     }
     let bod = Value.fromJSON(JSON.parse(this.state.note.body)).document.text.slice(0, 55);
+    if (bod.length > 54) {
+      bod += "...";
+    }
     return (
       <Link to={`/note/notes/${this.state.note.id}`}
         className={cn}>

@@ -8,9 +8,11 @@ export default class TagIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: {}
+      tags: {},
+      search: ""
     }
     this.showModal = this.showModal.bind(this);
+    this.search = this.search.bind(this);
   }
 
   componentDidMount() {
@@ -40,8 +42,16 @@ export default class TagIndex extends React.Component {
       modal.classList.add("notebook-create-form-modal-active");
     }
   }
+
+  search(e) {
+    this.setState({search: e.target.value})
+  }
+
   render() {
     let sortedTags = sortTagsByTitle(Object.values(this.state.tags));
+    if (sortedTags.length > 0) {
+      sortedTags = sortedTags.filter(tag => tag.title.toLowerCase().includes(this.state.search.toLowerCase()))
+    }
     let lastChar;
     let tags;
     if (sortedTags.length > 0) {
@@ -70,7 +80,7 @@ export default class TagIndex extends React.Component {
 
         <div className="tag-index-head">
           <h2>Tags</h2>
-          <input type="text" placeholder="Find Tags..." />
+          <input type="text" placeholder="Find Tags..." onChange={this.search} value={this.state.search} />
         </div>
 
         <div className="tag-index-table-head">

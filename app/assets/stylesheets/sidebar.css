@@ -141,6 +141,10 @@
   cursor: pointer;
 }
 
+.sidebar form {
+  width: 100%;
+}
+
 .search-bar {
   list-style: none;
   text-decoration: none;

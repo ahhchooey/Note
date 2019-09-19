@@ -9,6 +9,10 @@ export default class NotebookIndex extends React.Component {
   constructor(props) {
     super(props);
     this.showModal = this.showModal.bind(this);
+    this.state = {
+      search: ""
+    }
+    this.search = this.search.bind(this);
   }
 
   componentDidMount() {
@@ -21,9 +25,16 @@ export default class NotebookIndex extends React.Component {
       modal.classList.add("notebook-create-form-modal-active");
     }
   }
+
+  search(e) {
+    this.setState({search: e.target.value})
+  }
   
   render() {
     let nbs = Object.values(this.props.notebooks);
+    if (nbs.length > 0) {
+      nbs = nbs.filter(nb => nb.title.toLowerCase().includes(this.state.search.toLowerCase()))
+    }
     let cow = nbs.map(notebook => <NotebookIndexItem
       key={notebook.id}
       title={notebook.title}
@@ -37,7 +48,7 @@ export default class NotebookIndex extends React.Component {
       <div className="notebook-index">
         <div className="notebook-index-head">
           <h2>Notebooks</h2>
-          <input type="text" placeholder="Find Notebooks..." />
+          <input type="text" onChange={this.search} value={this.state.search} placeholder="Find Notebooks..." />
         </div>
         <div className="notebook-index-table-head">
           <h3>My Notebook List</h3>

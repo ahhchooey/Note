@@ -2,7 +2,7 @@ import React from "react";
 
 import NoteIndexItem from "./note_index_item.jsx";
 import {fetchNotes} from "../../utils/api_note_util.js";
-import {sortNotesByDate} from "../../utils/sorting_util.jsx";
+import {sortNotesByDate, sortNotesByTitle} from "../../utils/sorting_util.jsx";
 
 
 export default class NoteIndex extends React.Component {
@@ -10,7 +10,8 @@ export default class NoteIndex extends React.Component {
     super(props);
     this.state = {
       notes: {},
-      currentTag: this.props.currentTag || {}
+      currentTag: this.props.currentTag || {},
+      sortedBy: "time"
     }
   }
 
@@ -42,10 +43,18 @@ export default class NoteIndex extends React.Component {
         this.setState({currentTag: this.props.currentTag})
       })
     }
+    if (this.props.sortedBy !== this.state.sortedBy) {
+      this.setState({sortedBy: this.props.sortedBy})
+    }
   }
 
   render() {
     let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+    if (this.state.sortedBy === "time") {
+      sortedNotes = sortNotesByDate(sortedNotes)
+    } else if (this.state.sortedBy === "title") {
+      sortedNotes = sortNotesByTitle(sortedNotes)
+    }
 
     return (
       <div className="notes-index">

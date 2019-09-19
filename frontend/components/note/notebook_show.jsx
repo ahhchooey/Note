@@ -9,7 +9,8 @@ export default class NotebookShow extends React.Component {
     super(props);
     this.state = {
       number: 0,
-      tags: {}
+      tags: {},
+      sortedBy: "time"
     }
     this.mounted = false;
     this.destroyNotebook = this.destroyNotebook.bind(this);
@@ -17,6 +18,7 @@ export default class NotebookShow extends React.Component {
     this.fetchNumber = this.fetchNumber.bind(this);
     this.setCurrentTag = this.setCurrentTag.bind(this);
     this.removeCurrentTag = this.removeCurrentTag.bind(this);
+    this.setSortedBy = this.setSortedBy.bind(this);
   }
 
   removeCurrentTag() {
@@ -33,6 +35,7 @@ export default class NotebookShow extends React.Component {
       this.setState({tags: res.tags})
     })
     this.handleTagDropdownClick();
+    this.handleSortDropdownClick();
   }
 
   componentDidUpdate(nextProps, nextState) {
@@ -67,17 +70,31 @@ export default class NotebookShow extends React.Component {
   handleTagDropdownClick() {
     $(".tag-dropdown-button").on("click", (e) => {
       e.stopPropagation();
+      if ($(".dddd").hasClass("visible")) {
+        $(".dddd").removeClass("visible")
+      }
       $(".tag-filter-dropdown").toggleClass("visible")
     })
     document.addEventListener("click", (e) => {
-      if ($(".tag-filter-dropdown").hasClass("visible")) {
-        $(".tag-filter-dropdown").removeClass("visible")
+      if ($(".dddd").hasClass("visible")) {
+        $(".dddd").removeClass("visible")
       }
     }) 
   }
 
+  handleSortDropdownClick() {
+    $(".sort-dropdown-button").on("click", (e) => {
+      e.stopPropagation();
+      if ($(".dddd").hasClass("visible")) {
+        $(".dddd").removeClass("visible")
+      }
+      $(".sort-dropdown").toggleClass("visible")
+    })
+  }
+
   destroyNotebook() {
-    this.props.destroyNotebook(this.props.id).then(() => this.props.history.push("/note/notebooks"))
+    this.props.destroyNotebook(this.props.id)
+      .then(() => this.props.history.push("/note/notebooks"))
   }
   
   showModal() {
@@ -92,6 +109,13 @@ export default class NotebookShow extends React.Component {
     return (e) => {
       e.preventDefault();
       this.props.addCurrentTag(tag);
+    }
+  }
+
+  setSortedBy(method) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({sortedBy: method})
     }
   }
 
@@ -126,10 +150,26 @@ export default class NotebookShow extends React.Component {
             <p>{this.state.number} notes</p>
             {cow}
             <div className="notebook-show-box-buttons">
-              <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
+
+              <img className="sort-dropdown-button" 
+                src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" 
+              />
+              <div className="dddd sort-dropdown">
+                <p>Sort By</p>
+                <div className="sort-button sort-time-button" 
+                  onClick={this.setSortedBy("time")}>
+                  Recent
+                </div>
+                <div className="sort-button sort-title-button" 
+                  onClick={this.setSortedBy("title")}>
+                  Title
+                </div>
+              </div>
+
+
               <img className="tag-dropdown-button" 
                 src="https://img.icons8.com/ios/50/000000/tags.png" />   
-              <div className="tag-filter-dropdown">
+              <div className="dddd tag-filter-dropdown">
                 <p>Filter By Tag</p>
                 <div className="tag-filter-index">
                   {frog}
@@ -153,7 +193,7 @@ export default class NotebookShow extends React.Component {
         </div>
 
         <NotebookUpdateFormContainer identity={this.props.id} title={title} />
-        <NoteIndexContainer notebookId={this.props.id} />
+        <NoteIndexContainer notebookId={this.props.id} sortedBy={this.state.sortedBy}/>
       </div>
     )
   }

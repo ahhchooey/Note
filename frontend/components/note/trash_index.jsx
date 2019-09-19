@@ -1,6 +1,7 @@
 import React from "react";
 import {fetchTrashes} from "../../utils/api_trash_util.js";
 import TrashIndexItem from "./trash_index_item.jsx";
+import {sortNotesByDate} from "../../utils/sorting_util.jsx";
 
 
 export default class TrashIndex extends React.Component {
@@ -39,7 +40,7 @@ export default class TrashIndex extends React.Component {
   }
 
   render() {
-    let trashes = Object.values(this.state.trashes);
+    let trashes = sortNotesByDate(Object.values(this.state.trashes));
 
     return (
       <div className="trash-box">
@@ -50,8 +51,6 @@ export default class TrashIndex extends React.Component {
           <div className="all-notes-show-box-bottom">
             <p>{this.state.number} notes</p>
             <div className="all-notes-show-box-buttons">
-              <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
-              <img src="https://img.icons8.com/ios/50/000000/tags.png" />   
             </div>
           </div>
 

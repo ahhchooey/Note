@@ -2,7 +2,7 @@ import React from "react";
 
 import SearchNotesIndexItem from "./search_notes_index_item.jsx";
 import {fetchNotes} from "../../utils/api_note_util.js";
-import {sortNotesByDate} from "../../utils/sorting_util.jsx";
+import {sortNotesByDate, sortNotesByTitle} from "../../utils/sorting_util.jsx";
 import {Value} from "slate";
 
 
@@ -11,7 +11,8 @@ export default class SearchNotesIndex extends React.Component {
     super(props);
     this.state = {
       notes: {},
-      currentTag: this.props.currentTag || {}
+      currentTag: this.props.currentTag || {},
+      sortedBy: "time"
     }
   }
 
@@ -43,15 +44,23 @@ export default class SearchNotesIndex extends React.Component {
         this.setState({currentTag: this.props.currentTag})
       })
     }
+    if (this.props.sortedBy !== this.state.sortedBy) {
+      this.setState({sortedBy: this.props.sortedBy})
+    }
   }
 
   render() {
-    let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+    let sortedNotes = (Object.values(this.state.notes));
     if (sortedNotes.length > 0) {
       sortedNotes = sortedNotes.filter(note => {
         let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
         return parsed.toLowerCase().includes(this.props.match.params.search)  
       })
+    }
+    if (this.state.sortedBy === "time") {
+      sortedNotes = sortNotesByDate(sortedNotes)
+    } else if (this.state.sortedBy === "title") {
+      sortedNotes = sortNotesByTitle(sortedNotes)
     }
     
     return (

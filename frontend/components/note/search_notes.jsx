@@ -7,11 +7,13 @@ export default class SearchNotes extends React.Component {
     super(props);
     this.state = {
       number: 0,
-      tags: {}
+      tags: {},
+      sortedBy: "time"
     }
     this.removeCurrentTag = this.removeCurrentTag.bind(this);
     this.handleTagDropdownClick = this.handleTagDropdownClick.bind(this);
     this.setCurrentTag = this.setCurrentTag.bind(this);
+    this.setSortedBy = this.setSortedBy.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +21,7 @@ export default class SearchNotes extends React.Component {
       this.setState({tags: res.tags})
     })
     this.handleTagDropdownClick();
+    this.handleSortDropdownClick();
   }
 
   removeCurrentTag() {
@@ -28,19 +31,39 @@ export default class SearchNotes extends React.Component {
   handleTagDropdownClick() {
     $(".tag-dropdown-button").on("click", (e) => {
       e.stopPropagation();
+      if ($(".dddd").hasClass("visible")) {
+        $(".dddd").removeClass("visible")
+      }
       $(".tag-filter-dropdown").toggleClass("visible")
     })
     document.addEventListener("click", (e) => {
-      if ($(".tag-filter-dropdown").hasClass("visible")) {
-        $(".tag-filter-dropdown").removeClass("visible")
+      if ($(".dddd").hasClass("visible")) {
+        $(".dddd").removeClass("visible")
       }
     }) 
+  }
+
+  handleSortDropdownClick() {
+    $(".sort-dropdown-button").on("click", (e) => {
+      e.stopPropagation();
+      if ($(".dddd").hasClass("visible")) {
+        $(".dddd").removeClass("visible")
+      }
+      $(".sort-dropdown").toggleClass("visible")
+    })
   }
 
   setCurrentTag(tag) {
     return (e) => {
       e.preventDefault();
       this.props.addCurrentTag(tag);
+    }
+  }
+
+  setSortedBy(method) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({sortedBy: method})
     }
   }
 
@@ -75,9 +98,26 @@ export default class SearchNotes extends React.Component {
             <p></p>
             {cow}
             <div className="all-notes-show-box-buttons">
-              <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
-              <img className="tag-dropdown-button" src="https://img.icons8.com/ios/50/000000/tags.png" />   
-              <div className="tag-filter-dropdown">
+
+              <img className="sort-dropdown-button" 
+                src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" 
+              />
+              <div className="dddd sort-dropdown">
+                <p>Sort By</p>
+                <div className="sort-button sort-time-button" 
+                  onClick={this.setSortedBy("time")}>
+                  Recent
+                </div>
+                <div className="sort-button sort-title-button" 
+                  onClick={this.setSortedBy("title")}>
+                  Title
+                </div>
+              </div>
+
+              <img className="tag-dropdown-button" 
+                src="https://img.icons8.com/ios/50/000000/tags.png" 
+              />   
+              <div className="dddd tag-filter-dropdown">
                 <p>Filter By Tag</p>
                 <div className="tag-filter-index">
                   {frog} 
@@ -88,7 +128,7 @@ export default class SearchNotes extends React.Component {
           </div>
 
         </div>
-        <SearchNotesIndexContainer />
+        <SearchNotesIndexContainer sortedBy={this.state.sortedBy} />
       </div>
     )
   }

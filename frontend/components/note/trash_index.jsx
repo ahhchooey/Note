@@ -16,7 +16,18 @@ export default class TrashIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchTrashes().then(res => {
-      this.setState({trashes: res.trashes})
+      this.setState({trashes: res.trashes}, () => {
+          let sortedNotes = sortNotesByDate(Object.values(this.state.trashes));
+          this.props.fetchCurrentNote(sortedNotes[0])
+          if (this.props.location.pathname.startsWith("/note/trash")) {
+            if (sortedNotes.length === 0) {
+              this.props.history.push(`/note/trash/`)
+            } else {
+              this.props.history.push(`/note/trash/${sortedNotes[0].id}`)
+            }
+          }
+
+      })
       this.fetchNumber();
     })
   }

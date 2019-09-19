@@ -19,7 +19,23 @@ export default class SearchNotesIndex extends React.Component {
   componentDidMount() {
     this.props.fetchNotes();
     fetchNotes(null, this.state.currentTag.id).then(notes => {
-      this.setState({notes: notes})
+      this.setState({notes: notes}, () => {
+        let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+    if (sortedNotes.length > 0) {
+      sortedNotes = sortedNotes.filter(note => {
+        let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
+        return parsed.toLowerCase().includes(this.props.match.params.search)  
+      })
+    }
+        this.props.fetchCurrentNote(sortedNotes[0])
+        if (this.props.location.pathname.startsWith("/note/search")) {
+          if (sortedNotes.length === 0) {
+            this.props.history.push(`/note/search/${this.props.match.params.search}`)
+          } else {
+            this.props.history.push(`/note/search/${this.props.match.params.search}/${sortedNotes[0].id}`)
+          }
+        }
+      })
     });
   }
 
@@ -28,7 +44,23 @@ export default class SearchNotesIndex extends React.Component {
     let thing2 = (this.props.currentTag) ? this.props.currentTag.id : null;
     if (this.props.location.pathname != prevProps.location.pathname) {
       fetchNotes(null, thing).then(notes => {
-        this.setState({notes: notes})
+        this.setState({notes: notes}, () => {
+          let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+    if (sortedNotes.length > 0) {
+      sortedNotes = sortedNotes.filter(note => {
+        let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
+        return parsed.toLowerCase().includes(this.props.match.params.search)  
+      })
+    }
+          this.props.fetchCurrentNote(sortedNotes[0])
+          if (this.props.location.pathname.startsWith("/note/search")) {
+            if (sortedNotes.length === 0) {
+              this.props.history.push(`/note/search/${this.props.match.params.search}`)
+            } else {
+              this.props.history.push(`/note/search/${this.props.match.params.search}/${sortedNotes[0].id}`)
+            }
+          }
+        })
         this.setState({currentTag: this.props.currentTag})
       })
     }

@@ -54,6 +54,11 @@ export default class AllNotes extends React.Component {
     if (this.props.location.pathname != nextProps.location.pathname) {
       this.fetchNumber();
     }
+    if (Object.keys(this.props.tags).length !== Object.keys(this.state.tags).length) {
+      this.props.fetchTags().then(res => {
+        this.setState({tags: res.tags})
+      })
+    }
   }
 
   fetchNumber() {

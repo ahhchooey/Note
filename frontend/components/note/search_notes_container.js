@@ -6,7 +6,8 @@ import {addCurrentTag} from "../../actions/ui_actions.js";
 
 
 const mapStateToProps = (state) => ({
-  currentTag: state.ui.currentTag
+  currentTag: state.ui.currentTag,
+  tags: state.entities.tags
 })
 
 const mapDispatchToProps = (dispatch) => ({

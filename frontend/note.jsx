@@ -18,8 +18,8 @@ $(() => {
     delete window.currentUser;
   }
   const store = configureStore(preloadedState);
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
+  //  window.getState = store.getState;
+  //  window.dispatch = store.dispatch;
 
   ReactDOM.render(<App store={store} />, root)
 })

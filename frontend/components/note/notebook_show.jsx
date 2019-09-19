@@ -43,6 +43,11 @@ export default class NotebookShow extends React.Component {
       this.fetchNumber();
       this.props.fetchCurrentNotebook(this.props.id);
     }
+    if (Object.keys(this.props.tags).length !== Object.keys(this.state.tags).length) {
+      this.props.fetchTags().then(res => {
+        this.setState({tags: res.tags})
+      })
+    }
   }
 
   fetchNumber() {

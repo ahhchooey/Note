@@ -9,7 +9,8 @@ import {addCurrentTag, removeCurrentTag} from "../../actions/ui_actions.js";
 const mapStateToProps = (state, ownProps) => ({
   id: parseInt(ownProps.match.params.id),
   notebook: state.entities.notebooks[ownProps.match.params.id],
-  currentTag: state.ui.currentTag
+  currentTag: state.ui.currentTag,
+  tags: state.entities.tags
 })
 
 const mapDispatchToProps = (dispatch) => ({ 

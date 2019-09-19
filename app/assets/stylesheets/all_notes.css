@@ -205,6 +205,14 @@
   cursor: pointer;
 }
 
+.sort-button-active {
+  background-color: #eee;
+}
+
+.sort-button-active:hover {
+  background-color: #eee;
+}
+
 .visible {
   display: block;
 }

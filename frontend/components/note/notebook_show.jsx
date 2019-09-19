@@ -116,6 +116,8 @@ export default class NotebookShow extends React.Component {
     return (e) => {
       e.preventDefault();
       this.setState({sortedBy: method})
+      $(".sort-button").removeClass("sort-button-active");
+      e.currentTarget.classList.add("sort-button-active");
     }
   }
 
@@ -156,7 +158,7 @@ export default class NotebookShow extends React.Component {
               />
               <div className="dddd sort-dropdown">
                 <p>Sort By</p>
-                <div className="sort-button sort-time-button" 
+                <div className="sort-button sort-time-button sort-button-active" 
                   onClick={this.setSortedBy("time")}>
                   Recent
                 </div>

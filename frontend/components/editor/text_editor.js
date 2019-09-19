@@ -18,6 +18,8 @@ import {ic_more_vert} from 'react-icons-kit/md/ic_more_vert';
 import {table} from 'react-icons-kit/icomoon/table'
 import defaultTable from "./default_table.json";
 import TagBarContainer from "../note/tagbar_container.js";
+import {enlarge} from 'react-icons-kit/icomoon/enlarge';
+import {shrink} from 'react-icons-kit/icomoon/shrink';
 
 const DEFAULT_NODE = "paragraph";
 const isBoldHotkey = isKeyHotkey('mod+b')
@@ -81,6 +83,8 @@ export default class TextEditor extends React.Component {
     this.deleteNote = this.deleteNote.bind(this);
     this.onDropOrPaste = this.onDropOrPaste.bind(this);
     this.createTable = this.createTable.bind(this);
+    this.expand = this.expand.bind(this);
+    this.shrink = this.shrink.bind(this);
   }
 
   componentDidMount() {
@@ -402,6 +406,20 @@ export default class TextEditor extends React.Component {
   createTable() {
     this.editor.insertBlock(defaultTable).moveEndForward(10);
   }
+
+  expand(e) {
+    $(".shrink-button").addClass("editor-es-button")
+    $(".expand-button").removeClass("editor-es-button")
+    $(".note-show").addClass("note-show-expanded")
+    $(".note-show").removeClass("note-show-shrink")
+  }
+
+  shrink(e) {
+    $(".expand-button").addClass("editor-es-button")
+    $(".shrink-button").removeClass("editor-es-button")
+    $(".note-show").removeClass("note-show-expanded")
+    $(".note-show").addClass("note-show-shrink")
+  }
   
   render() {
     let thing;
@@ -412,6 +430,12 @@ export default class TextEditor extends React.Component {
       <React.Fragment>
 
         <div className="note-show-topbar">
+          <div className="editor-tl expand-button editor-es-button" onClick={this.expand}>
+            <img src="https://img.icons8.com/ios/50/000000/expand.png" /> 
+          </div>
+          <div className="editor-tl shrink-button" onClick={this.shrink}>
+            <img src="https://img.icons8.com/ios/50/000000/collapse.png" /> 
+          </div>
           <Link className="note-show-notebook-link"
             to={`/note/notebooks/${this.state.note.notebook_id}/notes/${this.state.note.id}`}>
             {this.state.notebookTitle}

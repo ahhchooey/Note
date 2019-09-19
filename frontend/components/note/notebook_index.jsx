@@ -57,9 +57,6 @@ export default class NotebookIndex extends React.Component {
               <img src="https://img.icons8.com/wired/64/000000/spiral-bound-booklet.png" />
               + New Notebook 
             </div>
-            <div className="sort-button">
-              <img src="https://img.icons8.com/ios/50/000000/generic-sorting-2.png" />
-            </div>
           </div>
         </div>
         <NotebookCreateFormContainer />

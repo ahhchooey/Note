@@ -175,6 +175,36 @@
   cursor: pointer;
 }
 
+.sort-dropdown {
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  width: 150px;
+  height: 125px;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 0 3px #ccc;
+  padding: 10px 20px;
+  border-radius: 3px;
+  display: none;
+}
+
+.sort-dropdown p {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.sort-button {
+  padding: 10px;
+}
+
+.sort-button:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
 .visible {
   display: block;
 }

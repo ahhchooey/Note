@@ -1,7 +1,6 @@
 import React from "react";
 import AllNotesIndexContainer from "./all_notes_index_container.js";
 import {fetchNotes} from "../../utils/api_note_util.js";
-import {Link} from "react-router-dom";
 
 export default class AllNotes extends React.Component {
   constructor(props) {

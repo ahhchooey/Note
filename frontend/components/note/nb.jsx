@@ -9,6 +9,7 @@ import AllNotesContainer from "./all_notes_container.jsx";
 import TagIndexContainer from "./tag_index_container.js";
 import TrashIndexContainer from "./trash_index_container.js";
 import TrashShowContainer from "./trash_show_container.js";
+import SearchNotesContainer from "./search_notes_container.js";
 
 
 const Note = (props) => (
@@ -25,6 +26,8 @@ const Note = (props) => (
     <Route path={"/note/notebooks/:notebook_id/notes/:id"} component={NoteShowContainer} />
     <Route path={"/note/trash"} component={TrashIndexContainer} />
     <Route path={"/note/trash/:id"} component={TrashShowContainer} />
+    <Route path={"/note/search/:search"} component={SearchNotesContainer} />
+    <Route path={"/note/search/:search/:id"} component={NoteShowContainer} />
     <Route exact path={"/note/notebooks"} component={NotebookIndexContainer} />
     <Route exact path={"/note/tags"} component={TagIndexContainer} />
 

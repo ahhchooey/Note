@@ -12,7 +12,11 @@ class Api::NotesController < ApplicationController
   end
 
   def index
-    if params[:notebook_id]
+    if params[:notebook_id] && params[:tag_id]
+      nbid = params[:notebook_id].to_i
+      tgid = params[:tag_id].to_i
+      @notes = Tag.find_by(id: tgid).notes.where("user_id = #{current_user.id}").where("notebook_id = #{nbid}")
+    elsif params[:notebook_id]
       nbid = params[:notebook_id].to_i
       @notes = Note.where("user_id = #{current_user.id}").where("notebook_id = #{nbid}")
     elsif params[:tag_id]

@@ -135,7 +135,7 @@ export default class TextEditor extends React.Component {
           this.props.updateNote(nt).then((res) => {
             this.setState({note: res.note});
           })
-        }, 1000)
+        }, 500)
       }
       this.setState({value: editor.value})
     } 

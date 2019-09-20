@@ -37,18 +37,7 @@ export default class NoteIndex extends React.Component {
     let thing2 = (this.props.currentTag) ? this.props.currentTag.id : null;
     if (this.props.location.pathname != prevProps.location.pathname) {
       fetchNotes(this.props.notebookId, thing).then(notes => {
-        this.setState({notes: notes}, () => {
-          let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
-          this.props.fetchCurrentNote(sortedNotes[0])
-          if (this.props.location.pathname.startsWith("/note/notebooks")) {
-            if (sortedNotes.length === 0) {
-              this.props.history.push(`/note/notebooks/${this.props.notebookId}`)
-            } else {
-              this.props.history.push(`/note/notebooks/${this.props.notebookId}/notes/${sortedNotes[0].id}`)
-            }
-          }
-
-        })
+        this.setState({notes: notes})
         this.setState({currentTag: this.props.currentTag})
       })
     }
@@ -66,6 +55,19 @@ export default class NoteIndex extends React.Component {
     }
     if (this.props.sortedBy !== this.state.sortedBy) {
       this.setState({sortedBy: this.props.sortedBy})
+    }
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.setState({notes: this.state.notes}, () => {
+        let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+        this.props.fetchCurrentNote(sortedNotes[0])
+        if (this.props.location.pathname.startsWith("/note/notebooks")) {
+          if (sortedNotes.length === 0) {
+            this.props.history.push(`/note/notebooks/${this.props.notebookId}`)
+          } else {
+            this.props.history.push(`/note/notebooks/${this.props.notebookId}/notes/${sortedNotes[0].id}`)
+          }
+        }
+      })
     }
   }
 

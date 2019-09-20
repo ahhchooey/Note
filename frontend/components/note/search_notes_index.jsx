@@ -21,12 +21,12 @@ export default class SearchNotesIndex extends React.Component {
     fetchNotes(null, this.state.currentTag.id).then(notes => {
       this.setState({notes: notes}, () => {
         let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
-    if (sortedNotes.length > 0) {
-      sortedNotes = sortedNotes.filter(note => {
-        let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
-        return parsed.toLowerCase().includes(this.props.match.params.search)  
-      })
-    }
+        if (sortedNotes.length > 0) {
+          sortedNotes = sortedNotes.filter(note => {
+            let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
+            return parsed.toLowerCase().includes(this.props.match.params.search)  
+          })
+        }
         this.props.fetchCurrentNote(sortedNotes[0])
         if (this.props.location.pathname.startsWith("/note/search")) {
           if (sortedNotes.length === 0) {
@@ -46,19 +46,11 @@ export default class SearchNotesIndex extends React.Component {
       fetchNotes(null, thing).then(notes => {
         this.setState({notes: notes}, () => {
           let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
-    if (sortedNotes.length > 0) {
-      sortedNotes = sortedNotes.filter(note => {
-        let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
-        return parsed.toLowerCase().includes(this.props.match.params.search)  
-      })
-    }
-          this.props.fetchCurrentNote(sortedNotes[0])
-          if (this.props.location.pathname.startsWith("/note/search")) {
-            if (sortedNotes.length === 0) {
-              this.props.history.push(`/note/search/${this.props.match.params.search}`)
-            } else {
-              this.props.history.push(`/note/search/${this.props.match.params.search}/${sortedNotes[0].id}`)
-            }
+          if (sortedNotes.length > 0) {
+            sortedNotes = sortedNotes.filter(note => {
+              let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
+              return parsed.toLowerCase().includes(this.props.match.params.search)  
+            })
           }
         })
         this.setState({currentTag: this.props.currentTag})
@@ -78,6 +70,26 @@ export default class SearchNotesIndex extends React.Component {
     }
     if (this.props.sortedBy !== this.state.sortedBy) {
       this.setState({sortedBy: this.props.sortedBy})
+    }
+    if (this.props.match.params.search !== prevProps.match.params.search) {
+      this.setState({notes: this.state.notes}, () => {
+        let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+        if (sortedNotes.length > 0) {
+          sortedNotes = sortedNotes.filter(note => {
+            let parsed = note.title + Value.fromJSON(JSON.parse(note.body)).document.text;
+            return parsed.toLowerCase().includes(this.props.match.params.search)  
+          })
+        }
+        this.props.fetchCurrentNote(sortedNotes[0])
+        if (this.props.location.pathname.startsWith("/note/search")) {
+          if (sortedNotes.length === 0) {
+            this.props.history.push(`/note/search/${this.props.match.params.search}`)
+          } else {
+            this.props.history.push(`/note/search/${this.props.match.params.search}/${sortedNotes[0].id}`)
+          }
+        }
+      })
+
     }
   }
 

@@ -20,12 +20,16 @@ import defaultTable from "./default_table.json";
 import TagBarContainer from "../note/tagbar_container.js";
 import DeepTable from 'slate-deep-table';
 import InsertImages from 'slate-drop-or-paste-images';
+import imageExtensions from 'image-extensions';
+import isUrl from 'is-url';
+import {css} from 'emotion';
+import {ic_photo_camera} from 'react-icons-kit/md/ic_photo_camera';
 
 
 const plugins = [
   DeepTable(),
   InsertImages({
-    extensions: ['png'],
+    extensions: ['png', 'jpg', 'jpeg'],
     insertImage: (change, file) => {
       return change.insertBlock({
         type: 'image',
@@ -57,6 +61,44 @@ const initialValue = ({
     ]
   }
 });
+
+function isImage(url) {
+  return imageExtensions.includes(getExtension(url))
+}
+
+function getExtension(url) {
+  return new URL(url).pathname.split('.').pop()
+}
+
+function insertImage(editor, src, target) {
+  if (target) {
+    editor.select(target)
+  }
+
+  editor.insertBlock({
+    type: 'image',
+    data: { src },
+  })
+}
+
+const schema = {
+  document: {
+    last: { type: 'paragraph' },
+    normalize: (editor, { code, node, child }) => {
+      switch (code) {
+        case 'last_child_type_invalid': {
+          const paragraph = Block.create('paragraph')
+          return editor.insertNodeByKey(node.key, node.nodes.size, paragraph)
+        }
+      }
+    },
+  },
+  blocks: {
+    image: {
+      isVoid: true,
+    },
+  },
+}
 
 export default class TextEditor extends React.Component {
   constructor(props) {
@@ -108,6 +150,7 @@ export default class TextEditor extends React.Component {
     this.onToggleHeaders = this.onToggleHeaders.bind(this);
     this.renderNormalToolbar = this.renderNormalToolbar.bind(this);
     this.renderTableToolbar = this.renderTableToolbar.bind(this);
+    this.onClickImage = this.onClickImage.bind(this);
   }
 
   componentDidMount() {
@@ -366,6 +409,45 @@ export default class TextEditor extends React.Component {
     );
   }
 
+  onClickImage(event) {
+    event.preventDefault();
+    const src = window.prompt('Enter the URL of the image:')
+    if (!src) return;
+    this.editor.command(insertImage, src);
+  }
+
+  onDropOrPaste(event, editor, next) {
+    const target = editor.findEventRange(event)
+    if (!target && event.type === 'drop') return next()
+
+    const transfer = getEventTransfer(event)
+    const { type, text, files } = transfer
+
+    if (type === 'files') {
+      for (const file of files) {
+        const reader = new FileReader()
+        const [mime] = file.type.split('/')
+        if (mime !== 'image') continue
+
+        reader.addEventListener('load', () => {
+          editor.command(insertImage, reader.result, target)
+        })
+
+        reader.readAsDataURL(file)
+      }
+      return
+    }
+
+    if (type === 'text') {
+      if (!isUrl(text)) return next()
+      if (!isImage(text)) return next()
+      editor.command(insertImage, text, target)
+      return
+    }
+
+    next()
+  }
+
   renderNormalToolbar() {
     return (
       <div id="buttons">
@@ -421,7 +503,7 @@ export default class TextEditor extends React.Component {
   }
 
   renderBlock(props, editor, next) {
-    const { attributes, children, node } = props
+    const { attributes, children, node, isFocused } = props
 
     switch (node.type) {
       case 'bulleted-list':
@@ -436,6 +518,21 @@ export default class TextEditor extends React.Component {
         return <ol {...attributes}>{children}</ol>
       case 'paragraph':
         return <p {...props.attributes}>{props.children}</p>
+      case 'image': {
+        const src = node.data.get('src')
+        return (
+          <img
+            {...attributes}
+            src={src}
+            className={css`
+              display: block;
+              max-width: 100%;
+              max-height: 20em;
+              box-shadow: ${isFocused ? '0 0 0 2px green;' : 'none'};
+            `}
+          />
+        )
+      }
 
       default:
         return next()
@@ -488,6 +585,9 @@ export default class TextEditor extends React.Component {
           {this.renderMarkButton('code', 'ic_code')}
           {this.renderBlockButton('numbered-list', 'ic_format_list_numbered')}
           {this.renderBlockButton('bulleted-list', 'ic_format_list_bulleted')}
+          <Button onMouseDown={this.onClickImage}>
+            <IconIcon icon={ic_photo_camera} />
+          </Button>
           <div className="toolbar-break"></div>
           {isTable? this.renderTableToolbar() : this.renderNormalToolbar()}
         </Toolbar>
@@ -498,9 +598,10 @@ export default class TextEditor extends React.Component {
           <Editor
             autoFocus
             spellCheck
-            placeholder="Start typing here..."
+            placeholder="Start typing or paste image here..."
             className="text-editor"
             ref={this.ref}
+            schema={schema}
             value={this.state.value}
             onChange={this.onChange}
             renderMark={this.renderMark}

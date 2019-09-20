@@ -189,26 +189,6 @@
   margin-bottom: 10px;
 }
 
-.visible {
-  display: block;
-}
-
-.editor-table {
-  border: 1px solid black;
-  min-width: 200px;
-  max-width: 300px;
-}
-
-.editor-table-row {
-  border: 1px solid black;
-}
-
-.editor-table-cell {
-  margin: 0px;
-  min-width: 100px;
-  border: 1px solid black;
-}
-
 .custom-icon {
   color: lightgray;
 }
@@ -249,5 +229,80 @@
 }
 
 .editor-es-button {
+  display: block;
+}
+
+.toolbar-break {
+  height: 18px;
+  width: 2px;
+  background-color: #ddd;
+  margin: 0px 10px;
+}
+
+.editor table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid black;
+}
+
+.editor table tr {
+  border: none;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.editor table thead tr {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.editor table td {
+  border: 1px solid black;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  padding: .5em;
+  position: relative;
+}
+
+.editor table td > table {
+  width: 100%;
+}
+
+td > p:first-child {
+  margin-top: 0;
+}
+
+td > p:last-child {
+  margin-bottom: 0;
+}
+
+#buttons {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 300px;
+  min-width: 200px;
+}
+
+#buttons span {
+  position: relative;
+  top: 2px;
+}
+
+#custom-icon2 > img {
+  height: 13px;
+  top: 10px;
+  opacity: 0.4;
+}
+
+#custom-icon2 img:hover {
+  opacity: 1.0;
+  cursor: pointer;
+}
+
+.visible {
   display: block;
 }

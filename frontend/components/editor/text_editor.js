@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Editor, getEventTransfer} from "slate-react";
 import Plain from 'slate-plain-serializer';
-import {Value, Text} from "slate";
+import {Block, Value, Text} from "slate";
 import {isKeyHotkey} from "is-hotkey";
 import {Button, Icon, Toolbar} from "./comps.js";
 import IconIcon from "react-icons-kit";
@@ -18,14 +18,29 @@ import {ic_more_vert} from 'react-icons-kit/md/ic_more_vert';
 import {table} from 'react-icons-kit/icomoon/table'
 import defaultTable from "./default_table.json";
 import TagBarContainer from "../note/tagbar_container.js";
-import {enlarge} from 'react-icons-kit/icomoon/enlarge';
-import {shrink} from 'react-icons-kit/icomoon/shrink';
+import DeepTable from 'slate-deep-table';
+import InsertImages from 'slate-drop-or-paste-images';
+
+
+const plugins = [
+  DeepTable(),
+  InsertImages({
+    extensions: ['png'],
+    insertImage: (change, file) => {
+      return change.insertBlock({
+        type: 'image',
+        isVoid: true,
+        data: { file }
+      })
+    }
+  })
+];
 
 const DEFAULT_NODE = "paragraph";
-const isBoldHotkey = isKeyHotkey('mod+b')
-const isItalicHotkey = isKeyHotkey('mod+i')
-const isUnderlinedHotkey = isKeyHotkey('mod+u')
-const isCodeHotkey = isKeyHotkey('mod+`')
+const isBoldHotkey = isKeyHotkey('mod+b');
+const isItalicHotkey = isKeyHotkey('mod+i');
+const isUnderlinedHotkey = isKeyHotkey('mod+u');
+const isCodeHotkey = isKeyHotkey('mod+`');
 const initialValue = ({
   document: {
     nodes: [
@@ -81,10 +96,18 @@ export default class TextEditor extends React.Component {
     this.renderMarkButton = this.renderMarkButton.bind(this);
     this.renderBlockButton = this.renderBlockButton.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
-    this.onDropOrPaste = this.onDropOrPaste.bind(this);
-    this.createTable = this.createTable.bind(this);
     this.expand = this.expand.bind(this);
     this.shrink = this.shrink.bind(this);
+
+    this.onInsertTable = this.onInsertTable.bind(this);
+    this.onInsertColumn = this.onInsertColumn.bind(this);
+    this.onInsertRow = this.onInsertRow.bind(this);
+    this.onRemoveColumn = this.onRemoveColumn.bind(this);
+    this.onRemoveRow = this.onRemoveRow.bind(this);
+    this.onRemoveTable = this.onRemoveTable.bind(this);
+    this.onToggleHeaders = this.onToggleHeaders.bind(this);
+    this.renderNormalToolbar = this.renderNormalToolbar.bind(this);
+    this.renderTableToolbar = this.renderTableToolbar.bind(this);
   }
 
   componentDidMount() {
@@ -193,43 +216,6 @@ export default class TextEditor extends React.Component {
 
   onKeyDown(event, editor, next) {
     let mark;
-    const { value } = editor
-    const { document, selection } = value
-    const { start, isCollapsed } = selection
-    const startNode = document.getDescendant(start.key)
-
-    if (isCollapsed && start.isAtStartOfNode(startNode)) {
-      const previous = document.getPreviousText(startNode.key)
-
-      if (!previous) {
-        return next()
-      }
-
-      const prevBlock = document.getClosestBlock(previous.key)
-
-      if (prevBlock.type === 'table-cell') {
-        if (['Backspace', 'Delete', 'Enter'].includes(event.key)) {
-          event.preventDefault()
-        } else {
-          return next()
-        }
-      }
-    }
-
-    if (value.startBlock.type !== 'table-cell') {
-      return next()
-    }
-
-    switch (event.key) {
-      case 'Backspace':
-        return this.onBackspace(event, editor, next)
-      case 'Delete':
-        return this.onDelete(event, editor, next)
-      case 'Enter':
-        return this.onEnter(event, editor, next)
-      default:
-        return next()
-    }
 
     if (isBoldHotkey(event)) {
       mark = 'bold'
@@ -245,85 +231,6 @@ export default class TextEditor extends React.Component {
 
     event.preventDefault()
     editor.toggleMark(mark)
-  }
-  
-  onBackspace(event, editor, next) {
-    const value = editor.value;
-    const selection = value.selection;
-    if (selection.start.offset !== 0) return next();
-    event.preventDefault();
-  }
-
-  onDelete(event, editor, next) {
-    const value = editor.value;
-    const selection = value.selection;
-    if (selection.end.offset !== value.startText.text.length) return next();
-    e.preventDefault();
-  }
-
-  onDropOrPaste(event, editor, next) {
-    const transfer = getEventTransfer(event);
-    const value = editor.value;
-    const {text = ""} = transfer;
-    if (value.startBlock.type !== 'table-cell') return next();
-    if (!text) return next();
-    const lines = text.split('\n');
-    const {document} = Plain.deserialize(lines[0] || '');
-    editor.insertFragment(document);
-  }
-
-  onEnter(event, editor, next) {
-    event.preventDefault();
-  }
-
-  renderMark(props, editor, next) {
-    const { children, mark, attributes } = props
-
-    switch (mark.type) {
-      case 'bold':
-        return <strong {...attributes}>{children}</strong>
-      case 'code':
-        return <code className="code-block" {...attributes}>{children}</code>
-      case 'italic':
-        return <em {...attributes}>{children}</em>
-      case 'underlined':
-        return <u {...attributes}>{children}</u>
-      case 'highlight':
-        return <mark {...attributes}>{children}</mark>
-
-      default:
-        return next()
-    }
-  }
-
-  renderBlock(props, editor, next) {
-    const { attributes, children, node } = props
-
-    switch (node.type) {
-      case 'bulleted-list':
-        return <ul {...attributes}>{children}</ul>
-      case 'heading-one':
-        return <h1 {...attributes}>{children}</h1>
-      case 'heading-two':
-        return <h2 {...attributes}>{children}</h2>
-      case 'list-item':
-        return <li className="editor-list" {...attributes}>{children}</li>
-      case 'numbered-list':
-        return <ol {...attributes}>{children}</ol>
-      case 'table':
-        return (
-          <table className="editor-table">
-            <tbody {...attributes}>{children}</tbody>
-          </table>
-        )
-      case 'table-row':
-        return <tr className="editor-table-row" {...attributes}>{children}</tr>
-      case 'table-cell':
-        return <td className="editor-table-cell" {...attributes}>{children}</td>
-
-      default:
-        return next()
-    }
   }
 
   renderMarkButton(type, icon) {
@@ -403,10 +310,6 @@ export default class TextEditor extends React.Component {
     });
   }
 
-  createTable() {
-    this.editor.insertBlock(defaultTable).moveEndForward(10);
-  }
-
   expand(e) {
     $(".shrink-button").addClass("editor-es-button")
     $(".expand-button").removeClass("editor-es-button")
@@ -420,12 +323,134 @@ export default class TextEditor extends React.Component {
     $(".note-show").removeClass("note-show-expanded")
     $(".note-show").addClass("note-show-shrink")
   }
+
+  onInsertTable() {
+    this.onChange(
+        this.editor.insertTable()
+    );
+  }
+
+  onInsertColumn() {
+    this.onChange(
+        this.editor.insertColumn()
+    );
+  }
+
+  onInsertRow() {
+    this.onChange(
+        this.editor.insertRow()
+    );
+  }
+
+  onRemoveColumn() {
+    this.onChange(
+        this.editor.removeColumn()
+    );
+  }
+
+  onRemoveRow() {
+    this.onChange(
+        this.editor.removeRow()
+    );
+  }
+
+  onRemoveTable() {
+    this.onChange(
+        this.editor.removeTable()
+    );
+  }
+
+  onToggleHeaders() {
+    this.onChange(
+        this.editor.toggleTableHeaders()
+    );
+  }
+
+  renderNormalToolbar() {
+    return (
+      <div id="buttons">
+          <IconIcon className="custom-icon" icon={table} onClick={this.onInsertTable} />
+      </div>
+    );
+  }
+
+  renderTableToolbar() {
+    return (
+      <div id="buttons">
+        <IconIcon className="custom-icon" icon={table} onClick={this.onInsertTable} />
+        <span id="custom-icon2" onClick={this.onInsertColumn}>
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/insert-column-right.png" />
+        </span>
+        <span id="custom-icon2" onClick={this.onInsertRow}>
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/insert-row-below.png" />
+        </span>
+        <span id="custom-icon2" onClick={this.onRemoveColumn}>
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/delete-column.png" /> 
+        </span>
+        <span id="custom-icon2" onClick={this.onRemoveRow}>
+          <img src="https://img.icons8.com/metro/26/000000/delete-row.png" /> 
+        </span>
+        <span id="custom-icon2" onClick={this.onRemoveTable}>
+          <img src="https://img.icons8.com/ios-glyphs/26/000000/delete-table.png" /> 
+        </span>
+        <span id="custom-icon2" onClick={this.onToggleHeaders}>
+          <img src="https://img.icons8.com/material-sharp/30/000000/header.png" /> 
+        </span>
+      </div>
+    );
+  }
   
+  renderMark(props, editor, next) {
+    const { children, mark, attributes } = props
+
+    switch (mark.type) {
+      case 'bold':
+        return <strong {...attributes}>{children}</strong>
+      case 'code':
+        return <code className="code-block" {...attributes}>{children}</code>
+      case 'italic':
+        return <em {...attributes}>{children}</em>
+      case 'underlined':
+        return <u {...attributes}>{children}</u>
+      case 'highlight':
+        return <mark {...attributes}>{children}</mark>
+
+      default:
+        return next()
+    }
+  }
+
+  renderBlock(props, editor, next) {
+    const { attributes, children, node } = props
+
+    switch (node.type) {
+      case 'bulleted-list':
+        return <ul {...attributes}>{children}</ul>
+      case 'heading-one':
+        return <h1 {...attributes}>{children}</h1>
+      case 'heading-two':
+        return <h2 {...attributes}>{children}</h2>
+      case 'list-item':
+        return <li className="editor-list" {...attributes}>{children}</li>
+      case 'numbered-list':
+        return <ol {...attributes}>{children}</ol>
+      case 'paragraph':
+        return <p {...props.attributes}>{props.children}</p>
+
+      default:
+        return next()
+    }
+  }
+
   render() {
+    const {value} = this.state;
+    const isTable = this.editor && this.editor.isSelectionInTable(value);
+
     let thing;
     if (this.state.note.notebook_id) {
       thing = this.props.note.id;
     }
+
     return (
       <React.Fragment>
 
@@ -463,9 +488,8 @@ export default class TextEditor extends React.Component {
           {this.renderMarkButton('code', 'ic_code')}
           {this.renderBlockButton('numbered-list', 'ic_format_list_numbered')}
           {this.renderBlockButton('bulleted-list', 'ic_format_list_bulleted')}
-          <div className="custom-icon" onMouseDown={this.createTable}>
-            <IconIcon icon={table} />
-          </div>
+          <div className="toolbar-break"></div>
+          {isTable? this.renderTableToolbar() : this.renderNormalToolbar()}
         </Toolbar>
 
         <div className="editor">
@@ -484,6 +508,7 @@ export default class TextEditor extends React.Component {
             onKeyDown={this.onKeyDown}
             onDrop={this.onDropOrPaste}
             onPaste={this.onDropOrPaste}
+            plugins={plugins}
           />
         </div>
 

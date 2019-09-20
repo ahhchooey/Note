@@ -1,9 +1,32 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {formatDateTime} from "../../utils/api_format_time.js";
+import {DragSource} from "react-dnd";
+
+const itemSource = {
+  beginDrag(props) {
+    return props.note
+  },
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      return;
+    }
+    const identity = monitor.getDropResult().identity
+
+    return props.handleDrop(props.note, identity);
+  }
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  }
+}
 
 
-export default class NoteDropDownItem extends React.Component {
+class NoteDropDownItem extends React.Component {
   constructor(props) {
     super(props)
     this.dropdown = "note-dropdown" + this.props.note.id;
@@ -50,12 +73,16 @@ export default class NoteDropDownItem extends React.Component {
   }
 
   render() {
+    const {isDragging, connectDragSource, item} = this.props;
+
     let title = this.props.note.title;
     if (this.props.note.title.length > 25) {
       title = title.slice(0, 22) + "..."
     }
-    return (
-      <div className="note-dropdown-item">
+    return connectDragSource(
+      <div className="note-dropdown-item" style={{
+        opacity: isDragging ? 0 : 1,
+      }}>
         <Link to={`/note/notebooks/${this.props.note.notebook_id}/notes/${this.props.note.id}`}
           className="ndd-ti ti">
           <img src="https://img.icons8.com/ios-filled/50/000000/note.png" />
@@ -88,3 +115,4 @@ const fetchNoteUser = (id) => {
   })
 }
 
+export default DragSource("note", itemSource, collect)(NoteDropDownItem);

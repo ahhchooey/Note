@@ -1,12 +1,29 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {DropTarget} from "react-dnd";
 
 import NotebookUpdateFormContainer from "./notebook_update_form_container.js";
 import {formatDateTime} from "../../utils/api_format_time.js";
 import NoteDropdownContainer from "./note_dropdown_container.js";
 
 
-export default class NotebookIndexItem extends React.Component {
+const itemTarget = {
+  drop(props, monitor, component) {
+    return {
+      identity: props.identity
+    }
+  }
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    hovered: monitor.isOver(),
+    item: monitor.getItem()
+  }
+}
+
+class NotebookIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +36,7 @@ export default class NotebookIndexItem extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.notesDropdown = this.notesDropdown.bind(this);
     this.hideNotesDropdown = this.hideNotesDropdown.bind(this);
+    this.moveNote = this.moveNote.bind(this);
   }
 
   componentDidMount() {
@@ -82,12 +100,23 @@ export default class NotebookIndexItem extends React.Component {
     $(`.${ndd}`).removeClass("note-dropdown-active");
   }
 
+  moveNote(note, identity) {
+    let newNote = Object.assign({}, note);
+    newNote.notebook_id = identity;
+    this.props.updateNote(newNote);
+  }
+
   render() {
+    const {connectDropTarget, hovered, item} = this.props;
+
     let nbra = "nbra" + this.props.identity;
     let nbda = "nbda" + this.props.identity;
     let ndd = "ndd" +this.props.identity;
-    return (
-      <div className="nii-container">
+    return connectDropTarget(
+
+      <div className="nii-container" style={{
+        backgroundColor: hovered ? "lightgreen" : ""
+      }}>
 
         <div className="notebook-index-item">
           <img className={`${nbra} right-arrow ra-nbi visible`} onClick={this.notesDropdown}
@@ -123,7 +152,7 @@ export default class NotebookIndexItem extends React.Component {
           <NotebookUpdateFormContainer title={this.props.title} identity={this.props.identity} />
         </div>
 
-        <NoteDropdownContainer ndd={`${ndd} note-dropdown`} identity={this.props.identity} />
+        <NoteDropdownContainer moveNote={this.moveNote} ndd={`${ndd} note-dropdown`} identity={this.props.identity} />
 
       </div>
     )
@@ -137,3 +166,4 @@ const fetchNotebookUser = (id) => {
   })
 }
 
+export default DropTarget("note", itemTarget, collect)(NotebookIndexItem);

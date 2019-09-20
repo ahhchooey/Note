@@ -3,8 +3,9 @@ import NoteDropdown from "./note_dropdown.jsx";
 import {destroyNote} from "../../actions/note_actions.js";
 
 
-const mapStateToProps = (state) => ({
-  notes: state.entities.notes
+const mapStateToProps = (state, ownProps) => ({
+  notes: state.entities.notes,
+  moveNote: ownProps.moveNote
 })
 
 const mapDispatchToProps = (dispatch) => ({

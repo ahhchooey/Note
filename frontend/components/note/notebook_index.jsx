@@ -43,6 +43,7 @@ export default class NotebookIndex extends React.Component {
       identity={notebook.id}
       destroyNotebook={this.props.destroyNotebook}
       defaultNotebook={this.props.defaultNotebook}
+      updateNote={this.props.updateNote}
     />)
     return (
       <div className="notebook-index">

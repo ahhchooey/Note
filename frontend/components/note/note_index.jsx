@@ -57,17 +57,20 @@ export default class NoteIndex extends React.Component {
       this.setState({sortedBy: this.props.sortedBy})
     }
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.setState({notes: this.state.notes}, () => {
-        let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
-        this.props.fetchCurrentNote(sortedNotes[0])
-        if (this.props.location.pathname.startsWith("/note/notebooks")) {
-          if (sortedNotes.length === 0) {
-            this.props.history.push(`/note/notebooks/${this.props.notebookId}`)
-          } else {
-            this.props.history.push(`/note/notebooks/${this.props.notebookId}/notes/${sortedNotes[0].id}`)
+      let thing3 = this.state.currentTag ? this.state.currentTag.id : null;
+      fetchNotes(this.props.notebookId, thing3).then(notes => {
+        this.setState({notes: notes}, () => {
+          let sortedNotes = sortNotesByDate(Object.values(this.state.notes));
+          this.props.fetchCurrentNote(sortedNotes[0])
+          if (this.props.location.pathname.startsWith("/note/notebooks")) {
+            if (sortedNotes.length === 0) {
+              this.props.history.push(`/note/notebooks/${this.props.notebookId}`)
+            } else {
+              this.props.history.push(`/note/notebooks/${this.props.notebookId}/notes/${sortedNotes[0].id}`)
+            }
           }
-        }
-      })
+        })
+      });
     }
   }
 

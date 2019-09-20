@@ -24,6 +24,7 @@ import imageExtensions from 'image-extensions';
 import isUrl from 'is-url';
 import {css} from 'emotion';
 import {ic_photo_camera} from 'react-icons-kit/md/ic_photo_camera';
+import {ic_insert_link} from 'react-icons-kit/md/ic_insert_link';
 
 
 const plugins = [
@@ -61,6 +62,24 @@ const initialValue = ({
     ]
   }
 });
+const schema = {
+  document: {
+    last: { type: 'paragraph' },
+    normalize: (editor, { code, node, child }) => {
+      switch (code) {
+        case 'last_child_type_invalid': {
+          const paragraph = Block.create('paragraph')
+          return editor.insertNodeByKey(node.key, node.nodes.size, paragraph)
+        }
+      }
+    },
+  },
+  blocks: {
+    image: {
+      isVoid: true,
+    },
+  },
+}
 
 function isImage(url) {
   return imageExtensions.includes(getExtension(url))
@@ -81,23 +100,17 @@ function insertImage(editor, src, target) {
   })
 }
 
-const schema = {
-  document: {
-    last: { type: 'paragraph' },
-    normalize: (editor, { code, node, child }) => {
-      switch (code) {
-        case 'last_child_type_invalid': {
-          const paragraph = Block.create('paragraph')
-          return editor.insertNodeByKey(node.key, node.nodes.size, paragraph)
-        }
-      }
-    },
-  },
-  blocks: {
-    image: {
-      isVoid: true,
-    },
-  },
+function wrapLink(editor, href) {
+  editor.wrapInline({
+    type: 'link',
+    data: { href },
+  })
+
+  editor.moveToEnd()
+}
+
+function unwrapLink(editor) {
+  editor.unwrapInline('link')
 }
 
 export default class TextEditor extends React.Component {
@@ -151,6 +164,7 @@ export default class TextEditor extends React.Component {
     this.renderNormalToolbar = this.renderNormalToolbar.bind(this);
     this.renderTableToolbar = this.renderTableToolbar.bind(this);
     this.onClickImage = this.onClickImage.bind(this);
+    this.onClickLink = this.onClickLink.bind(this);
   }
 
   componentDidMount() {
@@ -200,6 +214,11 @@ export default class TextEditor extends React.Component {
     return this.state.value.activeMarks.some(mark => (
       mark.type === type
     ))
+  }
+
+  hasLinks() {
+    const { value } = this.state
+    return value.inlines.some(inline => inline.type === 'link')
   }
 
   hasBlock(type) {
@@ -448,6 +467,43 @@ export default class TextEditor extends React.Component {
     next()
   }
 
+  onClickLink(event) {
+    event.preventDefault()
+
+    const { editor } = this
+    const { value } = editor
+    const hasLinks = this.hasLinks()
+
+    if (hasLinks) {
+      editor.command(unwrapLink)
+    } else if (value.selection.isExpanded) {
+      const href = window.prompt('Enter the URL of the link:')
+
+      if (href == null) {
+        return
+      }
+
+      editor.command(wrapLink, href)
+    } else {
+      const href = window.prompt('Enter the URL of the link:')
+
+      if (href == null) {
+        return
+      }
+
+      const text = window.prompt('Enter the text for the link:')
+
+      if (text == null) {
+        return
+      }
+
+      editor
+        .insertText(text)
+        .moveFocusBackward(text.length)
+        .command(wrapLink, href)
+    }
+  }
+
   renderNormalToolbar() {
     return (
       <div id="buttons">
@@ -539,6 +595,26 @@ export default class TextEditor extends React.Component {
     }
   }
 
+  renderInline(props, editor, next) {
+    const { attributes, children, node } = props
+
+    switch (node.type) {
+      case 'link': {
+        const { data } = node
+        const href = data.get('href')
+        return (
+          <a {...attributes} href={href}>
+            {children}
+          </a>
+        )
+      }
+
+      default: {
+        return next()
+      }
+    }
+  }
+
   render() {
     const {value} = this.state;
     const isTable = this.editor && this.editor.isSelectionInTable(value);
@@ -588,6 +664,9 @@ export default class TextEditor extends React.Component {
           <Button onMouseDown={this.onClickImage}>
             <IconIcon icon={ic_photo_camera} />
           </Button>
+          <Button active={this.hasLinks()} onMouseDown={this.onClickLink}>
+            <IconIcon icon={ic_insert_link} />
+          </Button>
           <div className="toolbar-break"></div>
           {isTable? this.renderTableToolbar() : this.renderNormalToolbar()}
         </Toolbar>
@@ -610,6 +689,7 @@ export default class TextEditor extends React.Component {
             onDrop={this.onDropOrPaste}
             onPaste={this.onDropOrPaste}
             plugins={plugins}
+            renderInline={this.renderInline}
           />
         </div>
 

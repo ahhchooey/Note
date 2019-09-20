@@ -17,6 +17,13 @@
   justify-content: flex-start;
 }
 
+#sidebar-logo {
+  height: 20px;
+  -webkit-filter: invert(0%);
+  margin-right: 5px;
+}
+
+
 .username-button {
   list-style: none;
   text-decoration: none;

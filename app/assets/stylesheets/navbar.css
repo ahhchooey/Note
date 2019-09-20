@@ -76,6 +76,7 @@
 }
 
 .ln:hover {
+  cursor: default;
   list-style: none;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
@@ -118,6 +119,30 @@
   color: black;
   font-size: 15px;
   margin-right: auto;
+  position: relative;
+}
+
+.about-dropdown {
+  position: absolute;
+  display: none;
+  top: 20px;
+  right: 0px;
+  background-color: white;
+  box-shadow: 0 0 3px #ccc;
+  border-radius: 2px;
+  padding: 10px; 
+  width: 200px;
+}
+
+.about-me-img {
+  height: 90px;
+  width: 90px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.about-me-img:hover {
+  background-color: lightgreen;
 }
 
 .auth-buttons {
@@ -173,4 +198,8 @@
   font-size: 15px;
   border: 2px solid lightgreen;
   color: lightgreen;
+}
+
+.visible {
+  display: flex;
 }

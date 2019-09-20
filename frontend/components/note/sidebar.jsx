@@ -164,6 +164,7 @@ export default class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <div className="username-button">
+          <img id="sidebar-logo" src="https://www.designfreelogoonline.com/wp-content/uploads/2017/07/000856-Wolf-head-logo-maker-01.png" alt="logo" />
           {name}<img src="https://img.icons8.com/ios-glyphs/24/000000/chevron-down.png" />
         </div>
         <div className="username-button-dropdown">

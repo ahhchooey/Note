@@ -86,7 +86,7 @@ class NoteDropDownItem extends React.Component {
         <Link to={`/note/notebooks/${this.props.note.notebook_id}/notes/${this.props.note.id}`}
           className="ndd-ti ti">
           <img src="https://img.icons8.com/ios-filled/50/000000/note.png" />
-          {title}
+          <div>{title}</div>
         </Link>
         <span className="ndd-cr cr">{this.state.name}</span>
         <span className="ndd-up up">{formatDateTime(this.props.note.updated_at)}</span>

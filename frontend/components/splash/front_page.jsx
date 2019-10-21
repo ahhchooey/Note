@@ -62,11 +62,12 @@ export default class FrontPage extends React.Component {
       <img src="https://evernote.com/c/assets/homepage/assets/multi-devices-retina.png?d26ac4e7ff95e4e8" alt="organize-computer" />
       <div className="organize-text">
         <h2>Stay organized, wherever you are</h2>
-        <p>Plan, keep records, and manage projects from any device–even offline.</p>
+        <p>Plan, keep records, and manage projects from any device.</p>
         <Link className="plan-link" to={"/premium"}>Note Premium →</Link>
       </div>
     </div>
 
+    {/*
     <div className="collaborate">
       <div className="collaborate-text">
         <h2>Collaborate with your team</h2>  
@@ -75,6 +76,7 @@ export default class FrontPage extends React.Component {
       </div>
       <img src="https://evernote.com/c/assets/homepage/assets/empty_space_retina.png?944061dee891effd" alt="collaborate-heads" />
     </div>
+    */}
 
     <div className="compare">
       <button className="compare-plans-button">Compare Note Plans</button>

@@ -125,7 +125,9 @@ class NotebookIndexItem extends React.Component {
             src="https://img.icons8.com/material-rounded/24/000000/sort-down.png" />
           <Link className="ti" to={`/note/notebooks/${this.props.identity}`}>
             <img src="https://img.icons8.com/ios/24/000000/spiral-bound-booklet.png" />  
-            {this.props.title}
+            <div>
+              {this.props.title}
+            </div>
           </Link>
           <span className="cr">{this.state.name}</span>
           <span className="up">{formatDateTime(this.props.updatedAt)}</span>

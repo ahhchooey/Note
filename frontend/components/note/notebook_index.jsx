@@ -63,7 +63,7 @@ export default class NotebookIndex extends React.Component {
         <NotebookCreateFormContainer />
         <div className="notebook-table">
           <div className="table-labels">
-            <span className="ti">Title</span>
+            <span className="ti tii">Title</span>
             <span className="cr">Created By</span>
             <span className="up">Updated</span>
             <span className="sh">Shared With</span>

@@ -52,7 +52,6 @@ componentDidUpdate(prevProps) {
 
 An example of the rendering methods inside of the Text Editor.
 ```js
-...
 renderMark(props, editor, next) {
   const { children, mark, attributes } = props
 
@@ -84,6 +83,5 @@ renderBlock(props, editor, next) {
     case 'heading-two':
       return <h2 {...attributes}>{children}</h2>
     case 'list-item':
-
 ...
 ```

@@ -187,7 +187,7 @@ export default class TextEditor extends React.Component {
       this.setState({note: this.props.note})
     }
     if (prevProps.note !== this.props.note) {
-      this.setState({note: this.props.note, value: Value.fromJSON(JSON.parse(this.props.note.body))})
+      this.setState({note: this.props.note, value: Value.fromJSON(JSON.parse(this.props.note.body))}, () => console.log(this.state.note.body))
     }
     if (this.props.notebookTitle !== this.state.notebookTitle) {
       this.setState({notebookTitle: this.props.notebookTitle})

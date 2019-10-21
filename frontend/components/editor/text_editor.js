@@ -170,6 +170,16 @@ export default class TextEditor extends React.Component {
   componentDidMount() {
     this.setState({note: this.props.note})
     this.handleInput();
+    this.eli = document.querySelector('.editor-link-icon');
+    this.elitt = document.querySelector(".eli-tooltip");
+    this.eli.addEventListener("mouseover", (e) => {
+      e.preventDefault();
+      this.elitt.classList.add("visible");
+    })
+    this.eli.addEventListener("mouseleave", (e) => {
+      e.preventDefault();
+      this.elitt.classList.remove("visible");
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -202,10 +212,12 @@ export default class TextEditor extends React.Component {
     });
   }
 
-  updateTitle(e) {
+  updateTitle(e, tit) {
     let nt = this.state.note;
     nt.title = e.target.value;
+    if (tit === "") nt.title = "";
     this.setState({note: nt}, () => {
+      if (this.state.note.title.length < 1) return;
       this.props.updateNote(this.state.note);
     });
   }
@@ -664,8 +676,9 @@ export default class TextEditor extends React.Component {
           <Button onMouseDown={this.onClickImage}>
             <IconIcon icon={ic_photo_camera} />
           </Button>
-          <Button active={this.hasLinks()} onMouseDown={this.onClickLink}>
+          <Button className="editor-link-icon" active={this.hasLinks()} onMouseDown={this.onClickLink}>
             <IconIcon icon={ic_insert_link} />
+            <div className="eli-tooltip">Right Click to Use Links</div>
           </Button>
           <div className="toolbar-break"></div>
           {isTable? this.renderTableToolbar() : this.renderNormalToolbar()}
@@ -673,7 +686,11 @@ export default class TextEditor extends React.Component {
 
         <div className="editor">
           <input className="editor-title-input" placeholder="Title"
-            type="text" onChange={this.updateTitle} value={this.state.note.title || ""} />
+            type="text" onChange={this.updateTitle} value={this.state.note.title || ""} 
+            onFocus={(e) => {
+              if (this.state.note.title === "Untitled") this.updateTitle(e, "")
+            }} 
+          />
           <Editor
             autoFocus
             spellCheck

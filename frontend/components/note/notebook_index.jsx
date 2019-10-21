@@ -52,7 +52,9 @@ export default class NotebookIndex extends React.Component {
           <input type="text" onChange={this.search} value={this.state.search} placeholder="Find Notebooks..." />
         </div>
         <div className="notebook-index-table-head">
-          <h3>My Notebook List</h3>
+          <h3>My Notebook List 
+            <font style={{color: "lightgray"}}>- Drag Notes Between Notebooks to Organize</font>
+          </h3>
           <div className="notebook-index-table-head-buttons">
             <div onClick={this.showModal} className="new-notebook-button">
               <img src="https://img.icons8.com/wired/64/000000/spiral-bound-booklet.png" />
@@ -67,7 +69,7 @@ export default class NotebookIndex extends React.Component {
             <span className="cr">Created By</span>
             <span className="up">Updated</span>
             <span className="sh">Shared With</span>
-            <span className="ac">Actions</span>
+            <span className="ac acc">Actions</span>
           </div>
         </div>
         {cow}

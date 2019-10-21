@@ -303,6 +303,12 @@ td > p:last-child {
   cursor: pointer;
 }
 
+.eli-tooltip {
+  display: none !important;
+  position: absolute;
+  top: -10px;
+}
+
 .visible {
-  display: block;
+  display: block !important;
 }

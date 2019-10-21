@@ -264,6 +264,10 @@
 }
 
 .ac:hover {
+  cursor: pointer;
+}
+
+.acc:hover {
   cursor: default;
 }
 

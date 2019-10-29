@@ -20,7 +20,7 @@ Note is a note taking and organizational application. In Note, you can use noteb
 ### How It Works
 ------
 1. Note is built off of a Ruby on Rails backend. There, it keeps track of users. This allows users to log in and log out, all while retaining a sense of privacy, as notes can only be accessed by their owners.
-2. The backend, built with Postgresql, also keeps track of all notes, notebooks, and tags. And any relationships between them.
+2. The backend, built with PostgreSQL, keeps track of all notes, notebooks, and tags. And any relationships between them. Further, PostgreSQL allows for the ability to query for specfic data to manipulate.
 3. The frontend, built with React and Redux, make the entirety of the ui/ux design.
 4. The text editor is built off of Slate.js. Using the library, rich text editing, with images and tables are implemented to make the note taking experience more pleasant.
 
